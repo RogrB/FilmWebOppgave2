@@ -4,5 +4,6 @@ namespace Enhetstest
 {
     public class AdminControllerTest
     {
+
     }
 }
