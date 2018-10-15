@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graubakken Filmsjappe", "Graubakken Filmsjappe\Graubakken Filmsjappe.csproj", "{2E5A76FE-3700-40DD-8203-492920450912}"
+	ProjectSection(ProjectDependencies) = postProject
+		{65825F9E-B622-404F-963B-8551EA12E98E} = {65825F9E-B622-404F-963B-8551EA12E98E}
+		{6BD2CDD1-C23F-4B3D-926A-641AAD27DB55} = {6BD2CDD1-C23F-4B3D-926A-641AAD27DB55}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{65825F9E-B622-404F-963B-8551EA12E98E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6BD2CDD1-C23F-4B3D-926A-641AAD27DB55} = {6BD2CDD1-C23F-4B3D-926A-641AAD27DB55}
+		{A404D2D9-7228-47C7-9F17-E1EB7193A800} = {A404D2D9-7228-47C7-9F17-E1EB7193A800}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{A404D2D9-7228-47C7-9F17-E1EB7193A800}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6BD2CDD1-C23F-4B3D-926A-641AAD27DB55} = {6BD2CDD1-C23F-4B3D-926A-641AAD27DB55}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enhetstest", "Enhetstest\Enhetstest.csproj", "{CF5489E3-4684-4E70-8EAD-716F8640A981}"
+	ProjectSection(ProjectDependencies) = postProject
+		{65825F9E-B622-404F-963B-8551EA12E98E} = {65825F9E-B622-404F-963B-8551EA12E98E}
+		{6BD2CDD1-C23F-4B3D-926A-641AAD27DB55} = {6BD2CDD1-C23F-4B3D-926A-641AAD27DB55}
+		{A404D2D9-7228-47C7-9F17-E1EB7193A800} = {A404D2D9-7228-47C7-9F17-E1EB7193A800}
+		{2E5A76FE-3700-40DD-8203-492920450912} = {2E5A76FE-3700-40DD-8203-492920450912}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{6BD2CDD1-C23F-4B3D-926A-641AAD27DB55}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E5A76FE-3700-40DD-8203-492920450912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E5A76FE-3700-40DD-8203-492920450912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E5A76FE-3700-40DD-8203-492920450912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E5A76FE-3700-40DD-8203-492920450912}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65825F9E-B622-404F-963B-8551EA12E98E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65825F9E-B622-404F-963B-8551EA12E98E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65825F9E-B622-404F-963B-8551EA12E98E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65825F9E-B622-404F-963B-8551EA12E98E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A404D2D9-7228-47C7-9F17-E1EB7193A800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A404D2D9-7228-47C7-9F17-E1EB7193A800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A404D2D9-7228-47C7-9F17-E1EB7193A800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A404D2D9-7228-47C7-9F17-E1EB7193A800}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF5489E3-4684-4E70-8EAD-716F8640A981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF5489E3-4684-4E70-8EAD-716F8640A981}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF5489E3-4684-4E70-8EAD-716F8640A981}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF5489E3-4684-4E70-8EAD-716F8640A981}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BD2CDD1-C23F-4B3D-926A-641AAD27DB55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BD2CDD1-C23F-4B3D-926A-641AAD27DB55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BD2CDD1-C23F-4B3D-926A-641AAD27DB55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BD2CDD1-C23F-4B3D-926A-641AAD27DB55}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {524CC202-640C-4277-9AD6-C33F83E842F0}
+	EndGlobalSection
+EndGlobal
