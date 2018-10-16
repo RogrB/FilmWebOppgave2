@@ -6,6 +6,6 @@ namespace DAL
 {
     public interface IAdminRepository
     {
-
+        bool RegistrerAdmin(int id);
     }
 }

@@ -25,6 +25,7 @@ namespace DAL
         public DbSet<Sjanger> Sjangere { get; set; }
         public DbSet<Ønskeliste> Ønskelister { get; set; }
         public DbSet<Kommentar> Kommentarer { get; set; }
+        public DbSet<AdministratorDB> Administrator { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

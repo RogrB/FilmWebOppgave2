@@ -4,8 +4,18 @@ using System.Text;
 
 namespace DAL
 {
-    class AdminRepositoryStub : IAdminRepository
+    public class AdminRepositoryStub : IAdminRepository
     {
-
+        public bool RegistrerAdmin(int id)
+        {
+            if (id == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
