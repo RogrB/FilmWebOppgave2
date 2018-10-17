@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -25,6 +26,18 @@ namespace DAL
         public bool AdminEksisterer(int id)
         {
             if (id == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool SjekkInnLogging(Administrator innAdmin)
+        {
+            if (innAdmin.Brukernavn == "admin" && innAdmin.Passord == "admin")
             {
                 return true;
             }

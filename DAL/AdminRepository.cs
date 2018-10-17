@@ -19,7 +19,7 @@ namespace DAL
                 try
                 {
                     string salt = LagSalt();
-                    AdministratorDB admin = new AdministratorDB() 
+                    AdminDB admin = new AdminDB() 
                     {
                         Brukernavn = "admin",
                         Salt = salt,
@@ -78,6 +78,24 @@ namespace DAL
             innData = System.Text.Encoding.UTF8.GetBytes(innStreng);
             utData = algoritme.ComputeHash(innData);
             return utData;
+        }
+
+        public bool SjekkInnLogging(Administrator innAdmin)
+        {
+            using (var db = new DBContext())
+            {
+                AdminDB funnetBruker = db.Administrator.FirstOrDefault(a => a.Brukernavn == innAdmin.Brukernavn);
+                if (funnetBruker != null)
+                {
+                    byte[] passordForTest = LagHash(innAdmin.Passord + funnetBruker.Salt);
+                    bool riktigBruker = funnetBruker.Passord.SequenceEqual(passordForTest);
+                    return riktigBruker;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
     }
 }

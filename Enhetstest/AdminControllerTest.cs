@@ -13,19 +13,6 @@ namespace Enhetstest
     public class AdminControllerTest
     {
         [TestMethod]
-        public void AdminLoginnView()
-        {
-        // Arrange
-        var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
-
-        // Act
-        var actionResult = (ViewResult)controller.AdminLoginn();
-
-        // Assert
-        Assert.AreEqual(actionResult.ViewName, "");
-        }
-
-        [TestMethod]
         public void AdminLoggetInnOK()
         {
             // Arrange
@@ -113,6 +100,54 @@ namespace Enhetstest
             var SessionMock = new TestControllerBuilder();
             SessionMock.InitializeController(controller);
             controller.Session["Admin"] = "";
+
+            // Act
+            var actionResult = (RedirectToRouteResult)controller.Admin();
+
+            // Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+        }
+
+        [TestMethod]
+        public void AdminIndexLoggetInn()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "admin";
+
+            // Act
+            var actionResult = (RedirectToRouteResult)controller.Index();
+
+            // Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+        }
+
+        [TestMethod]
+        public void AdminIndexBlank()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "";
+
+            // Act
+            var actionResult = (RedirectToRouteResult)controller.Admin();
+
+            // Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+        }
+
+        [TestMethod]
+        public void AdminIndexNull()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = null;
 
             // Act
             var actionResult = (RedirectToRouteResult)controller.Admin();

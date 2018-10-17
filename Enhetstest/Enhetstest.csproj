@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="AdminControllerTest.cs" />
     <Compile Include="DBTester\RegistrerAdminTest.cs" />
+    <Compile Include="DBTester\LoginnTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

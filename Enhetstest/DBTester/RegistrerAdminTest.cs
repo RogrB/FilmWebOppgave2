@@ -19,7 +19,7 @@ namespace Enhetstest.DBTester
             var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
 
             // Act
-            var actionResult = (ViewResult)controller.RegisterAdmin(1);
+            var actionResult = (ViewResult)controller.RegistrerAdmin(1);
             
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
@@ -32,7 +32,7 @@ namespace Enhetstest.DBTester
             var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
 
             // Act
-            var actionResult = (ViewResult)controller.RegisterAdmin(3);
+            var actionResult = (ViewResult)controller.RegistrerAdmin(3);
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
@@ -45,7 +45,7 @@ namespace Enhetstest.DBTester
             var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
 
             // Act
-            var actionResult = (ViewResult)controller.RegisterAdmin(2);
+            var actionResult = (ViewResult)controller.RegistrerAdmin(2);
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");

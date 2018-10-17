@@ -11,7 +11,7 @@ namespace Model
         public string Passord { get; set; }
     }
 
-    public class AdministratorDB
+    public class AdminDB
     {
         public int id { get; set; }
         public string Brukernavn { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,5 +9,6 @@ namespace DAL
     {
         string RegistrerAdmin(int id);
         bool AdminEksisterer(int id);
+        bool SjekkInnLogging(Administrator innAdmin);
     }
 }
