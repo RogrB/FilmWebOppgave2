@@ -24,5 +24,31 @@ namespace Enhetstest.DBTester
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
         }
+
+        [TestMethod]
+        public void RegistrerAdminFeil()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            // Act
+            var actionResult = (ViewResult)controller.RegisterAdmin(3);
+
+            // Assert
+            Assert.AreEqual(actionResult.ViewName, "");
+        }
+
+        [TestMethod]
+        public void RegistrerAdminAlleredeRegistrert()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            // Act
+            var actionResult = (ViewResult)controller.RegisterAdmin(2);
+
+            // Assert
+            Assert.AreEqual(actionResult.ViewName, "");
+        }
     }
 }

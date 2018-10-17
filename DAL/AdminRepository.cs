@@ -1,14 +1,19 @@
 ﻿using Model;
 using System;
 using System.Security.Cryptography;
+using System.Linq;
 
 namespace DAL
 {
     public class AdminRepository : IAdminRepository
     {
-        public bool RegistrerAdmin(int id)
+        public string RegistrerAdmin(int id)
         {
-            bool resultat = true;
+            string resultat = "";
+            if (AdminEksisterer(1))
+            {
+                return "Admin er allerede registrert";
+            }
             using (var db = new DBContext())
             {
                 try
@@ -22,12 +27,28 @@ namespace DAL
                     };
                     db.Administrator.Add(admin);
                     db.SaveChanges();
+                    resultat = "OK";
                 }
                 catch (Exception e)
                 {
-                    resultat = false;
+                    resultat = "Feil";
                 }
             }
+            return resultat;
+        }
+
+        public bool AdminEksisterer(int id)
+        {
+            bool resultat = false;
+            using (var db = new DBContext())
+            {
+                var admin = db.Administrator.FirstOrDefault(a => a.Brukernavn == "admin");
+                if (admin != null)
+                {
+                    resultat = true;
+                }
+            }
+
             return resultat;
         }
 

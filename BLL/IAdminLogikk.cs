@@ -6,6 +6,6 @@ namespace BLL
 {
     public interface IAdminLogikk
     {
-        bool RegistrerAdmin(int id);
+        string RegistrerAdmin(int id);
     }
 }
