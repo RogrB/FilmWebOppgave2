@@ -15,5 +15,6 @@ namespace DAL
         List<Skuespiller> HentSkuespillere();
         string LeggSkuespillerIFilm(int filmID, int skuespillerID);
         string SlettSkuespillerFraFilm(int filmID, int skuespillerID);
+        bool RedigerFilm(Film innFilm);
     }
 }

@@ -181,5 +181,17 @@ namespace DAL
             }
         }
 
+        public bool RedigerFilm(Film innFilm)
+        {
+            if (innFilm.id == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

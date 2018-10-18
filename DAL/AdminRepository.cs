@@ -181,5 +181,38 @@ namespace DAL
                 }
             }
         }
+
+        public bool RedigerFilm(Film innFilm)
+        {
+            var db = new DBContext();
+            bool resultat = true;
+            try
+            {
+                Film endreFilm = db.Filmer.Find(innFilm.id);
+                if(endreFilm != null)
+                {
+                    endreFilm.Beskrivelse = innFilm.Beskrivelse;
+                    endreFilm.Navn = innFilm.Navn;
+                    endreFilm.Gjennomsnitt = innFilm.Gjennomsnitt;
+                    endreFilm.Bilde = innFilm.Bilde;
+                    endreFilm.Kontinent = innFilm.Kontinent;
+                    endreFilm.Pris = innFilm.Pris;
+                    endreFilm.Produksjonsår = innFilm.Produksjonsår;
+                    endreFilm.ReleaseDate = innFilm.ReleaseDate;
+                    endreFilm.Studio = innFilm.Studio;
+                    endreFilm.Visninger = innFilm.Visninger;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    resultat = false;
+                }
+            }
+            catch (Exception e)
+            {
+                resultat = false;
+            }
+            return resultat;
+        }
     }
 }
