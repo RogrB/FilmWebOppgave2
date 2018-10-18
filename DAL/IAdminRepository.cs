@@ -10,5 +10,6 @@ namespace DAL
         string RegistrerAdmin(int id);
         bool AdminEksisterer(int id);
         bool SjekkInnLogging(Administrator innAdmin);
+        List<Film> HentFilmer();
     }
 }

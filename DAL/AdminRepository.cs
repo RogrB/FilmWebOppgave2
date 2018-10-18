@@ -2,6 +2,7 @@
 using System;
 using System.Security.Cryptography;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace DAL
 {
@@ -95,6 +96,17 @@ namespace DAL
                 {
                     return false;
                 }
+            }
+        }
+
+        public List<Film> HentFilmer()
+        {
+            using (var db = new DBContext())
+            {
+                List<Film> alleFilmer = new List<Film>();
+                alleFilmer = db.Filmer.ToList();
+
+                return alleFilmer;
             }
         }
     }

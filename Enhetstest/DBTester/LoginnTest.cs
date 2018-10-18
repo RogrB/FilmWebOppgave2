@@ -14,7 +14,7 @@ using System.Web.Mvc;
 namespace Enhetstest.DBTester
 {
     [TestClass]
-    class LoginnTest
+    public class LoginnTest
     {
         [TestMethod]
         public void AdminLoginnView()
@@ -39,9 +39,11 @@ namespace Enhetstest.DBTester
                 Brukernavn = "admin",
                 Passord = "admin"
             };
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
 
             // Act
-            var actionResult = (RedirectToRouteResult)controller.Loginn(innAdmin);
+            var actionResult = (RedirectToRouteResult)controller.AdminLoginn(innAdmin);
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
@@ -57,9 +59,11 @@ namespace Enhetstest.DBTester
                 Brukernavn = "feilNavn",
                 Passord = "admin"
             };
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
 
             // Act
-            var actionResult = (ViewResult)controller.Loginn(innAdmin);
+            var actionResult = (ViewResult)controller.AdminLoginn(innAdmin);
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
@@ -75,9 +79,11 @@ namespace Enhetstest.DBTester
                 Brukernavn = "admin",
                 Passord = "feilPassord"
             };
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
 
             // Act
-            var actionResult = (ViewResult)controller.Loginn(innAdmin);
+            var actionResult = (ViewResult)controller.AdminLoginn(innAdmin);
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
@@ -93,11 +99,31 @@ namespace Enhetstest.DBTester
                 Brukernavn = "feilNavn",
                 Passord = "feilPassord"
             };
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
 
             // Act
-            var actionResult = (ViewResult)controller.Loginn(innAdmin);
+            var actionResult = (ViewResult)controller.AdminLoginn(innAdmin);
 
             // Assert
+            Assert.AreEqual(actionResult.ViewName, "");
+        }
+
+        [TestMethod]
+        public void LoginnFeilModell()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var innAdmin = new Administrator();
+            controller.ViewData.ModelState.AddModelError("Brukernavn", "Brukernavn må oppgis");
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+
+            // Act
+            var actionResult = (ViewResult)controller.AdminLoginn(innAdmin);
+
+            // Assert
+            Assert.IsTrue(actionResult.ViewData.ModelState.Count == 1);
             Assert.AreEqual(actionResult.ViewName, "");
         }
     }

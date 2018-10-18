@@ -1,6 +1,7 @@
 ﻿using DAL;
 using Model;
 using System;
+using System.Collections.Generic;
 
 namespace BLL
 {
@@ -27,6 +28,12 @@ namespace BLL
         {
             bool resultat = _repository.SjekkInnLogging(innAdmin);
             return resultat;
+        }
+
+        public List<Film> HentFilmer()
+        {
+            List<Film> alleFilmer = _repository.HentFilmer();
+            return alleFilmer;
         }
     }
 }

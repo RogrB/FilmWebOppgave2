@@ -46,5 +46,55 @@ namespace DAL
                 return false;
             }
         }
+
+        public List<Film> HentFilmer()
+        {
+            var alleFilmer = new List<Film>();
+            var film = new Film()
+            {
+                id = 1,
+                Navn = "Film01",
+                Bilde = "bilde1",
+                Beskrivelse = "Dette er en film",
+                Gjennomsnitt = 3,
+                Kontinent = "USA",
+                Pris = 20,
+                Studio = "Studio01",
+                Produksjonsår = 1999,
+                Visninger = 16,
+                ReleaseDate = "12/12/2014",
+                Sjanger = new List<Sjanger>(),
+                Skuespillere = new List<Skuespiller>(),
+                Kommentarer = new List<Kommentar>()
+            };
+            var skuespiller = new Skuespiller()
+            {
+                id = 1,
+                Fornavn = "Per",
+                Etternavn = "Persen",
+                Bilde = "bilde02",
+                Alder = 48,
+                Land = "Norge"
+            };
+            var sjanger = new Sjanger()
+            {
+                id = 1,
+                sjanger = "Action"
+            };
+            var kommentar = new Kommentar()
+            {
+                Dato = "12/12/2018",
+                id = 1,
+                Melding = "Dette er en kommentar"
+            };
+            film.Skuespillere.Add(skuespiller);
+            film.Sjanger.Add(sjanger);
+            film.Kommentarer.Add(kommentar);
+            alleFilmer.Add(film);
+            alleFilmer.Add(film);
+            alleFilmer.Add(film);
+
+            return alleFilmer;
+        }
     }
 }
