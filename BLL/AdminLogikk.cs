@@ -35,5 +35,29 @@ namespace BLL
             List<Film> alleFilmer = _repository.HentFilmer();
             return alleFilmer;
         }
+
+        public Film HentFilm(int id)
+        {
+            Film film = _repository.HentFilm(id);
+            return film;
+        }
+
+        public List<Skuespiller> HentSkuespillere()
+        {
+            List<Skuespiller> alleSkuespillere = _repository.HentSkuespillere();
+            return alleSkuespillere;
+        }
+
+        public string LeggSkuespillerIFilm(int filmID, int skuespillerID)
+        {
+            string resultat = _repository.LeggSkuespillerIFilm(filmID, skuespillerID);
+            return resultat;
+        }
+
+        public string SlettSkuespillerFraFilm(int filmID, int skuespillerID)
+        {
+            string resultat = _repository.SlettSkuespillerFraFilm(filmID, skuespillerID);
+            return resultat;
+        }
     }
 }

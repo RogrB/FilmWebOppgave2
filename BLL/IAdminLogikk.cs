@@ -10,5 +10,9 @@ namespace BLL
         string RegistrerAdmin(int id);
         bool SjekkInnLogging(Administrator admin);
         List<Film> HentFilmer();
+        Film HentFilm(int id);
+        List<Skuespiller> HentSkuespillere();
+        string LeggSkuespillerIFilm(int filmID, int skuespillerID);
+        string SlettSkuespillerFraFilm(int filmID, int skuespillerID);
     }
 }

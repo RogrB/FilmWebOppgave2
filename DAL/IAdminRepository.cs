@@ -11,5 +11,9 @@ namespace DAL
         bool AdminEksisterer(int id);
         bool SjekkInnLogging(Administrator innAdmin);
         List<Film> HentFilmer();
+        Film HentFilm(int id);
+        List<Skuespiller> HentSkuespillere();
+        string LeggSkuespillerIFilm(int filmID, int skuespillerID);
+        string SlettSkuespillerFraFilm(int filmID, int skuespillerID);
     }
 }

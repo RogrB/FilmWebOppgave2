@@ -109,5 +109,77 @@ namespace DAL
                 return alleFilmer;
             }
         }
+
+        public Film HentFilm(int id)
+        {
+            using (var db = new DBContext())
+            {
+                var Film = db.Filmer.Find(id);
+
+                return Film;
+            }
+        }
+
+        public List<Skuespiller> HentSkuespillere()
+        {
+            var db = new DBContext();
+            var skuespillere = db.Skuespillere.ToList();
+            List<Skuespiller> utSkuespillere = new List<Skuespiller>();
+            foreach(var skuespiller in skuespillere)
+            {
+                var nySkuespiller = new Skuespiller()
+                {
+                    Fornavn = skuespiller.Fornavn,
+                    Etternavn = skuespiller.Etternavn,
+                    Alder = skuespiller.Alder,
+                    Bilde = skuespiller.Bilde,
+                    Land = skuespiller.Land,
+                    id = skuespiller.id
+                };
+                utSkuespillere.Add(nySkuespiller);
+            }
+
+            return utSkuespillere;
+        }
+
+        public string LeggSkuespillerIFilm(int filmID, int skuespillerID)
+        {
+            using (var db = new DBContext())
+            {
+                try
+                {
+                    var skuespiller = db.Skuespillere.Find(skuespillerID);
+                    var film = db.Filmer.Find(filmID);
+                    film.Skuespillere.Add(skuespiller);
+                    db.SaveChanges();
+
+                    return "OK";
+                }
+                catch(Exception e)
+                {
+                    return "Feil";
+                }
+            }
+        }
+
+        public string SlettSkuespillerFraFilm(int filmID, int skuespillerID)
+        {
+            using (var db = new DBContext())
+            {
+                try
+                {
+                    var skuespiller = db.Skuespillere.Find(skuespillerID);
+                    var film = db.Filmer.Find(filmID);
+                    film.Skuespillere.Remove(skuespiller);
+                    db.SaveChanges();
+
+                    return "OK";
+                }
+                catch (Exception e)
+                {
+                    return "Feil";
+                }
+            }
+        }
     }
 }

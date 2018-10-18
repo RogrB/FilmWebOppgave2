@@ -96,5 +96,90 @@ namespace DAL
 
             return alleFilmer;
         }
+
+        public Film HentFilm(int id)
+        {
+            if (id == 1)
+            {
+                Film enFilm = new Film()
+                {
+                    Navn = "Film01",
+                    Bilde = "Bilde01",
+                    Kontinent = "USA",
+                    Visninger = 2013,
+                    Produksjonsår = 2016,
+                    Sjanger = new List<Sjanger>(),
+                    Stemmer = new List<Stemme>()
+                };
+                Sjanger sjanger = new Sjanger()
+                {
+                    sjanger = "Action"
+                };
+                Stemme stemme = new Stemme()
+                {
+                    AntallStjerner = 5
+                };
+                enFilm.Sjanger.Add(sjanger);
+                enFilm.Stemmer.Add(stemme);
+
+                return enFilm;
+          }
+            else
+            {
+                return null;
+            }
+        }
+
+        public List<Skuespiller> HentSkuespillere()
+        {
+            var alleSkuespillere = new List<Skuespiller>();
+            var skuespiller = new Skuespiller()
+            {
+                id = 1,
+                Fornavn = "Ole",
+                Etternavn = "Olesen",
+                Alder = 33,
+                Bilde = "Bilde01",
+                Land = "Norge",
+                Filmer = new List<Film>()
+            };
+            var film = new Film()
+            {
+                Navn = "Film01",
+                id = 1,
+                Bilde = "Bilde02"
+            };
+            skuespiller.Filmer.Add(film);
+            alleSkuespillere.Add(skuespiller);
+            alleSkuespillere.Add(skuespiller);
+            alleSkuespillere.Add(skuespiller);
+
+            return alleSkuespillere;
+        }
+
+        public string LeggSkuespillerIFilm(int filmID, int skuespillerID)
+        {
+            if (filmID == 1 && skuespillerID == 1)
+            {
+                return "OK";
+            }
+            else
+            {
+                return "Feil";
+            }
+        }
+
+        public string SlettSkuespillerFraFilm(int filmID, int skuespillerID)
+        {
+            if (filmID == 1 && skuespillerID == 1)
+            {
+                return "OK";
+            }
+            else
+            {
+                return "Feil";
+            }
+        }
+
     }
 }
