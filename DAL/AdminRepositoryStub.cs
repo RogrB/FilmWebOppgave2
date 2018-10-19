@@ -242,5 +242,17 @@ namespace DAL
             }
         }
 
+        public string SlettSjangerFraFilm(int filmID, int sjangerID)
+        {
+            if (filmID == 1 && sjangerID == 1)
+            {
+                return "OK";
+            }
+            else
+            {
+                return "Feil";
+            }
+        }
+
     }
 }

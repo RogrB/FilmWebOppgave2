@@ -272,5 +272,27 @@ namespace DAL
                 }
             }
         }
+
+        public string SlettSjangerFraFilm(int filmID, int sjangerID)
+        {
+            using (var db = new DBContext())
+            {
+                try
+                {
+                    var sjanger = db.Sjangere.Find(sjangerID);
+                    var film = db.Filmer.Find(filmID);
+                    film.Sjanger.Remove(sjanger);
+                    db.SaveChanges();
+
+                    return "OK";
+                }
+                catch (Exception e)
+                {
+                    return "Feil";
+                }
+            }
+        }
+
+
     }
 }

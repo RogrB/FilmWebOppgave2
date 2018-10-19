@@ -18,5 +18,6 @@ namespace BLL
         List<Sjanger> HentSjangereForFilm(int id);
         List<Sjanger> HentSjangere();
         string LeggSjangerIFilm(int filmID, int sjangerID);
+        string SlettSjangerFraFilm(int filmID, int sjangerID);
     }
 }

@@ -83,5 +83,11 @@ namespace BLL
             string resultat = _repository.LeggSjangerIFilm(filmID, sjangerID);
             return resultat;
         }
+
+        public string SlettSjangerFraFilm(int filmID, int sjangerID)
+        {
+            string resultat = _repository.SlettSjangerFraFilm(filmID, sjangerID);
+            return resultat;
+        }
     }
 }
