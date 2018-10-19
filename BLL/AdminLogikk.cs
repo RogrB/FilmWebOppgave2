@@ -65,5 +65,23 @@ namespace BLL
             bool resultat = _repository.RedigerFilm(innFilm);
             return resultat;
         }
+
+        public List<Sjanger> HentSjangereForFilm(int id)
+        {
+            List<Sjanger> sjangere = _repository.HentSjangereForFilm(id);
+            return sjangere;
+        }
+
+        public List<Sjanger> HentSjangere()
+        {
+            List<Sjanger> sjangere = _repository.HentSjangere();
+            return sjangere;
+        }
+
+        public string LeggSjangerIFilm(int filmID, int sjangerID)
+        {
+            string resultat = _repository.LeggSjangerIFilm(filmID, sjangerID);
+            return resultat;
+        }
     }
 }

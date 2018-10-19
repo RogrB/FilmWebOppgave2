@@ -214,5 +214,63 @@ namespace DAL
             }
             return resultat;
         }
+
+        public List<Sjanger> HentSjangereForFilm(int id)
+        {
+            var db = new DBContext();
+            List<Sjanger> sjangere = new List<Sjanger>();
+            var film = db.Filmer.Find(id);
+            for(int i = 0; i < film.Sjanger.Count(); i++)
+            {
+                Sjanger sjanger = new Sjanger()
+                {
+                    id = film.Sjanger[i].id,
+                    sjanger = film.Sjanger[i].sjanger
+                };
+                sjangere.Add(sjanger);
+            }
+
+            return sjangere;
+        }
+
+        public List<Sjanger> HentSjangere()
+        {
+            using (var db = new DBContext())
+            {
+                List<Sjanger> alleSjangere = new List<Sjanger>();
+                var dbSjangere = db.Sjangere.ToList();
+                foreach(var sjanger in dbSjangere)
+                {
+                    Sjanger nySjanger = new Sjanger()
+                    {
+                        id = sjanger.id,
+                        sjanger = sjanger.sjanger
+                    };
+                    alleSjangere.Add(nySjanger);
+                }
+
+                return alleSjangere;
+            }
+        }
+
+        public string LeggSjangerIFilm(int filmID, int sjangerID)
+        {
+            using (var db = new DBContext())
+            {
+                try
+                {
+                    var sjanger = db.Sjangere.Find(sjangerID);
+                    var film = db.Filmer.Find(filmID);
+                    film.Sjanger.Add(sjanger);
+                    db.SaveChanges();
+
+                    return "OK";
+                }
+                catch (Exception e)
+                {
+                    return "Feil";
+                }
+            }
+        }
     }
 }

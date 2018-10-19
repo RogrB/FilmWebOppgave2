@@ -193,5 +193,54 @@ namespace DAL
             }
         }
 
+        public List<Sjanger> HentSjangereForFilm(int id)
+        {
+            if (id == 1)
+            {
+                List<Sjanger> sjangere = new List<Sjanger>();
+                Sjanger sjanger = new Sjanger()
+                {
+                    id = 1,
+                    sjanger = "Action"
+                };
+                sjangere.Add(sjanger);
+                sjangere.Add(sjanger);
+                sjangere.Add(sjanger);
+
+                return sjangere;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public List<Sjanger> HentSjangere()
+        {
+            List<Sjanger> sjangere = new List<Sjanger>();
+            Sjanger sjanger = new Sjanger()
+            {
+                id = 1,
+                sjanger = "Action"
+            };
+            sjangere.Add(sjanger);
+            sjangere.Add(sjanger);
+            sjangere.Add(sjanger);
+
+            return sjangere;
+        }
+
+        public string LeggSjangerIFilm(int filmID, int skuespillerID)
+        {
+            if (filmID == 1 && skuespillerID == 1)
+            {
+                return "OK";
+            }
+            else
+            {
+                return "Feil";
+            }
+        }
+
     }
 }
