@@ -20,5 +20,8 @@ namespace BLL
         string LeggSjangerIFilm(int filmID, int sjangerID);
         string SlettSjangerFraFilm(int filmID, int sjangerID);
         Skuespiller HentSkuespiller(int id);
+        List<Film> HentFilmerForAjax();
+        string LeggFilmISkuespiller(int skuespillerID, int filmID);
+        string SlettFilmFraSkuespiller(int skuespillerID, int filmID);
     }
 }

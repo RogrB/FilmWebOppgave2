@@ -301,6 +301,67 @@ namespace DAL
             return skuespiller;
         }
 
+        public List<Film> HentFilmerForAjax()
+        {
+            var db = new DBContext();
+            List<Film> alleFilmer = new List<Film>();
+            List<Film> dbFilmer = db.Filmer.ToList();
+
+            foreach(var film in dbFilmer)
+            {
+                var nyFilm = new Film()
+                {
+                    id = film.id,
+                    Bilde = film.Bilde,
+                    Navn = film.Navn,
+                    Beskrivelse = film.Beskrivelse,
+                    Visninger = film.Visninger
+                };
+                alleFilmer.Add(nyFilm);
+            }
+            return alleFilmer;
+        }
+
+        public string LeggFilmISkuespiller(int skuespillerID, int filmID)
+        {
+            using (var db = new DBContext())
+            {
+                try
+                {
+                    var skuespiller = db.Skuespillere.Find(skuespillerID);
+                    var film = db.Filmer.Find(filmID);
+                    skuespiller.Filmer.Add(film);
+                    db.SaveChanges();
+
+                    return "OK";
+                }
+                catch (Exception e)
+                {
+                    return "Feil";
+                }
+            }
+        }
+
+        public string SlettFilmFraSkuespiller(int skuespillerID, int filmID)
+        {
+            using (var db = new DBContext())
+            {
+                try
+                {
+                    var skuespiller = db.Skuespillere.Find(skuespillerID);
+                    var film = db.Filmer.Find(filmID);
+                    skuespiller.Filmer.Remove(film);
+                    db.SaveChanges();
+
+                    return "OK";
+                }
+                catch (Exception e)
+                {
+                    return "Feil";
+                }
+            }
+        }
+
 
     }
 }

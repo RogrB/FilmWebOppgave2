@@ -95,5 +95,23 @@ namespace BLL
             Skuespiller skuespiller = _repository.HentSkuespiller(id);
             return skuespiller;
         }
+
+        public List<Film> HentFilmerForAjax()
+        {
+            List<Film> ajaxFilmer = _repository.HentFilmerForAjax();
+            return ajaxFilmer;
+        }
+
+        public string LeggFilmISkuespiller(int skuespillerID, int filmID)
+        {
+            string resultat = _repository.LeggFilmISkuespiller(skuespillerID, filmID);
+            return resultat;
+        }
+
+        public string SlettFilmFraSkuespiller(int skuespillerID, int filmID)
+        {
+            string resultat = _repository.SlettFilmFraSkuespiller(skuespillerID, filmID);
+            return resultat;
+        }
     }
 }
