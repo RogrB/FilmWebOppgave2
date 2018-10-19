@@ -254,5 +254,35 @@ namespace DAL
             }
         }
 
+        public Skuespiller HentSkuespiller(int id)
+        {
+            if (id == 1)
+            {
+                Skuespiller skuespiller = new Skuespiller()
+                {
+                    id = 1,
+                    Fornavn = "Ole",
+                    Etternavn = "Olesen",
+                    Alder = 33,
+                    Land = "Norge",
+                    Bilde = "Bilde01",
+                    Filmer = new List<Film>()
+                };
+                Film film = new Film()
+                {
+                    id = 1,
+                    Navn = "Film01",
+                    Visninger = 1234
+                };
+                skuespiller.Filmer.Add(film);
+
+                return skuespiller;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
     }
 }

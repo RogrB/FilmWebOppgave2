@@ -20,5 +20,6 @@ namespace DAL
         List<Sjanger> HentSjangere();
         string LeggSjangerIFilm(int filmID, int sjangerID);
         string SlettSjangerFraFilm(int filmID, int sjangerID);
+        Skuespiller HentSkuespiller(int id);
     }
 }

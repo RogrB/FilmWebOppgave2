@@ -293,6 +293,14 @@ namespace DAL
             }
         }
 
+        public Skuespiller HentSkuespiller(int id)
+        {
+            var db = new DBContext();
+            var skuespiller = db.Skuespillere.Find(id);
+
+            return skuespiller;
+        }
+
 
     }
 }

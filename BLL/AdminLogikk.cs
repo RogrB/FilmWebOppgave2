@@ -89,5 +89,11 @@ namespace BLL
             string resultat = _repository.SlettSjangerFraFilm(filmID, sjangerID);
             return resultat;
         }
+
+        public Skuespiller HentSkuespiller(int id)
+        {
+            Skuespiller skuespiller = _repository.HentSkuespiller(id);
+            return skuespiller;
+        }
     }
 }
