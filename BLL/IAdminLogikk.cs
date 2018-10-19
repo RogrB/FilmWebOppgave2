@@ -25,7 +25,8 @@ namespace BLL
         string SlettFilmFraSkuespiller(int skuespillerID, int filmID);
         bool RedigerSkuespiller(Skuespiller innSkuespiller);
         List<Kunde> HentKunder();
-        Kunde HentKunde(int id);
+        EndreKunde HentKunde(int id);
         string SlettFilmFraBruker(int brukerID, int filmID);
+        bool RedigerKunde(EndreKunde innKunde);
     }
 }

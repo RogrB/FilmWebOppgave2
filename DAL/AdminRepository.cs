@@ -424,13 +424,13 @@ namespace DAL
             return alleKunder;
         }
 
-        public Kunde HentKunde(int id)
+        public EndreKunde HentKunde(int id)
         {
             var db = new DBContext();
             var dbKunde = db.Kunder.Find(id);
             if (dbKunde != null)
             {
-                Kunde utKunde = new Kunde()
+                EndreKunde utKunde = new EndreKunde()
                 {
                     id = dbKunde.id,
                     Fornavn = dbKunde.Fornavn,
@@ -465,6 +465,33 @@ namespace DAL
                     return "Feil";
                 }
             }
+        }
+
+        public bool RedigerKunde(EndreKunde innKunde)
+        {
+            var db = new DBContext();
+            bool resultat = true;
+            try
+            {
+                KundeDB endreKunde = db.Kunder.Find(innKunde.id);
+                if (endreKunde != null)
+                {
+                    endreKunde.Fornavn = innKunde.Fornavn;
+                    endreKunde.Etternavn = innKunde.Etternavn;
+                    endreKunde.Brukernavn = innKunde.Brukernavn;
+                    endreKunde.Kort = innKunde.Kort;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    resultat = false;
+                }
+            }
+            catch (Exception e)
+            {
+                resultat = false;
+            }
+            return resultat;
         }
 
 

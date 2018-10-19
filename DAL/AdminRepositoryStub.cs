@@ -398,11 +398,11 @@ namespace DAL
             return alleKunder;
         }
 
-        public Kunde HentKunde(int id)
+        public EndreKunde HentKunde(int id)
         {
             if (id == 1)
             {
-                Kunde kunde = new Kunde()
+                EndreKunde kunde = new EndreKunde()
                 {
                     id = 1,
                     Fornavn = "Ole",
@@ -437,6 +437,18 @@ namespace DAL
             else
             {
                 return "Feil";
+            }
+        }
+
+        public bool RedigerKunde(EndreKunde innKunde)
+        {
+            if(innKunde.id == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 

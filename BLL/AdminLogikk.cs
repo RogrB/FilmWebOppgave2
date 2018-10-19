@@ -126,15 +126,21 @@ namespace BLL
             return kunder;
         }
 
-        public Kunde HentKunde(int id)
+        public EndreKunde HentKunde(int id)
         {
-            Kunde kunde = _repository.HentKunde(id);
+            EndreKunde kunde = _repository.HentKunde(id);
             return kunde;
         }
 
         public string SlettFilmFraBruker(int brukerID, int filmID)
         {
             string resultat = _repository.SlettFilmFraBruker(brukerID, filmID);
+            return resultat;
+        }
+
+        public bool RedigerKunde(EndreKunde innKunde)
+        {
+            bool resultat = _repository.RedigerKunde(innKunde);
             return resultat;
         }
     }
