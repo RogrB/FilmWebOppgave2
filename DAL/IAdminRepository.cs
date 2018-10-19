@@ -24,5 +24,6 @@ namespace DAL
         List<Film> HentFilmerForAjax();
         string LeggFilmISkuespiller(int skuespillerID, int filmID);
         string SlettFilmFraSkuespiller(int skuespillerID, int filmID);
+        bool RedigerSkuespiller(Skuespiller innSkuespiller);
     }
 }

@@ -113,5 +113,11 @@ namespace BLL
             string resultat = _repository.SlettFilmFraSkuespiller(skuespillerID, filmID);
             return resultat;
         }
+
+        public bool RedigerSkuespiller(Skuespiller innSkuespiller)
+        {
+            bool resultat = _repository.RedigerSkuespiller(innSkuespiller);
+            return resultat;
+        }
     }
 }

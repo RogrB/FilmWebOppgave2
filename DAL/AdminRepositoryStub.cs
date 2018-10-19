@@ -358,5 +358,17 @@ namespace DAL
             }
         }
 
+        public bool RedigerSkuespiller(Skuespiller innSkuespiller)
+        {
+            if(innSkuespiller.id == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

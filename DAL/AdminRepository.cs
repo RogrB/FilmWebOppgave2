@@ -362,6 +362,34 @@ namespace DAL
             }
         }
 
+        public bool RedigerSkuespiller(Skuespiller innSkuespiller)
+        {
+            var db = new DBContext();
+            bool resultat = true;
+            try
+            {
+                Skuespiller endreSkuespiller = db.Skuespillere.Find(innSkuespiller.id);
+                if (endreSkuespiller != null)
+                {
+                    endreSkuespiller.Fornavn = innSkuespiller.Fornavn;
+                    endreSkuespiller.Etternavn = innSkuespiller.Etternavn;
+                    endreSkuespiller.Bilde = innSkuespiller.Bilde;
+                    endreSkuespiller.Alder = innSkuespiller.Alder;
+                    endreSkuespiller.Land = innSkuespiller.Land;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    resultat = false;
+                }
+            }
+            catch (Exception e)
+            {
+                resultat = false;
+            }
+            return resultat;
+        }
+
 
     }
 }
