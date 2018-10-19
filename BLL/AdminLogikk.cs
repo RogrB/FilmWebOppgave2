@@ -119,5 +119,23 @@ namespace BLL
             bool resultat = _repository.RedigerSkuespiller(innSkuespiller);
             return resultat;
         }
+
+        public List<Kunde> HentKunder()
+        {
+            List<Kunde> kunder = _repository.HentKunder();
+            return kunder;
+        }
+
+        public Kunde HentKunde(int id)
+        {
+            Kunde kunde = _repository.HentKunde(id);
+            return kunde;
+        }
+
+        public string SlettFilmFraBruker(int brukerID, int filmID)
+        {
+            string resultat = _repository.SlettFilmFraBruker(brukerID, filmID);
+            return resultat;
+        }
     }
 }

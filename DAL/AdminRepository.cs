@@ -115,8 +115,11 @@ namespace DAL
             using (var db = new DBContext())
             {
                 var Film = db.Filmer.Find(id);
-
-                return Film;
+                if (Film != null)
+                {
+                    return Film;
+                }
+                return null;
             }
         }
 
@@ -220,17 +223,21 @@ namespace DAL
             var db = new DBContext();
             List<Sjanger> sjangere = new List<Sjanger>();
             var film = db.Filmer.Find(id);
-            for(int i = 0; i < film.Sjanger.Count(); i++)
+            if (film != null)
             {
-                Sjanger sjanger = new Sjanger()
+                for (int i = 0; i < film.Sjanger.Count(); i++)
                 {
-                    id = film.Sjanger[i].id,
-                    sjanger = film.Sjanger[i].sjanger
-                };
-                sjangere.Add(sjanger);
-            }
+                    Sjanger sjanger = new Sjanger()
+                    {
+                        id = film.Sjanger[i].id,
+                        sjanger = film.Sjanger[i].sjanger
+                    };
+                    sjangere.Add(sjanger);
+                }
 
-            return sjangere;
+                return sjangere;
+            }
+            return null;
         }
 
         public List<Sjanger> HentSjangere()
@@ -297,8 +304,11 @@ namespace DAL
         {
             var db = new DBContext();
             var skuespiller = db.Skuespillere.Find(id);
-
-            return skuespiller;
+            if (skuespiller != null)
+            {
+                return skuespiller;
+            }
+            return null;
         }
 
         public List<Film> HentFilmerForAjax()
@@ -388,6 +398,73 @@ namespace DAL
                 resultat = false;
             }
             return resultat;
+        }
+
+        public List<Kunde> HentKunder()
+        {
+            var db = new DBContext();
+            List<Kunde> alleKunder = new List<Kunde>();
+            var dbKunder = db.Kunder.ToList();
+            foreach(var kunde in dbKunder)
+            {
+                Kunde nyKunde = new Kunde()
+                {
+                    Brukernavn = kunde.Brukernavn,
+                    Fornavn = kunde.Fornavn,
+                    Etternavn = kunde.Etternavn,
+                    id = kunde.id,
+                    Kort = kunde.Kort,
+                    Filmer = kunde.Filmer,
+                    Stemmer = kunde.Stemmer,
+                    Ønskeliste = kunde.Ønskeliste
+                };
+                alleKunder.Add(nyKunde);
+            }
+
+            return alleKunder;
+        }
+
+        public Kunde HentKunde(int id)
+        {
+            var db = new DBContext();
+            var dbKunde = db.Kunder.Find(id);
+            if (dbKunde != null)
+            {
+                Kunde utKunde = new Kunde()
+                {
+                    id = dbKunde.id,
+                    Fornavn = dbKunde.Fornavn,
+                    Etternavn = dbKunde.Etternavn,
+                    Brukernavn = dbKunde.Brukernavn,
+                    Kort = dbKunde.Kort,
+                    Filmer = dbKunde.Filmer,
+                    Ønskeliste = dbKunde.Ønskeliste,
+                    Stemmer = dbKunde.Stemmer
+                };
+
+                return utKunde;
+            }
+            return null;
+        }
+
+        public string SlettFilmFraBruker(int brukerID, int filmID)
+        {
+            using (var db = new DBContext())
+            {
+                try
+                {
+                    var bruker = db.Kunder.Find(brukerID);
+                    var film = db.Filmer.Find(filmID);
+                    bruker.Filmer.Remove(film);
+                    db.SaveChanges();
+
+                    return "OK";
+                }
+                catch (Exception e)
+                {
+                    return "Feil";
+                }
+            }
         }
 
 

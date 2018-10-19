@@ -370,5 +370,75 @@ namespace DAL
             }
         }
 
+        public List<Kunde> HentKunder()
+        {
+            var alleKunder = new List<Kunde>();
+            Kunde kunde = new Kunde()
+            {
+                id = 1,
+                Fornavn = "Ole",
+                Etternavn = "Olesen",
+                Brukernavn = "oleO",
+                Kort = 123456789098789,
+                Filmer = new List<Film>()
+            };
+            Film film = new Film()
+            {
+                id = 1,
+                Navn = "Film01",
+                Beskrivelse = "Film for testbehov",
+                Visninger = 1234
+            };
+            kunde.Filmer.Add(film);
+
+            alleKunder.Add(kunde);
+            alleKunder.Add(kunde);
+            alleKunder.Add(kunde);
+
+            return alleKunder;
+        }
+
+        public Kunde HentKunde(int id)
+        {
+            if (id == 1)
+            {
+                Kunde kunde = new Kunde()
+                {
+                    id = 1,
+                    Fornavn = "Ole",
+                    Etternavn = "Olesen",
+                    Brukernavn = "oleO",
+                    Kort = 123456789098789,
+                    Filmer = new List<Film>()
+                };
+                Film film = new Film()
+                {
+                    id = 1,
+                    Navn = "Film01",
+                    Beskrivelse = "Film for testbehov",
+                    Visninger = 1234
+                };
+                kunde.Filmer.Add(film);
+
+                return kunde;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public string SlettFilmFraBruker(int brukerID, int filmID)
+        {
+            if (filmID == 1 && brukerID == 1)
+            {
+                return "OK";
+            }
+            else
+            {
+                return "Feil";
+            }
+        }
+
     }
 }
