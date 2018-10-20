@@ -533,6 +533,25 @@ namespace DAL
             }
         }
 
+        public bool OpprettFilm(Film innFilm)
+        {
+            using (var db = new DBContext())
+            {
+                bool resultat = true;
+                try
+                {
+                    db.Filmer.Add(innFilm);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    resultat = false;
+                }
+
+                return resultat;
+            }
+        }
+
 
     }
 }

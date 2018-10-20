@@ -31,5 +31,6 @@ namespace DAL
         bool RedigerKunde(EndreKunde innKunde);
         bool OpprettSkuespiller(Skuespiller innSkuespiller);
         bool SlettSkuespiller(int id);
+        bool OpprettFilm(Film innFilm);
     }
 }

@@ -476,5 +476,17 @@ namespace DAL
             }
         }
 
+        public bool OpprettFilm(Film innFilm)
+        {
+            if (innFilm.id == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }
