@@ -30,5 +30,6 @@ namespace DAL
         string SlettFilmFraBruker(int brukerID, int filmID);
         bool RedigerKunde(EndreKunde innKunde);
         bool OpprettSkuespiller(Skuespiller innSkuespiller);
+        bool SlettSkuespiller(int id);
     }
 }

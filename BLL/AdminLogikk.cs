@@ -149,5 +149,11 @@ namespace BLL
             bool resultat = _repository.OpprettSkuespiller(innSkuespiller);
             return resultat;
         }
+
+        public bool SlettSkuespiller(int id)
+        {
+            bool resultat = _repository.SlettSkuespiller(id);
+            return resultat;
+        }
     }
 }

@@ -464,5 +464,17 @@ namespace DAL
             }
         }
 
+        public bool SlettSkuespiller(int id)
+        {
+            if (id == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

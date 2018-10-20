@@ -513,6 +513,26 @@ namespace DAL
             }
         }
 
+        public bool SlettSkuespiller(int id)
+        {
+            using (var db = new DBContext())
+            {
+                bool resultat = true;
+                try
+                {
+                    var skuespiller = db.Skuespillere.Find(id);
+                    db.Skuespillere.Remove(skuespiller);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    resultat = false;
+                }
+                
+                return resultat;
+            }
+        }
+
 
     }
 }
