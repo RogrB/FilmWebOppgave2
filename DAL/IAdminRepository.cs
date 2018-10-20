@@ -29,5 +29,6 @@ namespace DAL
         EndreKunde HentKunde(int id);
         string SlettFilmFraBruker(int brukerID, int filmID);
         bool RedigerKunde(EndreKunde innKunde);
+        bool OpprettSkuespiller(Skuespiller innSkuespiller);
     }
 }

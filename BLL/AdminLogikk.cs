@@ -143,5 +143,11 @@ namespace BLL
             bool resultat = _repository.RedigerKunde(innKunde);
             return resultat;
         }
+
+        public bool OpprettSkuespiller(Skuespiller innSkuespiller)
+        {
+            bool resultat = _repository.OpprettSkuespiller(innSkuespiller);
+            return resultat;
+        }
     }
 }

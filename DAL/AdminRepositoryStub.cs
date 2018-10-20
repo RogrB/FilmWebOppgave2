@@ -442,7 +442,19 @@ namespace DAL
 
         public bool RedigerKunde(EndreKunde innKunde)
         {
-            if(innKunde.id == 1)
+            if (innKunde.id == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool OpprettSkuespiller(Skuespiller innSkuespiller)
+        {
+            if (innSkuespiller.id == 1)
             {
                 return true;
             }

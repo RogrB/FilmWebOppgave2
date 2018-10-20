@@ -494,6 +494,25 @@ namespace DAL
             return resultat;
         }
 
+        public bool OpprettSkuespiller(Skuespiller innSkuespiller)
+        {
+            using (var db = new DBContext())
+            {
+                bool resultat = true;
+                try
+                {
+                    db.Skuespillere.Add(innSkuespiller);
+                    db.SaveChanges();
+                }
+                catch(Exception e)
+                {
+                    resultat = false;
+                }
+
+                return resultat;
+            }
+        }
+
 
     }
 }
