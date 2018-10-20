@@ -488,5 +488,17 @@ namespace DAL
             }
         }
 
+        public bool SlettFilm(int id)
+        {
+            if (id == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

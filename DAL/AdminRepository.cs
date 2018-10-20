@@ -552,6 +552,26 @@ namespace DAL
             }
         }
 
+        public bool SlettFilm(int id)
+        {
+            using (var db = new DBContext())
+            {
+                bool resultat = true;
+                try
+                {
+                    var film = db.Filmer.Find(id);
+                    db.Filmer.Remove(film);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    resultat = false;
+                }
+
+                return resultat;
+            }
+        }
+
 
     }
 }

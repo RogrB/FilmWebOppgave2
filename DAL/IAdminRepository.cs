@@ -32,5 +32,6 @@ namespace DAL
         bool OpprettSkuespiller(Skuespiller innSkuespiller);
         bool SlettSkuespiller(int id);
         bool OpprettFilm(Film innFilm);
+        bool SlettFilm(int id);
     }
 }

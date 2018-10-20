@@ -161,5 +161,11 @@ namespace BLL
             bool resultat = _repository.OpprettFilm(innFilm);
             return resultat;
         }
+
+        public bool SlettFilm(int id)
+        {
+            bool resultat = _repository.SlettFilm(id);
+            return resultat;
+        }
     }
 }
