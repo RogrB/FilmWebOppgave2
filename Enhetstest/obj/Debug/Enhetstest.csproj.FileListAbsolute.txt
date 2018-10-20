@@ -1,0 +1,42 @@
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Enhetstest.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Enhetstest.pdb
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\BLL.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\DAL.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Graubakken Filmsjappe.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Model.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\System.Web.Helpers.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\System.Web.Mvc.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\System.Web.Razor.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\System.Web.WebPages.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\EntityFramework.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\BLL.pdb
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\DAL.pdb
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\DAL.dll.config
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Graubakken Filmsjappe.pdb
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Graubakken Filmsjappe.dll.config
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Model.pdb
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\System.Web.Helpers.xml
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\System.Web.Mvc.xml
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\System.Web.Razor.xml
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\System.Web.WebPages.xml
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\EntityFramework.xml
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\obj\Debug\Enhetstest.csprojAssemblyReference.cache
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\obj\Debug\Enhetstest.csproj.CoreCompileInputs.cache
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\obj\Debug\Enhetstest.csproj.CopyComplete
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\obj\Debug\Enhetstest.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\obj\Debug\Enhetstest.pdb
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Enhetstest.dll.config
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\MvcContrib.TestHelper.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Rhino.Mocks.dll

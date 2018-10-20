@@ -1,0 +1,14 @@
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\DAL\bin\Debug\DAL.dll.config
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\DAL\bin\Debug\DAL.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\DAL\bin\Debug\DAL.pdb
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\DAL\bin\Debug\EntityFramework.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\DAL\bin\Debug\Model.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\DAL\bin\Debug\Model.pdb
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\DAL\bin\Debug\EntityFramework.xml
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\DAL\obj\Debug\DAL.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\DAL\obj\Debug\DAL.pdb

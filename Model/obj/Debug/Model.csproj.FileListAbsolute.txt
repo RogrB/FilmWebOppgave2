@@ -1,0 +1,6 @@
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Model\bin\Debug\Model.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Model\bin\Debug\Model.pdb
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Model\obj\Debug\Model.csprojAssemblyReference.cache
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Model\obj\Debug\Model.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Model\obj\Debug\Model.pdb
