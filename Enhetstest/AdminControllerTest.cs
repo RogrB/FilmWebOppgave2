@@ -156,5 +156,37 @@ namespace Enhetstest
             Assert.AreEqual(actionResult.RouteName, "");
         }
 
+        [TestMethod]
+        public void AdminIndexViewOk()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "admin";
+
+            // Act
+            var actionResult = (RedirectToRouteResult)controller.Index();
+
+            // Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+        }
+
+        [TestMethod]
+        public void AdminIndexViewNull()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = null;
+
+            // Act
+            var actionResult = (RedirectToRouteResult)controller.Index();
+
+            // Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+        }
+
     }
 }

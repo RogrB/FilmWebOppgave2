@@ -103,30 +103,52 @@ namespace DAL
             {
                 Film enFilm = new Film()
                 {
+                    id = 1,
                     Navn = "Film01",
-                    Bilde = "Bilde01",
+                    Bilde = "bilde1",
+                    Beskrivelse = "Dette er en film",
+                    Gjennomsnitt = 3,
                     Kontinent = "USA",
-                    Visninger = 2013,
-                    Produksjonsår = 2016,
+                    Pris = 20,
+                    Studio = "Studio01",
+                    Produksjonsår = 1999,
+                    Visninger = 16,
+                    ReleaseDate = "12/12/2014",
                     Sjanger = new List<Sjanger>(),
-                    Stemmer = new List<Stemme>()
+                    Skuespillere = new List<Skuespiller>(),
+                    Kommentarer = new List<Kommentar>()
                 };
-                Sjanger sjanger = new Sjanger()
+                var skuespiller = new Skuespiller()
                 {
+                    id = 1,
+                    Fornavn = "Per",
+                    Etternavn = "Persen",
+                    Bilde = "bilde02",
+                    Alder = 48,
+                    Land = "Norge"
+                };
+                var sjanger = new Sjanger()
+                {
+                    id = 1,
                     sjanger = "Action"
                 };
-                Stemme stemme = new Stemme()
+                var kommentar = new Kommentar()
                 {
-                    AntallStjerner = 5
+                    Dato = "12/12/2018",
+                    id = 1,
+                    Melding = "Dette er en kommentar"
                 };
                 enFilm.Sjanger.Add(sjanger);
-                enFilm.Stemmer.Add(stemme);
+                enFilm.Skuespillere.Add(skuespiller);
+                enFilm.Kommentarer.Add(kommentar);
 
                 return enFilm;
           }
             else
             {
-                return null;
+                Film utFilm = new Film();
+                utFilm.id = 0;
+                return utFilm;
             }
         }
 
