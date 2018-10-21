@@ -155,28 +155,60 @@ namespace DAL
         public List<Skuespiller> HentSkuespillere()
         {
             var alleSkuespillere = new List<Skuespiller>();
-            var skuespiller = new Skuespiller()
+            var Skuespiller = new Skuespiller()
             {
                 id = 1,
                 Fornavn = "Ole",
                 Etternavn = "Olesen",
-                Alder = 33,
-                Bilde = "Bilde01",
                 Land = "Norge",
+                Bilde = "Bilde01",
+                Alder = 22,
                 Filmer = new List<Film>()
             };
-            var film = new Film()
+            var Film = new Film()
             {
-                Navn = "Film01",
                 id = 1,
-                Bilde = "Bilde02"
+                Navn = "Film01",
+                Bilde = "Bilde01"
             };
-            skuespiller.Filmer.Add(film);
-            alleSkuespillere.Add(skuespiller);
-            alleSkuespillere.Add(skuespiller);
-            alleSkuespillere.Add(skuespiller);
+            Skuespiller.Filmer.Add(Film);
+            alleSkuespillere.Add(Skuespiller);
+            alleSkuespillere.Add(Skuespiller);
+            alleSkuespillere.Add(Skuespiller);
 
             return alleSkuespillere;
+        }
+
+        public Skuespiller HentSkuespiller(int id)
+        {
+            if (id == 1)
+            {
+                var skuespiller = new Skuespiller()
+                {
+                    id = 1,
+                    Fornavn = "Ole",
+                    Etternavn = "Olesen",
+                    Land = "Norge",
+                    Bilde = "Bilde01",
+                    Alder = 22,
+                    Filmer = new List<Film>()
+                };
+                var Film = new Film()
+                {
+                    id = 1,
+                    Navn = "Film01",
+                    Bilde = "Bilde01"
+                };
+                skuespiller.Filmer.Add(Film);
+
+                return skuespiller;
+            }
+            else
+            {
+                Skuespiller skuespiller = new Skuespiller();
+                skuespiller.id = 0;
+                return skuespiller;
+            }
         }
 
         public string LeggSkuespillerIFilm(int filmID, int skuespillerID)
@@ -273,36 +305,6 @@ namespace DAL
             else
             {
                 return "Feil";
-            }
-        }
-
-        public Skuespiller HentSkuespiller(int id)
-        {
-            if (id == 1)
-            {
-                Skuespiller skuespiller = new Skuespiller()
-                {
-                    id = 1,
-                    Fornavn = "Ole",
-                    Etternavn = "Olesen",
-                    Alder = 33,
-                    Land = "Norge",
-                    Bilde = "Bilde01",
-                    Filmer = new List<Film>()
-                };
-                Film film = new Film()
-                {
-                    id = 1,
-                    Navn = "Film01",
-                    Visninger = 1234
-                };
-                skuespiller.Filmer.Add(film);
-
-                return skuespiller;
-            }
-            else
-            {
-                return null;
             }
         }
 

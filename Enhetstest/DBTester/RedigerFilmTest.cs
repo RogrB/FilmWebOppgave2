@@ -178,7 +178,7 @@ namespace Enhetstest.DBTester
             forventetResultat.Kommentarer.Add(kommentar);
 
             // Act
-            var actionResult = (ViewResult)controller.RedigerFilm(1);
+            var actionResult = (ViewResult)controller.RedigerFilm(forventetResultat.id);
             var resultat = (Film)actionResult.Model;
 
             // Assert
