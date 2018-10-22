@@ -23,6 +23,7 @@ namespace Enhetstest.DBTester
             
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
+            Assert.AreEqual(actionResult.ViewData["AdminResultat"], "Admin opprettet");
         }
 
         [TestMethod]
@@ -36,6 +37,7 @@ namespace Enhetstest.DBTester
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
+            Assert.AreEqual(actionResult.ViewData["AdminResultat"], "Kunne ikke registrere admin");
         }
 
         [TestMethod]
@@ -49,6 +51,7 @@ namespace Enhetstest.DBTester
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
+            Assert.AreEqual(actionResult.ViewData["AdminResultat"], "Admin er allerede registrert");
         }
     }
 }

@@ -68,6 +68,7 @@ namespace Enhetstest.DBTester
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
+            Assert.AreEqual(actionResult.ViewData["AdminLogin"], "Feil brukernavn eller passord");
         }
 
         [TestMethod]
@@ -88,6 +89,7 @@ namespace Enhetstest.DBTester
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
+            Assert.AreEqual(actionResult.ViewData["AdminLogin"], "Feil brukernavn eller passord");
         }
 
         [TestMethod]
@@ -108,6 +110,7 @@ namespace Enhetstest.DBTester
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
+            Assert.AreEqual(actionResult.ViewData["AdminLogin"], "Feil brukernavn eller passord");
         }
 
         [TestMethod]

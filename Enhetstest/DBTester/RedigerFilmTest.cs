@@ -278,6 +278,7 @@ namespace Enhetstest.DBTester
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
+            Assert.AreEqual(actionResult.ViewData["EndreStatus"], "Klarte ikke å oppdatere informasjon");
         }
 
         [TestMethod]
@@ -335,6 +336,7 @@ namespace Enhetstest.DBTester
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
+            Assert.AreEqual(actionResult.ViewData["EndreStatus"], "Informasjon oppdatert");
         }
 
 

@@ -211,7 +211,7 @@ namespace Enhetstest.DBTester
             controller.Session["Admin"] = "admin";
             var innKunde = new EndreKunde()
             {
-                id = 1,
+                id = 0,
                 Fornavn = "Ole",
                 Etternavn = "Olesen",
                 Kort = 1234567890987654,
@@ -233,6 +233,7 @@ namespace Enhetstest.DBTester
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
+            Assert.AreEqual(actionResult.ViewData["EndreStatus"], "Klarte ikke å oppdatere informasjon");
         }
 
         [TestMethod]
@@ -304,6 +305,7 @@ namespace Enhetstest.DBTester
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
+            Assert.AreEqual(actionResult.ViewData["EndreStatus"], "Informasjon oppdatert");
         }
 
     }
