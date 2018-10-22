@@ -37,20 +37,6 @@ namespace Model
         public virtual Ønskeliste Ønskeliste { get; set; }
     }
 
-    public class KundeDB
-    {
-        public int id { get; set; }
-        public string Fornavn { get; set; }
-        public string Etternavn { get; set; }
-        public string Brukernavn { get; set; }
-        public byte[] Passord { get; set; }
-        public string Salt { get; set; }
-        public long Kort { get; set; }
-        public virtual List<Film> Filmer { get; set; }
-        public virtual List<Stemme> Stemmer { get; set; }
-        public virtual Ønskeliste Ønskeliste { get; set; }
-    }
-
     // Klasse for å endre kundeinfo - gjøres i egen klasse så ikke passordfeltet skal være required
     public class EndreKunde
     {
@@ -79,4 +65,19 @@ namespace Model
         public virtual List<Film> Filmer { get; set; }
         public virtual List<Stemme> Stemmer { get; set; }
     }
+
+    public class KundeDB
+    {
+        public int id { get; set; }
+        public string Fornavn { get; set; }
+        public string Etternavn { get; set; }
+        public string Brukernavn { get; set; }
+        public byte[] Passord { get; set; }
+        public string Salt { get; set; }
+        public long Kort { get; set; }
+        public virtual List<Film> Filmer { get; set; }
+        public virtual List<Stemme> Stemmer { get; set; }
+        public virtual Ønskeliste Ønskeliste { get; set; }
+    }
+
 }

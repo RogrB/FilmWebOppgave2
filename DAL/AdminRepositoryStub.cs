@@ -397,21 +397,22 @@ namespace DAL
         public List<Kunde> HentKunder()
         {
             var alleKunder = new List<Kunde>();
-            Kunde kunde = new Kunde()
+            var kunde = new Kunde()
             {
                 id = 1,
                 Fornavn = "Ole",
                 Etternavn = "Olesen",
-                Brukernavn = "oleO",
-                Kort = 123456789098789,
+                Kort = 1234567890987654,
+                Brukernavn = "ole0",
                 Filmer = new List<Film>()
             };
-            Film film = new Film()
+            var film = new Film()
             {
                 id = 1,
                 Navn = "Film01",
-                Beskrivelse = "Film for testbehov",
-                Visninger = 1234
+                Bilde = "Bilde01",
+                Beskrivelse = "Beskrivelse01",
+                Kontinent = "USa"
             };
             kunde.Filmer.Add(film);
 

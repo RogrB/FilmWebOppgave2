@@ -90,6 +90,7 @@ namespace Enhetstest
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
+            //Assert.AreEqual(actionResult.RouteValues.Values, "AdminLoginn");
         }
 
         [TestMethod]
@@ -106,6 +107,7 @@ namespace Enhetstest
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
+            //Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
         }
 
         [TestMethod]
@@ -122,6 +124,7 @@ namespace Enhetstest
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
+            //Assert.AreEqual(actionResult.RouteValues.Values.First(), "Admin");
         }
 
         [TestMethod]
@@ -138,6 +141,7 @@ namespace Enhetstest
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
+            //Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
         }
 
         [TestMethod]
@@ -154,6 +158,7 @@ namespace Enhetstest
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
+            //Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
         }
 
         [TestMethod]
@@ -170,6 +175,7 @@ namespace Enhetstest
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
+            //Assert.AreEqual(actionResult.RouteValues.Values.First(), "Admin");
         }
 
         [TestMethod]
@@ -186,7 +192,27 @@ namespace Enhetstest
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
+            //Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
         }
+
+        /*
+        [TestMethod]
+        public void AdminLogoutOK()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "admin";
+
+            // Act
+            var actionResult = (RedirectToRouteResult)controller.Index();
+
+            // Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+            Assert.AreEqual(controller.Session["Admin"], "");
+            //Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
+        }*/
 
     }
 }

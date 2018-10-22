@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminControllerTest.cs" />
+    <Compile Include="DBTester\RedigerBrukerTest.cs" />
     <Compile Include="DBTester\RedigerFilmTest.cs" />
     <Compile Include="DBTester\RedigerSkuespillerTest.cs" />
     <Compile Include="DBTester\RegistrerAdminTest.cs" />
