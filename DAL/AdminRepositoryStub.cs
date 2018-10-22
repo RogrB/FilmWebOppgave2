@@ -412,7 +412,7 @@ namespace DAL
                 Navn = "Film01",
                 Bilde = "Bilde01",
                 Beskrivelse = "Beskrivelse01",
-                Kontinent = "USa"
+                Kontinent = "USA"
             };
             kunde.Filmer.Add(film);
 
@@ -427,21 +427,22 @@ namespace DAL
         {
             if (id == 1)
             {
-                EndreKunde kunde = new EndreKunde()
+                var kunde = new EndreKunde()
                 {
                     id = 1,
                     Fornavn = "Ole",
                     Etternavn = "Olesen",
-                    Brukernavn = "oleO",
-                    Kort = 123456789098789,
+                    Kort = 1234567890987654,
+                    Brukernavn = "ole0",
                     Filmer = new List<Film>()
                 };
-                Film film = new Film()
+                var film = new Film()
                 {
                     id = 1,
                     Navn = "Film01",
-                    Beskrivelse = "Film for testbehov",
-                    Visninger = 1234
+                    Bilde = "Bilde01",
+                    Beskrivelse = "Beskrivelse01",
+                    Kontinent = "USA"
                 };
                 kunde.Filmer.Add(film);
 
@@ -449,7 +450,9 @@ namespace DAL
             }
             else
             {
-                return null;
+                var kunde = new EndreKunde();
+                kunde.id = 0;
+                return kunde;
             }
         }
 
