@@ -174,6 +174,235 @@ namespace Enhetstest.DBTester
             Assert.AreEqual(actionResult.ViewData["OpprettStatus"], "Klarte ikke å opprette skuespiller");
         }
 
+
+
+        [TestMethod]
+        public void OpprettFilmViewOK()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "admin";
+
+            // Act
+            var actionResult = (ViewResult)controller.OpprettFilm();
+
+            // Assert
+            Assert.AreEqual(actionResult.ViewName, "");
+        }
+
+        [TestMethod]
+        public void OpprettFilmViewNullSession()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = null;
+
+            // Act
+            var actionResult = (RedirectToRouteResult)controller.OpprettFilm();
+
+            // Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
+        }
+
+        [TestMethod]
+        public void OpprettFilmViewBlankSession()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "";
+
+            // Act
+            var actionResult = (RedirectToRouteResult)controller.OpprettFilm();
+
+            // Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
+        }
+
+        [TestMethod]
+        public void OpprettFilmFeilValideringIPost()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "admin";
+
+            var innFilm = new Film()
+            {
+                id = 0,
+                Navn = "Film01",
+                Bilde = "bilde1",
+                Beskrivelse = "Dette er en film",
+                Gjennomsnitt = 3,
+                Kontinent = "USA",
+                Pris = 20,
+                Studio = "Studio01",
+                Produksjonsår = 1999,
+                Visninger = 16,
+                ReleaseDate = "12/12/2014",
+                Sjanger = new List<Sjanger>(),
+                Skuespillere = new List<Skuespiller>(),
+                Kommentarer = new List<Kommentar>()
+            };
+            var skuespiller = new Skuespiller()
+            {
+                id = 1,
+                Fornavn = "Per",
+                Etternavn = "Persen",
+                Bilde = "bilde02",
+                Alder = 48,
+                Land = "Norge"
+            };
+            var sjanger = new Sjanger()
+            {
+                id = 1,
+                sjanger = "Action"
+            };
+            var kommentar = new Kommentar()
+            {
+                Dato = "12/12/2018",
+                id = 1,
+                Melding = "Dette er en kommentar"
+            };
+            innFilm.Skuespillere.Add(skuespiller);
+            innFilm.Sjanger.Add(sjanger);
+            innFilm.Kommentarer.Add(kommentar);
+            controller.ViewData.ModelState.AddModelError("feil", "ID = 0");
+
+            // Act
+            var actionResult = (ViewResult)controller.OpprettFilm(innFilm);
+
+            // Assert
+            Assert.IsTrue(actionResult.ViewData.ModelState.Count == 1);
+            Assert.AreEqual(actionResult.ViewData.ModelState["feil"].Errors[0].ErrorMessage, "ID = 0");
+            Assert.AreEqual(actionResult.ViewName, "");
+            Assert.AreEqual(actionResult.ViewData["OpprettStatus"], "Klarte ikke å opprette film");
+        }
+
+        [TestMethod]
+        public void OpprettFilmPostOK()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "admin";
+
+            var innFilm = new Film()
+            {
+                id = 1,
+                Navn = "Film01",
+                Bilde = "bilde1",
+                Beskrivelse = "Dette er en film",
+                Gjennomsnitt = 3,
+                Kontinent = "USA",
+                Pris = 20,
+                Studio = "Studio01",
+                Produksjonsår = 1999,
+                Visninger = 16,
+                ReleaseDate = "12/12/2014",
+                Sjanger = new List<Sjanger>(),
+                Skuespillere = new List<Skuespiller>(),
+                Kommentarer = new List<Kommentar>()
+            };
+            var skuespiller = new Skuespiller()
+            {
+                id = 1,
+                Fornavn = "Per",
+                Etternavn = "Persen",
+                Bilde = "bilde02",
+                Alder = 48,
+                Land = "Norge"
+            };
+            var sjanger = new Sjanger()
+            {
+                id = 1,
+                sjanger = "Action"
+            };
+            var kommentar = new Kommentar()
+            {
+                Dato = "12/12/2018",
+                id = 1,
+                Melding = "Dette er en kommentar"
+            };
+            innFilm.Skuespillere.Add(skuespiller);
+            innFilm.Sjanger.Add(sjanger);
+            innFilm.Kommentarer.Add(kommentar);
+
+            // Act
+            var actionResult = (RedirectToRouteResult)controller.OpprettFilm(innFilm);
+
+            // Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "RedigerFilmer");
+        }
+
+        [TestMethod]
+        public void OpprettFilmFeilIDB()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "admin";
+
+            var innFilm = new Film()
+            {
+                id = 0,
+                Navn = "Film01",
+                Bilde = "bilde1",
+                Beskrivelse = "Dette er en film",
+                Gjennomsnitt = 3,
+                Kontinent = "USA",
+                Pris = 20,
+                Studio = "Studio01",
+                Produksjonsår = 1999,
+                Visninger = 16,
+                ReleaseDate = "12/12/2014",
+                Sjanger = new List<Sjanger>(),
+                Skuespillere = new List<Skuespiller>(),
+                Kommentarer = new List<Kommentar>()
+            };
+            var skuespiller = new Skuespiller()
+            {
+                id = 1,
+                Fornavn = "Per",
+                Etternavn = "Persen",
+                Bilde = "bilde02",
+                Alder = 48,
+                Land = "Norge"
+            };
+            var sjanger = new Sjanger()
+            {
+                id = 1,
+                sjanger = "Action"
+            };
+            var kommentar = new Kommentar()
+            {
+                Dato = "12/12/2018",
+                id = 1,
+                Melding = "Dette er en kommentar"
+            };
+            innFilm.Skuespillere.Add(skuespiller);
+            innFilm.Sjanger.Add(sjanger);
+            innFilm.Kommentarer.Add(kommentar);
+
+            // Act
+            var actionResult = (ViewResult)controller.OpprettFilm(innFilm);
+
+            // Assert
+            Assert.AreEqual(actionResult.ViewName, "");
+            Assert.AreEqual(actionResult.ViewData["OpprettStatus"], "Klarte ikke å opprette film");
+        }
+
     }
 
 }
