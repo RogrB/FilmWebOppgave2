@@ -25,6 +25,7 @@ namespace Enhetstest.DBTester
             var SessionMock = new TestControllerBuilder();
             SessionMock.InitializeController(controller);
             controller.Session["Admin"] = "admin";
+
             var forventetResultat = new List<Kunde>();
             var kunde = new Kunde()
             {
