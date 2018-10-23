@@ -265,7 +265,14 @@ namespace DAL
             }
             else
             {
-                return null;
+                List<Sjanger> sjangere = new List<Sjanger>();
+                var sjanger = new Sjanger();
+                sjanger.id = 0;
+                sjangere.Add(sjanger);
+                sjangere.Add(sjanger);
+                sjangere.Add(sjanger);
+
+                return sjangere;
             }
         }
 
@@ -284,9 +291,9 @@ namespace DAL
             return sjangere;
         }
 
-        public string LeggSjangerIFilm(int filmID, int skuespillerID)
+        public string LeggSjangerIFilm(int filmID, int sjangerID)
         {
-            if (filmID == 1 && skuespillerID == 1)
+            if (filmID == 1 && sjangerID == 1)
             {
                 return "OK";
             }
