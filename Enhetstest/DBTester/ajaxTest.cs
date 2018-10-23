@@ -443,7 +443,261 @@ namespace Enhetstest.DBTester
             Assert.AreEqual(forventetResultat, resultat);
         }
 
+        [TestMethod]
+        public void LeggFilmISkuespillerOK()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
 
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("OK");
+
+            // Act
+            var resultat = controller.LeggFilmISkuespiller(1, 1);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
+        [TestMethod]
+        public void LeggFilmISkuespillerFeilFilm()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("Feil");
+
+            // Act
+            var resultat = controller.LeggFilmISkuespiller(1, 0);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
+        [TestMethod]
+        public void LeggFilmISkuespillerFeilSkuespiller()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("Feil");
+
+            // Act
+            var resultat = controller.LeggFilmISkuespiller(0, 1);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
+        [TestMethod]
+        public void LeggFilmISkuespillerFeilFilmOgSkuespiller()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("Feil");
+
+            // Act
+            var resultat = controller.LeggFilmISkuespiller(0, 0);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
+        [TestMethod]
+        public void SlettFilmFraSkuespillerOK()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("OK");
+
+            // Act
+            var resultat = controller.SlettFilmFraSkuespiller(1, 1);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
+        [TestMethod]
+        public void SlettFilmFraSkuespillerFeilSkuespiller()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("Feil");
+
+            // Act
+            var resultat = controller.SlettFilmFraSkuespiller(0, 1);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
+        [TestMethod]
+        public void SlettFilmFraSkuespillerFeilFilm()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("Feil");
+
+            // Act
+            var resultat = controller.SlettFilmFraSkuespiller(1, 0);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
+        [TestMethod]
+        public void SlettFilmFraSkuespillerFeilSkuespillerOgFilm()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("Feil");
+
+            // Act
+            var resultat = controller.SlettFilmFraSkuespiller(0, 0);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
+        [TestMethod]
+        public void SlettFilmFraBrukerOK()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("OK");
+
+            // Act
+            var resultat = controller.SlettFilmFraBruker(1, 1);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
+        [TestMethod]
+        public void SlettFilmFraBrukerFeilBruker()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("Feil");
+
+            // Act
+            var resultat = controller.SlettFilmFraBruker(0, 1);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
+        [TestMethod]
+        public void SlettFilmFraBrukerFeilFilm()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("Feil");
+
+            // Act
+            var resultat = controller.SlettFilmFraBruker(1, 0);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
+        [TestMethod]
+        public void SlettFilmFraBrukerFeilFilmOgBruker()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("Feil");
+
+            // Act
+            var resultat = controller.SlettFilmFraBruker(0, 0);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
+        [TestMethod]
+        public void SlettSkuespillerOK()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("OK");
+
+            // Act
+            var resultat = controller.SlettSkuespiller(1);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
+        [TestMethod]
+        public void SlettSkuespillerFeil()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("Feil");
+
+            // Act
+            var resultat = controller.SlettSkuespiller(0);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
+        [TestMethod]
+        public void SlettFilmOK()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("OK");
+
+            // Act
+            var resultat = controller.SlettFilm(1);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
+        [TestMethod]
+        public void SlettFilmFeil()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("Feil");
+
+            // Act
+            var resultat = controller.SlettFilm(0);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
 
     }
 }
