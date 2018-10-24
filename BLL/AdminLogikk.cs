@@ -167,5 +167,11 @@ namespace BLL
             bool resultat = _repository.SlettFilm(id);
             return resultat;
         }
+
+        public bool SlettBruker(int id)
+        {
+            bool resultat = _repository.SlettBruker(id);
+            return resultat;
+        }
     }
 }

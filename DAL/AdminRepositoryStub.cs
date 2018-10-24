@@ -535,5 +535,17 @@ namespace DAL
             }
         }
 
+        public bool SlettBruker(int id)
+        {
+            if (id == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

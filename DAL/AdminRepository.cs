@@ -572,6 +572,26 @@ namespace DAL
             }
         }
 
+        public bool SlettBruker(int id)
+        {
+            using (var db = new DBContext())
+            {
+                bool resultat = true;
+                try
+                {
+                    var bruker = db.Kunder.Find(id);
+                    db.Kunder.Remove(bruker);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    resultat = false;
+                }
+
+                return resultat;
+            }
+        }
+
 
     }
 }

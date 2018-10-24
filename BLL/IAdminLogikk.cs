@@ -32,5 +32,6 @@ namespace BLL
         bool SlettSkuespiller(int id);
         bool OpprettFilm(Film innFilm);
         bool SlettFilm(int id);
+        bool SlettBruker(int id);
     }
 }
