@@ -14,7 +14,7 @@ using System.Web.Mvc;
 namespace Enhetstest.DBTester
 {
     [TestClass]
-    public class OpprettTest
+    public class OpprettElementTest
     {
         [TestMethod]
         public void OpprettSkuespillerViewOK()
@@ -59,7 +59,7 @@ namespace Enhetstest.DBTester
             controller.Session["Admin"] = "";
 
             // Act
-            var actionResult = (RedirectToRouteResult)controller.RedigerFilmer();
+            var actionResult = (RedirectToRouteResult)controller.OpprettSkuespiller();
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
@@ -401,6 +401,134 @@ namespace Enhetstest.DBTester
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
             Assert.AreEqual(actionResult.ViewData["OpprettStatus"], "Klarte ikke å opprette film");
+        }
+
+        [TestMethod]
+        public void OpprettNyhetViewOK()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "admin";
+
+            // Act
+            var actionResult = (ViewResult)controller.OpprettNyhet();
+
+            // Assert
+            Assert.AreEqual(actionResult.ViewName, "");
+        }
+
+        [TestMethod]
+        public void OpprettNyhetViewNullSession()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = null;
+
+            // Act
+            var actionResult = (RedirectToRouteResult)controller.OpprettNyhet();
+
+            // Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
+        }
+
+        [TestMethod]
+        public void OpprettNyhetViewBlankSession()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "";
+
+            // Act
+            var actionResult = (RedirectToRouteResult)controller.OpprettNyhet();
+
+            // Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
+        }
+
+        [TestMethod]
+        public void OpprettNyhetFeilValideringIPost()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "admin";
+
+            var innNyhet = new Nyhet()
+            {
+                id = 0,
+                Tittel = "Nyhet01",
+                Dato = "Dato01",
+                Beskjed = "Beskjed01"
+            };
+            controller.ViewData.ModelState.AddModelError("feil", "ID = 0");
+
+            // Act
+            var actionResult = (ViewResult)controller.OpprettNyhet(innNyhet);
+
+            // Assert
+            Assert.IsTrue(actionResult.ViewData.ModelState.Count == 1);
+            Assert.AreEqual(actionResult.ViewData.ModelState["feil"].Errors[0].ErrorMessage, "ID = 0");
+            Assert.AreEqual(actionResult.ViewName, "");
+            Assert.AreEqual(actionResult.ViewData["OpprettStatus"], "Klarte ikke å opprette nyhet");
+        }
+
+        [TestMethod]
+        public void OpprettNyhetPostOK()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "admin";
+
+            var innNyhet = new Nyhet()
+            {
+                id = 1,
+                Tittel = "Nyhet01",
+                Dato = "Dato01",
+                Beskjed = "Beskjed01"
+            };
+
+            // Act
+            var actionResult = (RedirectToRouteResult)controller.OpprettNyhet(innNyhet);
+
+            // Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "RedigerNyheter");
+        }
+
+        [TestMethod]
+        public void OpprettNyhetFeilIDB()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "admin";
+
+            var innNyhet = new Nyhet()
+            {
+                id = 0,
+                Tittel = "Nyhet01",
+                Dato = "Dato01",
+                Beskjed = "Beskjed01"
+            };
+
+            // Act
+            var actionResult = (ViewResult)controller.OpprettNyhet(innNyhet);
+
+            // Assert
+            Assert.AreEqual(actionResult.ViewName, "");
+            Assert.AreEqual(actionResult.ViewData["OpprettStatus"], "Klarte ikke å opprette nyhet");
         }
 
     }

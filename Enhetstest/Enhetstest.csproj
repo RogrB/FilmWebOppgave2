@@ -79,7 +79,7 @@
   <ItemGroup>
     <Compile Include="DBTester\AdminControllerViewTest.cs" />
     <Compile Include="DBTester\ajaxTest.cs" />
-    <Compile Include="DBTester\OpprettTest.cs" />
+    <Compile Include="DBTester\OpprettElementTest.cs" />
     <Compile Include="DBTester\RedigerBrukerTest.cs" />
     <Compile Include="DBTester\RedigerFilmTest.cs" />
     <Compile Include="DBTester\RedigerSkuespillerTest.cs" />
