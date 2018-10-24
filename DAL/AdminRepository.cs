@@ -644,6 +644,26 @@ namespace DAL
             return resultat;
         }
 
+        public bool OpprettNyhet(Nyhet innNyhet)
+        {
+            using (var db = new DBContext())
+            {
+                bool resultat = true;
+                try
+                {
+                    innNyhet.Dato = DateTime.Now.ToString();
+                    db.Nyheter.Add(innNyhet);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    resultat = false;
+                }
+
+                return resultat;
+            }
+        }
+
 
     }
 }

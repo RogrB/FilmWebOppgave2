@@ -601,5 +601,17 @@ namespace DAL
             }
         }
 
+        public bool OpprettNyhet(Nyhet innNyhet)
+        {
+            if(innNyhet.id == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

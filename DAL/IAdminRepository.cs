@@ -37,5 +37,6 @@ namespace DAL
         Nyhet HentNyhet(int id);
         List<Nyhet> HentNyheter();
         bool RedigerNyhet(Nyhet innNyhet);
+        bool OpprettNyhet(Nyhet innNyhet);
     }
 }
