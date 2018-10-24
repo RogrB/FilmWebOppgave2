@@ -699,5 +699,37 @@ namespace Enhetstest.DBTester
             Assert.AreEqual(forventetResultat, resultat);
         }
 
+        [TestMethod]
+        public void SlettBrukerOK()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("OK");
+
+            // Act
+            var resultat = controller.SlettBruker(1);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
+        [TestMethod]
+        public void SlettBrukerFeil()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var forventetResultat = jsonSerializer.Serialize("Feil");
+
+            // Act
+            var resultat = controller.SlettBruker(0);
+
+            // Assert
+            Assert.AreEqual(forventetResultat, resultat);
+        }
+
     }
 }
