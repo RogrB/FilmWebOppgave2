@@ -34,5 +34,8 @@ namespace DAL
         bool OpprettFilm(Film innFilm);
         bool SlettFilm(int id);
         bool SlettBruker(int id);
+        Nyhet HentNyhet(int id);
+        List<Nyhet> HentNyheter();
+        bool RedigerNyhet(Nyhet innNyhet);
     }
 }

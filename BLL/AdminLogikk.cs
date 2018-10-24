@@ -173,5 +173,23 @@ namespace BLL
             bool resultat = _repository.SlettBruker(id);
             return resultat;
         }
+
+        public List<Nyhet> HentNyheter()
+        {
+            List<Nyhet> nyheter = _repository.HentNyheter();
+            return nyheter;
+        }
+
+        public Nyhet HentNyhet(int id)
+        {
+            Nyhet nyhet = _repository.HentNyhet(id);
+            return nyhet;
+        }
+
+        public bool RedigerNyhet(Nyhet innNyhet)
+        {
+            bool resultat = _repository.RedigerNyhet(innNyhet);
+            return resultat;
+        }
     }
 }

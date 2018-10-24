@@ -547,5 +547,59 @@ namespace DAL
             }
         }
 
+        public List<Nyhet> HentNyheter()
+        {
+            List<Nyhet> alleNyheter = new List<Nyhet>();
+            Nyhet enNyhet = new Nyhet()
+            {
+                id = 1,
+                Tittel = "Nyhet01",
+                Dato = "Dato01",
+                Beskjed = "Dette er en nyhet"
+            };
+
+            alleNyheter.Add(enNyhet);
+            alleNyheter.Add(enNyhet);
+            alleNyheter.Add(enNyhet);
+
+            return alleNyheter;
+        }
+
+        public Nyhet HentNyhet(int id)
+        {
+            if (id == 1)
+            {
+                Nyhet utNyhet = new Nyhet()
+                {
+                    id = 1,
+                    Tittel = "Nyhet01",
+                    Dato = "Dato01",
+                    Beskjed = "Dette er en nyhet"
+                };
+
+                return utNyhet;
+            }
+            else
+            {
+                Nyhet utNyhet = new Nyhet()
+                {
+                    id = 0
+                };
+                return utNyhet;
+            }
+        }
+
+        public bool RedigerNyhet(Nyhet innNyhet)
+        {
+            if (innNyhet.id == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

@@ -592,6 +592,58 @@ namespace DAL
             }
         }
 
+        public List<Nyhet> HentNyheter()
+        {
+            using (var db = new DBContext())
+            {
+                List<Nyhet> alleNyheter = db.Nyheter.ToList();
+                return alleNyheter;
+            }
+        }
+
+        public Nyhet HentNyhet(int id)
+        {
+            using (var db = new DBContext())
+            {
+                Nyhet utNyhet = db.Nyheter.Find(id);
+                if(utNyhet != null)
+                {
+                    return utNyhet;
+                }
+                return null;
+            }
+        }
+
+        public bool RedigerNyhet(Nyhet innNyhet)
+        {
+            bool resultat = true;
+            var db = new DBContext();
+
+            try
+            {
+                Nyhet endreNyhet = db.Nyheter.Find(innNyhet.id);
+                if (endreNyhet != null)
+                {
+
+                    endreNyhet.Dato = innNyhet.Dato;
+                    endreNyhet.Tittel = innNyhet.Tittel;
+                    endreNyhet.Beskjed = innNyhet.Beskjed;
+
+                    db.SaveChanges();
+                }
+                else
+                {
+                    resultat = false;
+                }
+            }
+            catch(Exception e)
+            {
+                resultat = false;
+            }
+
+            return resultat;
+        }
+
 
     }
 }
