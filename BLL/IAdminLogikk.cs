@@ -37,5 +37,6 @@ namespace BLL
         List<Nyhet> HentNyheter();
         bool RedigerNyhet(Nyhet innNyhet);
         bool OpprettNyhet(Nyhet innNyhet);
+        bool SlettNyhet(int id);
     }
 }

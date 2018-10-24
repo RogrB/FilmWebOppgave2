@@ -664,6 +664,32 @@ namespace DAL
             }
         }
 
+        public bool SlettNyhet(int id)
+        {
+            using (var db = new DBContext())
+            {
+                bool resultat = true;
+                try
+                {
+                    var slettNyhet = db.Nyheter.Find(id);
+                    if(slettNyhet != null)
+                    {
+                        db.Nyheter.Remove(slettNyhet);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        resultat = false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    resultat = false;
+                }
+                return resultat;
+            }
+        }
+
 
     }
 }

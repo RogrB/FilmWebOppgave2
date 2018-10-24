@@ -613,5 +613,17 @@ namespace DAL
             }
         }
 
+        public bool SlettNyhet(int id)
+        {
+            if (id == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

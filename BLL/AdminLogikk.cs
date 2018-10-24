@@ -197,5 +197,11 @@ namespace BLL
             bool resultat = _repository.OpprettNyhet(innNyhet);
             return resultat;
         }
+
+        public bool SlettNyhet(int id)
+        {
+            bool resultat = _repository.SlettNyhet(id);
+            return resultat;
+        }
     }
 }
