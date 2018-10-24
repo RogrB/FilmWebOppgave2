@@ -130,5 +130,71 @@ namespace Enhetstest.DBTester
             Assert.IsTrue(actionResult.ViewData.ModelState.Count == 1);
             Assert.AreEqual(actionResult.ViewName, "");
         }
+
+        [TestMethod]
+        public void AdminViewLoggetInnOK()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "admin";
+
+            // Act
+            bool resultat = controller.AdminLoggetInn();
+
+            // Assert
+            Assert.AreEqual(resultat, true);
+        }
+
+        [TestMethod]
+        public void AdminViewLoggetInnNull()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = null;
+
+            // Act
+            bool resultat = controller.AdminLoggetInn();
+
+            // Assert
+            Assert.AreEqual(resultat, false);
+        }
+
+
+        [TestMethod]
+        public void AdminViewLoggetInnFeil()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "";
+
+            // Act
+            bool resultat = controller.AdminLoggetInn();
+
+            // Assert
+            Assert.AreEqual(resultat, false);
+        }
+
+        [TestMethod]
+        public void AdminLogoutTest()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "admin";
+
+            // Act
+            var actionResult = (RedirectToRouteResult)controller.Logut();
+
+            // Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
+        }
     }
 }

@@ -1,65 +1,22 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BLL;
+﻿using BLL;
 using DAL;
 using Model;
 using Graubakken_Filmsjappe.Controllers;
-using System.Web.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcContrib.TestHelper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
-namespace Enhetstest
+namespace Enhetstest.DBTester
 {
     [TestClass]
-    public class AdminControllerTest
+    public class AdminControllerViewTest
     {
-        [TestMethod]
-        public void AdminLoggetInnOK()
-        {
-            // Arrange
-            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
-            var SessionMock = new TestControllerBuilder();
-            SessionMock.InitializeController(controller);
-            controller.Session["Admin"] = "admin";
-
-            // Act
-            bool resultat = controller.AdminLoggetInn();
-
-            // Assert
-            Assert.AreEqual(resultat, true);
-        }
-
-        [TestMethod]
-        public void AdminLoggetInnNull()
-        {
-            // Arrange
-            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
-            var SessionMock = new TestControllerBuilder();
-            SessionMock.InitializeController(controller);
-            controller.Session["Admin"] = null;
-
-            // Act
-            bool resultat = controller.AdminLoggetInn();
-
-            // Assert
-            Assert.AreEqual(resultat, false);
-        }
-
-        [TestMethod]
-        public void AdminLoggetInnFeil()
-        {
-            // Arrange
-            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
-            var SessionMock = new TestControllerBuilder();
-            SessionMock.InitializeController(controller);
-            controller.Session["Admin"] = "";
-
-            // Act
-            bool resultat = controller.AdminLoggetInn();
-
-            // Assert
-            Assert.AreEqual(resultat, false);
-        }
-
         [TestMethod]
         public void AdminViewOK()
         {
@@ -76,6 +33,7 @@ namespace Enhetstest
             Assert.AreEqual(actionResult.ViewName, "");
         }
 
+
         [TestMethod]
         public void AdminViewNull()
         {
@@ -90,7 +48,7 @@ namespace Enhetstest
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
-            //Assert.AreEqual(actionResult.RouteValues.Values, "AdminLoginn");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
         }
 
         [TestMethod]
@@ -107,7 +65,7 @@ namespace Enhetstest
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
-            //Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
         }
 
         [TestMethod]
@@ -124,7 +82,7 @@ namespace Enhetstest
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
-            //Assert.AreEqual(actionResult.RouteValues.Values.First(), "Admin");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "Admin");
         }
 
         [TestMethod]
@@ -141,7 +99,7 @@ namespace Enhetstest
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
-            //Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
         }
 
         [TestMethod]
@@ -158,7 +116,7 @@ namespace Enhetstest
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
-            //Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
         }
 
         [TestMethod]
@@ -175,7 +133,7 @@ namespace Enhetstest
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
-            //Assert.AreEqual(actionResult.RouteValues.Values.First(), "Admin");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "Admin");
         }
 
         [TestMethod]
@@ -192,27 +150,9 @@ namespace Enhetstest
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
-            //Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
         }
 
-        /*
-        [TestMethod]
-        public void AdminLogoutOK()
-        {
-            // Arrange
-            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
-            var SessionMock = new TestControllerBuilder();
-            SessionMock.InitializeController(controller);
-            controller.Session["Admin"] = "admin";
-
-            // Act
-            var actionResult = (RedirectToRouteResult)controller.Index();
-
-            // Assert
-            Assert.AreEqual(actionResult.RouteName, "");
-            Assert.AreEqual(controller.Session["Admin"], "");
-            //Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
-        }*/
 
     }
 }
