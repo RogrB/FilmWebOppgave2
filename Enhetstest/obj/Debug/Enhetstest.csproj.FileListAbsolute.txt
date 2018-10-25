@@ -40,3 +40,9 @@ C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Grau
 C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Enhetstest.dll.config
 C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\MvcContrib.TestHelper.dll
 C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Rhino.Mocks.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Castle.Core.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\System.ValueTuple.dll
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\Castle.Core.xml
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Roger\Documents\Skole\Webapplikasjoner\Oppgave 2 - FilmbutikkAdmin\Graubakken Filmsjappe\Enhetstest\bin\Debug\System.ValueTuple.xml
