@@ -187,19 +187,34 @@ namespace DAL
             }
         }
 
-        public bool RedigerFilm(Film innFilm)
+        public bool RedigerFilm(Film innFilm, HttpPostedFileBase bilde)
         {
             var db = new DBContext();
             bool resultat = true;
             try
             {
+                if (bilde != null && bilde.ContentLength > 0)
+                {
+                    var filNavn = Path.GetFileName(bilde.FileName);
+                    var filBane = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("/Content/images/posters"), filNavn);
+                    bilde.SaveAs(filBane);
+                    innFilm.Bilde = Path.Combine("/Content/images/posters", filNavn);
+                }
+                else
+                {
+                    innFilm.Bilde = null;
+                }
+                
                 Film endreFilm = db.Filmer.Find(innFilm.id);
                 if(endreFilm != null)
                 {
                     endreFilm.Beskrivelse = innFilm.Beskrivelse;
                     endreFilm.Navn = innFilm.Navn;
                     endreFilm.Gjennomsnitt = innFilm.Gjennomsnitt;
-                    endreFilm.Bilde = innFilm.Bilde;
+                    if (innFilm.Bilde != null)
+                    {
+                        endreFilm.Bilde = innFilm.Bilde;
+                    }
                     endreFilm.Kontinent = innFilm.Kontinent;
                     endreFilm.Pris = innFilm.Pris;
                     endreFilm.Produksjonsår = innFilm.Produksjonsår;

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Enhetstest.MockFiles;
 
 namespace Enhetstest.DBTester
 {
@@ -273,8 +274,10 @@ namespace Enhetstest.DBTester
                 Kontinent = "USA"
             };
 
+            TestBilde testBilde = new TestBilde();
+
             // Act
-            var actionResult = (ViewResult)controller.RedigerFilm(innFilm);
+            var actionResult = (ViewResult)controller.RedigerFilm(innFilm, testBilde);
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
@@ -302,8 +305,10 @@ namespace Enhetstest.DBTester
             };
             controller.ViewData.ModelState.AddModelError("feil", "ID = 0");
 
+            TestBilde testBilde = new TestBilde();
+
             // Act
-            var actionResult = (ViewResult)controller.RedigerFilm(innFilm);
+            var actionResult = (ViewResult)controller.RedigerFilm(innFilm, testBilde);
 
             // Assert
             Assert.IsTrue(actionResult.ViewData.ModelState.Count == 1);
@@ -331,8 +336,10 @@ namespace Enhetstest.DBTester
                 Kontinent = "USA"
             };
 
+            TestBilde testBilde = new TestBilde();
+
             // Act
-            var actionResult = (ViewResult)controller.RedigerFilm(innFilm);
+            var actionResult = (ViewResult)controller.RedigerFilm(innFilm, testBilde);
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");

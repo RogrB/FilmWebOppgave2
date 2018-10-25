@@ -16,7 +16,7 @@ namespace DAL
         List<Skuespiller> HentSkuespillere();
         string LeggSkuespillerIFilm(int filmID, int skuespillerID);
         string SlettSkuespillerFraFilm(int filmID, int skuespillerID);
-        bool RedigerFilm(Film innFilm);
+        bool RedigerFilm(Film innFilm, HttpPostedFileBase bilde);
         List<Sjanger> HentSjangereForFilm(int id);
         List<Sjanger> HentSjangere();
         string LeggSjangerIFilm(int filmID, int sjangerID);

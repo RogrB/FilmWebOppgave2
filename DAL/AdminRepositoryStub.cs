@@ -236,7 +236,7 @@ namespace DAL
             }
         }
 
-        public bool RedigerFilm(Film innFilm)
+        public bool RedigerFilm(Film innFilm, HttpPostedFileBase bilde)
         {
             if (innFilm.id == 1)
             {

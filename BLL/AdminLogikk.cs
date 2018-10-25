@@ -61,9 +61,9 @@ namespace BLL
             return resultat;
         }
 
-        public bool RedigerFilm(Film innFilm)
+        public bool RedigerFilm(Film innFilm, HttpPostedFileBase bilde)
         {
-            bool resultat = _repository.RedigerFilm(innFilm);
+            bool resultat = _repository.RedigerFilm(innFilm, bilde);
             return resultat;
         }
 
