@@ -115,9 +115,9 @@ namespace BLL
             return resultat;
         }
 
-        public bool RedigerSkuespiller(Skuespiller innSkuespiller)
+        public bool RedigerSkuespiller(Skuespiller innSkuespiller, HttpPostedFileBase bilde)
         {
-            bool resultat = _repository.RedigerSkuespiller(innSkuespiller);
+            bool resultat = _repository.RedigerSkuespiller(innSkuespiller, bilde);
             return resultat;
         }
 

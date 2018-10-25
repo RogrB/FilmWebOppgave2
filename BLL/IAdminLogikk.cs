@@ -24,7 +24,7 @@ namespace BLL
         List<Film> HentFilmerForAjax();
         string LeggFilmISkuespiller(int skuespillerID, int filmID);
         string SlettFilmFraSkuespiller(int skuespillerID, int filmID);
-        bool RedigerSkuespiller(Skuespiller innSkuespiller);
+        bool RedigerSkuespiller(Skuespiller innSkuespiller, HttpPostedFileBase bilde);
         List<Kunde> HentKunder();
         EndreKunde HentKunde(int id);
         string SlettFilmFraBruker(int brukerID, int filmID);

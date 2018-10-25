@@ -390,7 +390,7 @@ namespace DAL
             }
         }
 
-        public bool RedigerSkuespiller(Skuespiller innSkuespiller)
+        public bool RedigerSkuespiller(Skuespiller innSkuespiller, HttpPostedFileBase bilde)
         {
             if(innSkuespiller.id == 1)
             {

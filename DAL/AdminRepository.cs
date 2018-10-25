@@ -389,18 +389,33 @@ namespace DAL
             }
         }
 
-        public bool RedigerSkuespiller(Skuespiller innSkuespiller)
+        public bool RedigerSkuespiller(Skuespiller innSkuespiller, HttpPostedFileBase bilde)
         {
             var db = new DBContext();
             bool resultat = true;
             try
             {
+                if (bilde != null && bilde.ContentLength > 0)
+                {
+                    var filNavn = Path.GetFileName(bilde.FileName);
+                    var filBane = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("/Content/images/skuespillere"), filNavn);
+                    bilde.SaveAs(filBane);
+                    innSkuespiller.Bilde = Path.Combine("/Content/images/skuespillere", filNavn);
+                }
+                else
+                {
+                    innSkuespiller.Bilde = null;
+                }
+
                 Skuespiller endreSkuespiller = db.Skuespillere.Find(innSkuespiller.id);
                 if (endreSkuespiller != null)
                 {
                     endreSkuespiller.Fornavn = innSkuespiller.Fornavn;
                     endreSkuespiller.Etternavn = innSkuespiller.Etternavn;
-                    endreSkuespiller.Bilde = innSkuespiller.Bilde;
+                    if (innSkuespiller.Bilde != null)
+                    {
+                        endreSkuespiller.Bilde = innSkuespiller.Bilde;
+                    }
                     endreSkuespiller.Alder = innSkuespiller.Alder;
                     endreSkuespiller.Land = innSkuespiller.Land;
                     db.SaveChanges();

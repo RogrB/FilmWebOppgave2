@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Enhetstest.MockFiles;
 
 namespace Enhetstest.DBTester
 {
@@ -223,8 +224,10 @@ namespace Enhetstest.DBTester
             };
             innSkuespiller.Filmer.Add(Film);
 
+            TestBilde testBilde = new TestBilde();
+
             // Act
-            var actionResult = (ViewResult)controller.RedigerSkuespiller(innSkuespiller);
+            var actionResult = (ViewResult)controller.RedigerSkuespiller(innSkuespiller, testBilde);
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
@@ -258,8 +261,10 @@ namespace Enhetstest.DBTester
             innSkuespiller.Filmer.Add(Film);
             controller.ViewData.ModelState.AddModelError("feil", "ID = 0");
 
+            TestBilde testBilde = new TestBilde();
+
             // Act
-            var actionResult = (ViewResult)controller.RedigerSkuespiller(innSkuespiller);
+            var actionResult = (ViewResult)controller.RedigerSkuespiller(innSkuespiller, testBilde);
 
             // Assert
             Assert.IsTrue(actionResult.ViewData.ModelState.Count == 1);
@@ -293,8 +298,10 @@ namespace Enhetstest.DBTester
             };
             innSkuespiller.Filmer.Add(Film);
 
+            TestBilde testBilde = new TestBilde();
+
             // Act
-            var actionResult = (ViewResult)controller.RedigerSkuespiller(innSkuespiller);
+            var actionResult = (ViewResult)controller.RedigerSkuespiller(innSkuespiller, testBilde);
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");
