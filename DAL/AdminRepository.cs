@@ -546,13 +546,24 @@ namespace DAL
             }
         }
 
-        public bool OpprettFilm(Film innFilm)
+        public bool OpprettFilm(Film innFilm, HttpPostedFileBase bilde)
         {
             using (var db = new DBContext())
             {
                 bool resultat = true;
                 try
                 {
+                    if (bilde != null && bilde.ContentLength > 0)
+                    {
+                        var filNavn = Path.GetFileName(bilde.FileName);
+                        var filBane = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("/Content/images/posters"), filNavn);
+                        bilde.SaveAs(filBane);
+                        innFilm.Bilde = Path.Combine("/Content/images/posters", filNavn);
+                    }
+                    else
+                    {
+                        innFilm.Bilde = "/Content/images/posters/defaultPoster.jpg";
+                    }
                     db.Filmer.Add(innFilm);
                     db.SaveChanges();
                 }

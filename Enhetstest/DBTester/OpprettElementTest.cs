@@ -285,8 +285,10 @@ namespace Enhetstest.DBTester
             innFilm.Kommentarer.Add(kommentar);
             controller.ViewData.ModelState.AddModelError("feil", "ID = 0");
 
+            TestBilde testBilde = new TestBilde();
+
             // Act
-            var actionResult = (ViewResult)controller.OpprettFilm(innFilm);
+            var actionResult = (ViewResult)controller.OpprettFilm(innFilm, testBilde);
 
             // Assert
             Assert.IsTrue(actionResult.ViewData.ModelState.Count == 1);
@@ -345,8 +347,10 @@ namespace Enhetstest.DBTester
             innFilm.Sjanger.Add(sjanger);
             innFilm.Kommentarer.Add(kommentar);
 
+            TestBilde testBilde = new TestBilde();
+
             // Act
-            var actionResult = (RedirectToRouteResult)controller.OpprettFilm(innFilm);
+            var actionResult = (RedirectToRouteResult)controller.OpprettFilm(innFilm, testBilde);
 
             // Assert
             Assert.AreEqual(actionResult.RouteName, "");
@@ -403,8 +407,10 @@ namespace Enhetstest.DBTester
             innFilm.Sjanger.Add(sjanger);
             innFilm.Kommentarer.Add(kommentar);
 
+            TestBilde testBilde = new TestBilde();
+
             // Act
-            var actionResult = (ViewResult)controller.OpprettFilm(innFilm);
+            var actionResult = (ViewResult)controller.OpprettFilm(innFilm, testBilde);
 
             // Assert
             Assert.AreEqual(actionResult.ViewName, "");

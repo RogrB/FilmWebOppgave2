@@ -512,7 +512,7 @@ namespace DAL
             }
         }
 
-        public bool OpprettFilm(Film innFilm)
+        public bool OpprettFilm(Film innFilm, HttpPostedFileBase bilde)
         {
             if (innFilm.id == 1)
             {

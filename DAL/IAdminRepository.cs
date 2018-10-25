@@ -32,7 +32,7 @@ namespace DAL
         bool RedigerKunde(EndreKunde innKunde);
         bool OpprettSkuespiller(Skuespiller innSkuespiller, HttpPostedFileBase bilde);
         bool SlettSkuespiller(int id);
-        bool OpprettFilm(Film innFilm);
+        bool OpprettFilm(Film innFilm, HttpPostedFileBase bilde);
         bool SlettFilm(int id);
         bool SlettBruker(int id);
         Nyhet HentNyhet(int id);

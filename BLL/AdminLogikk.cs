@@ -157,9 +157,9 @@ namespace BLL
             return resultat;
         }
 
-        public bool OpprettFilm(Film innFilm)
+        public bool OpprettFilm(Film innFilm, HttpPostedFileBase bilde)
         {
-            bool resultat = _repository.OpprettFilm(innFilm);
+            bool resultat = _repository.OpprettFilm(innFilm, bilde);
             return resultat;
         }
 
