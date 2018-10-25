@@ -2,6 +2,7 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Web;
 
 namespace BLL
 {
@@ -144,9 +145,9 @@ namespace BLL
             return resultat;
         }
 
-        public bool OpprettSkuespiller(Skuespiller innSkuespiller)
+        public bool OpprettSkuespiller(Skuespiller innSkuespiller, HttpPostedFileBase bilde)
         {
-            bool resultat = _repository.OpprettSkuespiller(innSkuespiller);
+            bool resultat = _repository.OpprettSkuespiller(innSkuespiller, bilde);
             return resultat;
         }
 

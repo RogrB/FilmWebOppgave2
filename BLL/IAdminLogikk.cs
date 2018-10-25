@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Web;
 
 namespace BLL
 {
@@ -28,7 +29,7 @@ namespace BLL
         EndreKunde HentKunde(int id);
         string SlettFilmFraBruker(int brukerID, int filmID);
         bool RedigerKunde(EndreKunde innKunde);
-        bool OpprettSkuespiller(Skuespiller innSkuespiller);
+        bool OpprettSkuespiller(Skuespiller innSkuespiller, HttpPostedFileBase bilde);
         bool SlettSkuespiller(int id);
         bool OpprettFilm(Film innFilm);
         bool SlettFilm(int id);

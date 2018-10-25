@@ -3,6 +3,8 @@ using System;
 using System.Security.Cryptography;
 using System.Linq;
 using System.Collections.Generic;
+using System.Web;
+using System.IO;
 
 namespace DAL
 {
@@ -494,13 +496,24 @@ namespace DAL
             return resultat;
         }
 
-        public bool OpprettSkuespiller(Skuespiller innSkuespiller)
+        public bool OpprettSkuespiller(Skuespiller innSkuespiller, HttpPostedFileBase bilde)
         {
             using (var db = new DBContext())
             {
                 bool resultat = true;
                 try
                 {
+                    if(bilde != null && bilde.ContentLength > 0)
+                    {
+                        var filNavn = Path.GetFileName(bilde.FileName);
+                        var filBane = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("/Content/images/skuespillere"), filNavn);
+                        bilde.SaveAs(filBane);
+                        innSkuespiller.Bilde = Path.Combine("/Content/images/skuespillere", filNavn);
+                    }
+                    else
+                    {
+                        innSkuespiller.Bilde = "/Content/images/skuespillere/defaultActor.jpg";
+                    }
                     db.Skuespillere.Add(innSkuespiller);
                     db.SaveChanges();
                 }

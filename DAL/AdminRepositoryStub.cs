@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Web;
 
 namespace DAL
 {
@@ -487,7 +488,7 @@ namespace DAL
             }
         }
 
-        public bool OpprettSkuespiller(Skuespiller innSkuespiller)
+        public bool OpprettSkuespiller(Skuespiller innSkuespiller, HttpPostedFileBase bilde)
         {
             if (innSkuespiller.id == 1)
             {
