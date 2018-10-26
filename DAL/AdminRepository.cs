@@ -594,6 +594,8 @@ namespace DAL
                     {
                         innFilm.Bilde = "/Content/images/posters/defaultPoster.jpg";
                     }
+                    innFilm.Gjennomsnitt = 0;
+                    innFilm.Visninger = 0;
                     db.Filmer.Add(innFilm);
                     db.SaveChanges();
                 }
