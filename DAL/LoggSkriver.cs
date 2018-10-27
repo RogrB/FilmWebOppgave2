@@ -10,10 +10,11 @@ namespace DAL
 {
     class LoggSkriver
     {
-        private readonly string filBane = "Logg.txt";
+        private readonly string filBane = System.Web.HttpContext.Current.Server.MapPath("/Logg.txt");
 
         public LoggSkriver()
         {
+            
             if (!LoggEksisterer())
             {
                 File.Create(filBane).Dispose();
@@ -27,24 +28,23 @@ namespace DAL
 
         private void SkrivLogg(string melding, TextWriter w)
         {
-            w.Write("\r\n Logg Entry: ");
+            w.Write("\r\n Logg Entry: \r\n");
             w.Write("{0} {1}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
-            w.Write(" : ");
-            w.Write(" : {0}", melding);
-            w.Write("------------");
+            w.Write(" :\r\n {0}", melding);
+            w.Write("\r\n------------");
         }
 
         public void OpprettFilmLogg(Film innFilm)
         {
             using (StreamWriter w = File.AppendText(filBane))
             {
-                string melding = "Film opprettet: ";
-                melding += innFilm.Navn + "\n";
-                melding += innFilm.Bilde + "\n";
-                melding += innFilm.Beskrivelse + "\n";
-                melding += innFilm.Kontinent + "\n";
-                melding += innFilm.Produksjonsår + "\n";
-                melding += innFilm.ReleaseDate + "\n";
+                string melding = "Film opprettet: \r\n";
+                melding += innFilm.Navn + "\r\n";
+                melding += innFilm.Bilde + "\r\n";
+                melding += innFilm.Beskrivelse + "\r\n";
+                melding += innFilm.Kontinent + "\r\n";
+                melding += innFilm.Produksjonsår + "\r\n";
+                melding += innFilm.ReleaseDate + "\r\n";
                 melding += innFilm.Studio;
 
                 SkrivLogg(melding, w);
@@ -55,16 +55,16 @@ namespace DAL
         {
             using (StreamWriter w = File.AppendText(filBane))
             {
-                string melding = "Endring av Film: \n";
-                melding += gammelFilm.Navn + " -> " + innFilm.Navn + "\n";
-                melding += gammelFilm.Bilde + " -> " + innFilm.Bilde + "\n";
-                melding += gammelFilm.Kontinent + " -> " + innFilm.Kontinent + "\n";
-                melding += gammelFilm.Beskrivelse + " -> " + innFilm.Beskrivelse + "\n";
-                melding += gammelFilm.Gjennomsnitt + " -> " + innFilm.Gjennomsnitt + "\n";
-                melding += gammelFilm.Pris + " -> " + innFilm.Pris + "\n";
-                melding += gammelFilm.Produksjonsår + " -> " + innFilm.Produksjonsår + "\n";
-                melding += gammelFilm.ReleaseDate + " -> " + innFilm.ReleaseDate + "\n";
-                melding += gammelFilm.Studio + " -> " + innFilm.Studio + "\n";
+                string melding = "Endring av Film: \r\n";
+                melding += gammelFilm.Navn + " -> " + innFilm.Navn + "\r\n";
+                melding += gammelFilm.Bilde + " -> " + innFilm.Bilde + "\r\n";
+                melding += gammelFilm.Kontinent + " -> " + innFilm.Kontinent + "\r\n";
+                melding += gammelFilm.Beskrivelse + " -> " + innFilm.Beskrivelse + "\r\n";
+                melding += gammelFilm.Gjennomsnitt + " -> " + innFilm.Gjennomsnitt + "\r\n";
+                melding += gammelFilm.Pris + " -> " + innFilm.Pris + "\r\n";
+                melding += gammelFilm.Produksjonsår + " -> " + innFilm.Produksjonsår + "\r\n";
+                melding += gammelFilm.ReleaseDate + " -> " + innFilm.ReleaseDate + "\r\n";
+                melding += gammelFilm.Studio + " -> " + innFilm.Studio + "\r\n";
                 melding += gammelFilm.Visninger + " -> " + innFilm.Visninger;
 
                 SkrivLogg(melding, w);
@@ -86,10 +86,10 @@ namespace DAL
         {
             using (StreamWriter w = File.AppendText(filBane))
             {
-                string melding = "Skuespiller opprettet: ";
-                melding += innSkuespiller.Fornavn + "\n";
-                melding += innSkuespiller.Etternavn + "\n";
-                melding += innSkuespiller.Alder + "\n";
+                string melding = "Skuespiller opprettet: \r\n";
+                melding += innSkuespiller.Fornavn + "\r\n";
+                melding += innSkuespiller.Etternavn + "\r\n";
+                melding += innSkuespiller.Alder + "\r\n";
                 melding += innSkuespiller.Land;
 
                 SkrivLogg(melding, w);
@@ -100,10 +100,10 @@ namespace DAL
         {
             using (StreamWriter w = File.AppendText(filBane))
             {
-                string melding = "Endring av Skuespiller: \n";
-                melding += gammelSkuespiller.Fornavn + " -> " + innSkuespiller.Fornavn + "\n";
-                melding += gammelSkuespiller.Etternavn + " -> " + innSkuespiller.Etternavn + "\n";
-                melding += gammelSkuespiller.Alder + " -> " + innSkuespiller.Alder + "\n";
+                string melding = "Endring av Skuespiller: \r\n";
+                melding += gammelSkuespiller.Fornavn + " -> " + innSkuespiller.Fornavn + "\r\n";
+                melding += gammelSkuespiller.Etternavn + " -> " + innSkuespiller.Etternavn + "\r\n";
+                melding += gammelSkuespiller.Alder + " -> " + innSkuespiller.Alder + "\r\n";
                 melding += gammelSkuespiller.Land + " -> " + innSkuespiller.Land;
 
                 SkrivLogg(melding, w);
@@ -125,11 +125,11 @@ namespace DAL
         {
             using (StreamWriter w = File.AppendText(filBane))
             {
-                string melding = "Endring av Bruker: \n";
-                melding += gammelKunde.Fornavn + " -> " + innKunde.Fornavn + "\n";
-                melding += gammelKunde.Etternavn + " -> " + innKunde.Etternavn + "\n";
-                melding += gammelKunde.Brukernavn+ " -> " + innKunde.Brukernavn + "\n";
-                melding += gammelKunde.Kort + " -> " + innKunde.Kort + "\n";
+                string melding = "Endring av Bruker: \r\n";
+                melding += gammelKunde.Fornavn + " -> " + innKunde.Fornavn + "\r\n";
+                melding += gammelKunde.Etternavn + " -> " + innKunde.Etternavn + "\r\n";
+                melding += gammelKunde.Brukernavn+ " -> " + innKunde.Brukernavn + "\r\n";
+                melding += gammelKunde.Kort + " -> " + innKunde.Kort + "\r\n";
 
                 SkrivLogg(melding, w);
             }
@@ -162,7 +162,7 @@ namespace DAL
             using (StreamWriter w = File.AppendText(filBane))
             {
                 string melding = "En feil oppstod ved metoden ";
-                melding += metode + ". \nFeilmelding: " + feilmelding;
+                melding += metode + ". \r\nFeilmelding: " + feilmelding;
 
                 SkrivLogg(melding, w);
             }

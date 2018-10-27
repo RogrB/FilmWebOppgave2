@@ -62,6 +62,7 @@
     <Compile Include="IAdminRepository.cs" />
     <Compile Include="IKundeRepository.cs" />
     <Compile Include="KundeRepository.cs" />
+    <Compile Include="LoggSkriver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
