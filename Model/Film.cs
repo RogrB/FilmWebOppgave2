@@ -15,7 +15,7 @@ namespace Model
         public string Navn { get; set; }
 
         [Required(ErrorMessage = "Produksjonsår må oppgis")]
-        [RegularExpression(@"[0-9]{1,}", ErrorMessage = "Produksjonsår må være tall")]
+        [RegularExpression(@"^[0-9]{1,}", ErrorMessage = "Produksjonsår må være tall")]
         public int Produksjonsår { get; set; }
 
         [Required(ErrorMessage = "Kontinent må oppgis")]
@@ -35,11 +35,11 @@ namespace Model
         public string Beskrivelse { get; set; }
 
         [Required(ErrorMessage = "Releasedate må oppgis")]
-        [RegularExpression(@"[0-9.,\- ]{1,}", ErrorMessage = "Releasedate kan ikke inneholde spesialtegn")]
+        [RegularExpression(@"^[0-9.,\- ]{1,}", ErrorMessage = "Releasedate kan ikke inneholde spesialtegn")]
         public string ReleaseDate { get; set; }
 
         [Required(ErrorMessage = "Pris må oppgis")]
-        [RegularExpression(@"[0-9]{1,}", ErrorMessage = "Pris må være tall")]
+        [RegularExpression(@"^[0-9]{1,}", ErrorMessage = "Pris må være tall")]
         public int Pris { get; set; }
 
         public double Gjennomsnitt { get; set; }

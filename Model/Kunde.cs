@@ -28,7 +28,7 @@ namespace Model
 
 
         [Required(ErrorMessage = "Kortinfo må oppgis")]
-        [RegularExpression(@"[0-9]{12,19}", ErrorMessage = "Kredittkort må være mellom 12 og 19 siffer")]
+        [RegularExpression(@"^[0-9]{12,19}", ErrorMessage = "Kredittkort må være mellom 12 og 19 siffer")]
         [Display(Name = "Kredittkort")]
         public long Kort { get; set; }
 
@@ -54,11 +54,11 @@ namespace Model
         [RegularExpression(@"^[A-Za-z0-9æøåØÆÅ@_\- ]{1,}", ErrorMessage = "Brukernavn kan ikke inneholde spesialtegn")]
         public string Brukernavn { get; set; }
 
-        [RegularExpression(@"[A-Za-z0-9æøåØÆÅ@_\-]{8,}", ErrorMessage = "Passord må være minst 8 bokstaver eller tall, og kan ikke inneholde spesialtegn")]
+        [RegularExpression(@"^[A-Za-z0-9æøåØÆÅ@_\-]{8,}", ErrorMessage = "Passord må være minst 8 bokstaver eller tall, og kan ikke inneholde spesialtegn")]
         public string Passord { get; set; }
 
         [Required(ErrorMessage = "Kortinfo må oppgis")]
-        [RegularExpression(@"[0-9]{12,19}", ErrorMessage = "Kredittkort må være mellom 12 og 19 siffer")]
+        [RegularExpression(@"^[0-9]{12,19}", ErrorMessage = "Kredittkort må være mellom 12 og 19 siffer")]
         [Display(Name = "Kredittkort")]
         public long Kort { get; set; }
         public virtual Ønskeliste Ønskeliste { get; set; }

@@ -23,7 +23,7 @@ namespace Model
         public string Land { get; set; }
 
         [Required(ErrorMessage = "Alder må oppgis")]
-        [RegularExpression(@"[0-9]{1,}", ErrorMessage = "Alder må være tall")]
+        [RegularExpression(@"^[0-9]{1,}", ErrorMessage = "Alder må være tall")]
         public int Alder { get; set; }
 
         public string Bilde { get; set; }
