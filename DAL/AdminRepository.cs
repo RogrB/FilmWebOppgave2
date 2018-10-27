@@ -32,10 +32,16 @@ namespace DAL
                     db.Administrator.Add(admin);
                     db.SaveChanges();
                     resultat = "OK";
+
+                    LoggSkriver logg = new LoggSkriver();
+                    string kommentar = "Admin registrert med forhåndsdefinert innloggingsnavn og passord";
+                    logg.GenerellLogg("RegistrerAdmin", kommentar);
                 }
                 catch (Exception e)
                 {
                     resultat = "Feil";
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("RegistrerAdmin", e);
                 }
             }
             return resultat;
@@ -159,10 +165,17 @@ namespace DAL
                     film.Skuespillere.Add(skuespiller);
                     db.SaveChanges();
 
+                    LoggSkriver logg = new LoggSkriver();
+                    string kommentar = skuespiller.Fornavn + " " + skuespiller.Etternavn;
+                    kommentar += " ble lagt til i film " + film.Navn;
+                    logg.GenerellLogg("LeggSkuespillerIFilm", kommentar);
+
                     return "OK";
                 }
                 catch(Exception e)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("LeggSkuespillerIFilm", e);
                     return "Feil";
                 }
             }
@@ -179,10 +192,17 @@ namespace DAL
                     film.Skuespillere.Remove(skuespiller);
                     db.SaveChanges();
 
+                    LoggSkriver logg = new LoggSkriver();
+                    string kommentar = skuespiller.Fornavn + " " + skuespiller.Etternavn;
+                    kommentar += " ble slettet fra film " + film.Navn;
+                    logg.GenerellLogg("SlettSkuespillerFraFilm", kommentar);
+
                     return "OK";
                 }
                 catch (Exception e)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("SlettSkuespillerFraFilm", e);
                     return "Feil";
                 }
             }
@@ -223,6 +243,9 @@ namespace DAL
                     endreFilm.Studio = innFilm.Studio;
                     endreFilm.Visninger = innFilm.Visninger;
                     db.SaveChanges();
+
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.EndreFilmLogg(innFilm, endreFilm);
                 }
                 else
                 {
@@ -231,6 +254,8 @@ namespace DAL
             }
             catch (Exception e)
             {
+                LoggSkriver logg = new LoggSkriver();
+                logg.FeilmeldingLogg("EndreFilmLogg", e);
                 resultat = false;
             }
             return resultat;
@@ -301,10 +326,17 @@ namespace DAL
                     film.Sjanger.Add(sjanger);
                     db.SaveChanges();
 
+                    LoggSkriver logg = new LoggSkriver();
+                    string kommentar = sjanger.sjanger;
+                    kommentar += " ble lagt til film " + film.Navn;
+                    logg.GenerellLogg("LeggSjangerIFilm", kommentar);
+
                     return "OK";
                 }
                 catch (Exception e)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("LeggSjangerIFilm", e);
                     return "Feil";
                 }
             }
@@ -321,10 +353,17 @@ namespace DAL
                     film.Sjanger.Remove(sjanger);
                     db.SaveChanges();
 
+                    LoggSkriver logg = new LoggSkriver();
+                    string kommentar = sjanger.sjanger;
+                    kommentar += " ble slettet fra film " + film.Navn;
+                    logg.GenerellLogg("SlettSjangerFraFilm", kommentar);
+
                     return "OK";
                 }
                 catch (Exception e)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("SlettSjangerFraFilm", e);
                     return "Feil";
                 }
             }
@@ -373,10 +412,17 @@ namespace DAL
                     skuespiller.Filmer.Add(film);
                     db.SaveChanges();
 
+                    LoggSkriver logg = new LoggSkriver();
+                    string kommentar = film.Navn;
+                    kommentar += " ble lagt til skuespiller " + skuespiller.Fornavn + " " + skuespiller.Etternavn;
+                    logg.GenerellLogg("LeggFilmISkuespiller", kommentar);
+
                     return "OK";
                 }
                 catch (Exception e)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("LeggFilmISkuespiller", e);
                     return "Feil";
                 }
             }
@@ -393,10 +439,17 @@ namespace DAL
                     skuespiller.Filmer.Remove(film);
                     db.SaveChanges();
 
+                    LoggSkriver logg = new LoggSkriver();
+                    string kommentar = film.Navn;
+                    kommentar += " ble slettet fra skuespiller " + skuespiller.Fornavn + " " + skuespiller.Etternavn;
+                    logg.GenerellLogg("SlettFilmFraSkuespiller", kommentar);
+
                     return "OK";
                 }
                 catch (Exception e)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("SlettFilmFraSkuespiller", e);
                     return "Feil";
                 }
             }
@@ -432,6 +485,9 @@ namespace DAL
                     endreSkuespiller.Alder = innSkuespiller.Alder;
                     endreSkuespiller.Land = innSkuespiller.Land;
                     db.SaveChanges();
+
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.EndreSkuespillerLogg(innSkuespiller, endreSkuespiller);
                 }
                 else
                 {
@@ -440,6 +496,8 @@ namespace DAL
             }
             catch (Exception e)
             {
+                LoggSkriver logg = new LoggSkriver();
+                logg.FeilmeldingLogg("RedigerSkuespiller", e);
                 resultat = false;
             }
             return resultat;
@@ -503,10 +561,17 @@ namespace DAL
                     bruker.Filmer.Remove(film);
                     db.SaveChanges();
 
+                    LoggSkriver logg = new LoggSkriver();
+                    string kommentar = film.Navn;
+                    kommentar += " ble slettet fra bruker " + bruker.Brukernavn;
+                    logg.GenerellLogg("SlettFilmFraBruker", kommentar);
+
                     return "OK";
                 }
                 catch (Exception e)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("SlettFilmFraBruker", e);
                     return "Feil";
                 }
             }
@@ -526,6 +591,9 @@ namespace DAL
                     endreKunde.Brukernavn = innKunde.Brukernavn;
                     endreKunde.Kort = innKunde.Kort;
                     db.SaveChanges();
+
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.EndreBruker(innKunde, endreKunde);
                 }
                 else
                 {
@@ -534,6 +602,8 @@ namespace DAL
             }
             catch (Exception e)
             {
+                LoggSkriver logg = new LoggSkriver();
+                logg.FeilmeldingLogg("RedigerKunde", e);
                 resultat = false;
             }
             return resultat;
@@ -559,9 +629,14 @@ namespace DAL
                     }
                     db.Skuespillere.Add(innSkuespiller);
                     db.SaveChanges();
+
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.OpprettSkuespillerLogg(innSkuespiller);
                 }
                 catch(Exception e)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("OpprettSkuespiller", e);
                     resultat = false;
                 }
 
@@ -579,9 +654,14 @@ namespace DAL
                     var skuespiller = db.Skuespillere.Find(id);
                     db.Skuespillere.Remove(skuespiller);
                     db.SaveChanges();
+
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.SlettSkuespillerLogg(skuespiller);
                 }
                 catch (Exception e)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("SlettSkuespiller", e);
                     resultat = false;
                 }
                 
@@ -611,9 +691,14 @@ namespace DAL
                     innFilm.Visninger = 0;
                     db.Filmer.Add(innFilm);
                     db.SaveChanges();
+
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.OpprettFilmLogg(innFilm);
                 }
                 catch (Exception e)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("OpprettFilm", e);
                     resultat = false;
                 }
 
@@ -631,9 +716,14 @@ namespace DAL
                     var film = db.Filmer.Find(id);
                     db.Filmer.Remove(film);
                     db.SaveChanges();
+
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.SlettFilmLogg(film);
                 }
                 catch (Exception e)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("SlettFilm", e);
                     resultat = false;
                 }
 
@@ -651,9 +741,14 @@ namespace DAL
                     var bruker = db.Kunder.Find(id);
                     db.Kunder.Remove(bruker);
                     db.SaveChanges();
+
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.SlettBrukerLogg(bruker);
                 }
                 catch (Exception e)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("SlettBruker", e);
                     resultat = false;
                 }
 
@@ -699,6 +794,12 @@ namespace DAL
                     endreNyhet.Beskjed = innNyhet.Beskjed;
 
                     db.SaveChanges();
+
+                    LoggSkriver logg = new LoggSkriver();
+                    string kommentar = "Nyhet redigert: ";
+                    kommentar += innNyhet.Tittel + " -> " + endreNyhet.Tittel + "\n";
+                    kommentar += innNyhet.Beskjed + " -> " + endreNyhet.Beskjed + "\n";
+                    logg.GenerellLogg("RedigerNyhet", kommentar);
                 }
                 else
                 {
@@ -707,6 +808,8 @@ namespace DAL
             }
             catch(Exception e)
             {
+                LoggSkriver logg = new LoggSkriver();
+                logg.FeilmeldingLogg("RedigerNyhet", e);
                 resultat = false;
             }
 
@@ -723,9 +826,17 @@ namespace DAL
                     innNyhet.Dato = DateTime.Now.ToString();
                     db.Nyheter.Add(innNyhet);
                     db.SaveChanges();
+
+                    LoggSkriver logg = new LoggSkriver();
+                    string kommentar = "Nyhet opprettet: ";
+                    kommentar += innNyhet.Tittel + "\n";
+                    kommentar += innNyhet.Beskjed;
+                    logg.GenerellLogg("OpprettNyhet", kommentar);
                 }
                 catch (Exception e)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("OpprettNyhet", e);
                     resultat = false;
                 }
 
@@ -745,6 +856,12 @@ namespace DAL
                     {
                         db.Nyheter.Remove(slettNyhet);
                         db.SaveChanges();
+
+                        LoggSkriver logg = new LoggSkriver();
+                        string kommentar = "Nyhet slettet: ";
+                        kommentar += slettNyhet.Tittel + "\n";
+                        kommentar += slettNyhet.Beskjed;
+                        logg.GenerellLogg("SlettNyhet", kommentar);
                     }
                     else
                     {
@@ -753,6 +870,8 @@ namespace DAL
                 }
                 catch (Exception e)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("SlettNyhet", e);
                     resultat = false;
                 }
                 return resultat;
