@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Web;
 using Model;
+using DAL.DBModels;
 
 namespace DAL
 {

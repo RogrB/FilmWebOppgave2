@@ -17,12 +17,6 @@ namespace Model
         public string Passord { get; set; }
     }
 
-    public class AdminDB
-    {
-        public int id { get; set; }
-        public string Brukernavn { get; set; }
-        public byte[] Passord { get; set; }
-        public string Salt { get; set; }
-    }
+
 
 }

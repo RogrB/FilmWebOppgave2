@@ -59,7 +59,6 @@
     <Compile Include="DBData\StemmeData.cs" />
     <Compile Include="DBinsert.cs" />
     <Compile Include="DBModels\AdminDB.cs" />
-    <Compile Include="DBModels\KundeDB.cs" />
     <Compile Include="IAdminRepository.cs" />
     <Compile Include="IKundeRepository.cs" />
     <Compile Include="KundeRepository.cs" />

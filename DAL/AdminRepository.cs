@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Web;
 using System.IO;
+using DAL.DBModels;
 
 namespace DAL
 {
@@ -193,7 +194,7 @@ namespace DAL
             bool resultat = true;
             try
             {
-                if (bilde != null && bilde.ContentLength > 0)
+                if (FilErOk(bilde) && FilErBilde(bilde.FileName))
                 {
                     var filNavn = Path.GetFileName(bilde.FileName);
                     var filBane = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("/Content/images/posters"), filNavn);
@@ -233,6 +234,18 @@ namespace DAL
                 resultat = false;
             }
             return resultat;
+        }
+
+        // Metode som sjekker om filen som lastes opp er gyldig
+        private bool FilErOk(HttpPostedFileBase fil)
+        {
+            return fil != null && fil.ContentLength > 0;
+        }
+
+        // Metode som sjekker om filen som lastes opp er et bilde
+        private bool FilErBilde(string filnavn)
+        {
+            return (filnavn.EndsWith(".png") || filnavn.EndsWith(".jpg") || filnavn.EndsWith(".jpeg"));
         }
 
         public List<Sjanger> HentSjangereForFilm(int id)
@@ -395,7 +408,7 @@ namespace DAL
             bool resultat = true;
             try
             {
-                if (bilde != null && bilde.ContentLength > 0)
+                if (FilErOk(bilde) && FilErBilde(bilde.FileName))
                 {
                     var filNavn = Path.GetFileName(bilde.FileName);
                     var filBane = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("/Content/images/skuespillere"), filNavn);
@@ -533,7 +546,7 @@ namespace DAL
                 bool resultat = true;
                 try
                 {
-                    if(bilde != null && bilde.ContentLength > 0)
+                    if (FilErOk(bilde) && FilErBilde(bilde.FileName))
                     {
                         var filNavn = Path.GetFileName(bilde.FileName);
                         var filBane = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("/Content/images/skuespillere"), filNavn);
@@ -583,7 +596,7 @@ namespace DAL
                 bool resultat = true;
                 try
                 {
-                    if (bilde != null && bilde.ContentLength > 0)
+                    if (FilErOk(bilde) && FilErBilde(bilde.FileName))
                     {
                         var filNavn = Path.GetFileName(bilde.FileName);
                         var filBane = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("/Content/images/posters"), filNavn);
