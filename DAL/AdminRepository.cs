@@ -741,14 +741,47 @@ namespace DAL
                 try
                 {
                     var bruker = db.Kunder.Find(id);
+                    if(SlettDependencies(bruker))
+                    {
+                        db.Kunder.Remove(bruker);
+                        db.SaveChanges();
+
+                        LoggSkriver logg = new LoggSkriver();
+                        logg.SlettBrukerLogg(bruker);
+                    }
+                    else
+                    {
+                        resultat = false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("SlettBruker", e);
+                    resultat = false;
+                }
+
+                return resultat;
+            }
+        }
+
+        // Metode som sletter DB dependencies fra kunden
+        private bool SlettDependencies(KundeDB bruker)
+        {
+            using (var db = new DBContext())
+            {
+                bool resultat = true;
+                try
+                {
                     if (bruker.Stemmer.Any())
                     {
                         var stemmer = db.Stemmer.Where(s => s.Kunde.id == bruker.id);
-                        foreach(var stemme in stemmer)
+                        foreach (var stemme in stemmer)
                         {
                             db.Stemmer.Remove(stemme);
                         }
                     }
+
                     var kommentarer = db.Kommentarer.Where(k => k.Kunde.id == bruker.id);
                     if (kommentarer.Any() && kommentarer != null)
                     {
@@ -757,17 +790,17 @@ namespace DAL
                             db.Kommentarer.Remove(kommentar);
                         }
                     }
-                    db.Kunder.Remove(bruker);
-                    db.SaveChanges();
 
-                    LoggSkriver logg = new LoggSkriver();
-                    logg.SlettBrukerLogg(bruker);
+                    if (bruker.Filmer.Any())
+                    {
+                        bruker.Filmer.Clear();
+                    }
                 }
-                catch (Exception e)
+                catch(Exception e)
                 {
-                    LoggSkriver logg = new LoggSkriver();
-                    logg.FeilmeldingLogg("SlettBruker", e);
                     resultat = false;
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("SlettDependencies", e);
                 }
 
                 return resultat;

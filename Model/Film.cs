@@ -31,7 +31,7 @@ namespace Model
         public int Visninger { get; set; }
 
         [Required(ErrorMessage = "Beskrivelse må oppgis")]
-        [RegularExpression(@"^[A-Za-z0-9æøåØÆÅ@_\- :,.!?$()]{1,}", ErrorMessage = "Beskrivelse kan ikke inneholde spesialtegn")]
+        [RegularExpression(@"^[A-Za-z0-9æøåØÆÅ@_\- :,.!?$()'èé]{1,}", ErrorMessage = "Beskrivelse kan ikke inneholde spesialtegn")]
         public string Beskrivelse { get; set; }
 
         [Required(ErrorMessage = "Releasedate må oppgis")]
