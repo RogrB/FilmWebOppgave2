@@ -11,7 +11,7 @@ namespace Model
         public int id { get; set; }
 
         [Required(ErrorMessage = "FilmNavn må oppgis")]
-        [RegularExpression(@"^[A-Za-z0-9æøåØÆÅ@_\- ]{1,}", ErrorMessage = "FilmNavn kan ikke inneholde spesialtegn")]
+        [RegularExpression(@"^[A-Za-z0-9æøåØÆÅ@_\- :!?$()]{1,}", ErrorMessage = "FilmNavn kan ikke inneholde spesialtegn")]
         public string Navn { get; set; }
 
         [Required(ErrorMessage = "Produksjonsår må oppgis")]
@@ -31,11 +31,11 @@ namespace Model
         public int Visninger { get; set; }
 
         [Required(ErrorMessage = "Beskrivelse må oppgis")]
-        [RegularExpression(@"^[A-Za-z0-9æøåØÆÅ@_\- ]{1,}", ErrorMessage = "Beskrivelse kan ikke inneholde spesialtegn")]
+        [RegularExpression(@"^[A-Za-z0-9æøåØÆÅ@_\- :,.!?$()]{1,}", ErrorMessage = "Beskrivelse kan ikke inneholde spesialtegn")]
         public string Beskrivelse { get; set; }
 
         [Required(ErrorMessage = "Releasedate må oppgis")]
-        [RegularExpression(@"^[0-9.,\- ]{1,}", ErrorMessage = "Releasedate kan ikke inneholde spesialtegn")]
+        [RegularExpression(@"^[A-Za-z0-9.,\- :]{1,}", ErrorMessage = "Releasedate kan ikke inneholde spesialtegn")]
         public string ReleaseDate { get; set; }
 
         [Required(ErrorMessage = "Pris må oppgis")]
