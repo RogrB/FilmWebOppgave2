@@ -153,6 +153,81 @@ namespace Enhetstest.DBTester
             Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
         }
 
+        [TestMethod]
+        public void AdminIndexViewBlank()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "";
+
+            // Act
+            var actionResult = (RedirectToRouteResult)controller.Index();
+
+            // Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
+        }
+
+        [TestMethod]
+        public void VisLoggViewNull()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = null;
+
+            // Act
+            var actionResult = (RedirectToRouteResult)controller.VisLogg();
+
+            // Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
+        }
+
+        [TestMethod]
+        public void VisLoggViewBlank()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "";
+
+            // Act
+            var actionResult = (RedirectToRouteResult)controller.VisLogg();
+
+            // Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "AdminLoginn");
+        }
+
+        [TestMethod]
+        public void VisLoggViewOK()
+        {
+            // Arrange
+            var controller = new AdminController(new AdminLogikk(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["Admin"] = "admin";
+
+            string[] forventetResultat = new string[3];
+            forventetResultat[0] = "Logg";
+            forventetResultat[1] = "Innhold";
+
+            // Act
+            var actionResult = (ViewResult)controller.VisLogg();
+            var resultat = (string[])actionResult.Model;
+
+            // Assert
+            Assert.AreEqual(actionResult.ViewName, "");
+            Assert.AreEqual(forventetResultat[0], resultat[0]);
+            Assert.AreEqual(forventetResultat[1], resultat[1]);
+        }
+
+
 
     }
 }
