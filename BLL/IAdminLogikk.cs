@@ -8,7 +8,7 @@ namespace BLL
 {
     public interface IAdminLogikk
     {
-        string RegistrerAdmin(int id);
+        string RegistrerAdmin();
         bool SjekkInnLogging(Administrator admin);
         List<Film> HentFilmer();
         Film HentFilm(int id);

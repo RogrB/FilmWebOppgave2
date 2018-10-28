@@ -19,9 +19,9 @@ namespace BLL
             _repository = stub;
         }
 
-        public string RegistrerAdmin(int id)
+        public string RegistrerAdmin()
         {
-            string resultat = _repository.RegistrerAdmin(id);
+            string resultat = _repository.RegistrerAdmin();
             return resultat;
         }
 

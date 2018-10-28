@@ -1,20 +1,21 @@
-﻿using Model;
+﻿using DAL.DBModels;
+using Model;
 using System;
-using System.Security.Cryptography;
-using System.Linq;
 using System.Collections.Generic;
-using System.Web;
 using System.IO;
-using DAL.DBModels;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Web;
 
 namespace DAL
 {
     public class AdminRepository : IAdminRepository
     {
-        public string RegistrerAdmin(int id)
+        // Registrerer en adminkonto med forhåndsbestemt innloggingsnavn og passord
+        public string RegistrerAdmin()
         {
             string resultat = "";
-            if (AdminEksisterer(1))
+            if (AdminEksisterer())
             {
                 return "Admin er allerede registrert";
             }
@@ -47,7 +48,8 @@ namespace DAL
             return resultat;
         }
 
-        public bool AdminEksisterer(int id)
+        // Metode som sjekker om adminkontoen allerede er registrert.
+        public bool AdminEksisterer()
         {
             bool resultat = false;
             using (var db = new DBContext())
@@ -229,6 +231,9 @@ namespace DAL
                 Film endreFilm = db.Filmer.Find(innFilm.id);
                 if(endreFilm != null)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.EndreFilmLogg(innFilm, endreFilm);
+
                     endreFilm.Beskrivelse = innFilm.Beskrivelse;
                     endreFilm.Navn = innFilm.Navn;
                     endreFilm.Gjennomsnitt = innFilm.Gjennomsnitt;
@@ -243,9 +248,6 @@ namespace DAL
                     endreFilm.Studio = innFilm.Studio;
                     endreFilm.Visninger = innFilm.Visninger;
                     db.SaveChanges();
-
-                    LoggSkriver logg = new LoggSkriver();
-                    logg.EndreFilmLogg(innFilm, endreFilm);
                 }
                 else
                 {
@@ -476,6 +478,9 @@ namespace DAL
                 Skuespiller endreSkuespiller = db.Skuespillere.Find(innSkuespiller.id);
                 if (endreSkuespiller != null)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.EndreSkuespillerLogg(innSkuespiller, endreSkuespiller);
+
                     endreSkuespiller.Fornavn = innSkuespiller.Fornavn;
                     endreSkuespiller.Etternavn = innSkuespiller.Etternavn;
                     if (innSkuespiller.Bilde != null)
@@ -485,9 +490,6 @@ namespace DAL
                     endreSkuespiller.Alder = innSkuespiller.Alder;
                     endreSkuespiller.Land = innSkuespiller.Land;
                     db.SaveChanges();
-
-                    LoggSkriver logg = new LoggSkriver();
-                    logg.EndreSkuespillerLogg(innSkuespiller, endreSkuespiller);
                 }
                 else
                 {
@@ -586,14 +588,14 @@ namespace DAL
                 KundeDB endreKunde = db.Kunder.Find(innKunde.id);
                 if (endreKunde != null)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.EndreBruker(innKunde, endreKunde);
+
                     endreKunde.Fornavn = innKunde.Fornavn;
                     endreKunde.Etternavn = innKunde.Etternavn;
                     endreKunde.Brukernavn = innKunde.Brukernavn;
                     endreKunde.Kort = innKunde.Kort;
                     db.SaveChanges();
-
-                    LoggSkriver logg = new LoggSkriver();
-                    logg.EndreBruker(innKunde, endreKunde);
                 }
                 else
                 {
@@ -739,6 +741,22 @@ namespace DAL
                 try
                 {
                     var bruker = db.Kunder.Find(id);
+                    if (bruker.Stemmer.Any())
+                    {
+                        var stemmer = db.Stemmer.Where(s => s.Kunde.id == bruker.id);
+                        foreach(var stemme in stemmer)
+                        {
+                            db.Stemmer.Remove(stemme);
+                        }
+                    }
+                    var kommentarer = db.Kommentarer.Where(k => k.Kunde.id == bruker.id);
+                    if (kommentarer.Any() && kommentarer != null)
+                    {
+                        foreach (var kommentar in kommentarer)
+                        {
+                            db.Kommentarer.Remove(kommentar);
+                        }
+                    }
                     db.Kunder.Remove(bruker);
                     db.SaveChanges();
 
@@ -788,18 +806,17 @@ namespace DAL
                 Nyhet endreNyhet = db.Nyheter.Find(innNyhet.id);
                 if (endreNyhet != null)
                 {
+                    LoggSkriver logg = new LoggSkriver();
+                    string kommentar = "Nyhet redigert: ";
+                    kommentar += innNyhet.Tittel + " -> " + endreNyhet.Tittel + "\n";
+                    kommentar += innNyhet.Beskjed + " -> " + endreNyhet.Beskjed + "\n";
+                    logg.GenerellLogg("RedigerNyhet", kommentar);
 
                     endreNyhet.Dato = innNyhet.Dato;
                     endreNyhet.Tittel = innNyhet.Tittel;
                     endreNyhet.Beskjed = innNyhet.Beskjed;
 
                     db.SaveChanges();
-
-                    LoggSkriver logg = new LoggSkriver();
-                    string kommentar = "Nyhet redigert: ";
-                    kommentar += innNyhet.Tittel + " -> " + endreNyhet.Tittel + "\n";
-                    kommentar += innNyhet.Beskjed + " -> " + endreNyhet.Beskjed + "\n";
-                    logg.GenerellLogg("RedigerNyhet", kommentar);
                 }
                 else
                 {

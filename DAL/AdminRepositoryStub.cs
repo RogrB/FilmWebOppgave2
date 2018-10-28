@@ -8,32 +8,16 @@ namespace DAL
 {
     public class AdminRepositoryStub : IAdminRepository
     {
-        public string RegistrerAdmin(int id)
+        // "Tom" metode - RegistrerAdmin testes ikke, men metoden må være her for å få compilet.
+        public string RegistrerAdmin()
         {
-            if (id == 1)
-            {
-                return "OK";
-            }
-            else if (id == 2)
-            {
-                return "Admin er allerede registrert";
-            }
-            else
-            {
-                return "Feil";
-            }
+            return "resultat";
         }
 
-        public bool AdminEksisterer(int id)
+        // "Tom" metode - testes ikke.
+        public bool AdminEksisterer()
         {
-            if (id == 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return true;
         }
 
         public bool SjekkInnLogging(Administrator innAdmin)
