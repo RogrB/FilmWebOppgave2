@@ -878,6 +878,12 @@ namespace DAL
             }
         }
 
+        public string[] HentLogg()
+        {
+            LoggSkriver logg = new LoggSkriver();
+            return logg.HentLoggInnhold();
+        }
+
 
     }
 }

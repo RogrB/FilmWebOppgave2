@@ -204,5 +204,11 @@ namespace BLL
             bool resultat = _repository.SlettNyhet(id);
             return resultat;
         }
+
+        public string[] HentLogg()
+        {
+            string[] logg = _repository.HentLogg();
+            return logg;
+        }
     }
 }

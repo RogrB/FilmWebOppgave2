@@ -28,7 +28,7 @@ namespace DAL
 
         private void SkrivLogg(string melding, TextWriter w)
         {
-            w.Write("\r\n Logg Entry: \r\n");
+            w.Write("\r\n Logg Innlegg: \r\n");
             w.Write("{0} {1}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
             w.Write(" :\r\n {0}", melding);
             w.Write("\r\n------------");
@@ -150,7 +150,7 @@ namespace DAL
         {
             using (StreamWriter w = File.AppendText(filBane))
             {
-                string melding = "Metoden: " + metode + " har gjort endring i databasen med kommentar:";
+                string melding = "Metoden: " + metode + " har gjort endring i databasen med kommentar: \r\n";
                 melding += kommentar;
 
                 SkrivLogg(melding, w);
@@ -166,6 +166,11 @@ namespace DAL
 
                 SkrivLogg(melding, w);
             }
+        }
+
+        public string[] HentLoggInnhold()
+        {
+            return File.ReadAllLines(filBane);
         }
 
     }

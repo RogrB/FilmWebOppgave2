@@ -626,5 +626,13 @@ namespace DAL
             }
         }
 
+        public string[] HentLogg()
+        {
+            string[] resultat = new string[1];
+            resultat[0] = "Logg";
+            resultat[1] = "Innhold";
+            return resultat;
+        }
+
     }
 }

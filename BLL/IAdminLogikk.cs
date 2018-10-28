@@ -39,5 +39,6 @@ namespace BLL
         bool RedigerNyhet(Nyhet innNyhet);
         bool OpprettNyhet(Nyhet innNyhet);
         bool SlettNyhet(int id);
+        string[] HentLogg();
     }
 }
