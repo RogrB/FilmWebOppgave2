@@ -625,7 +625,7 @@ namespace DAL
             using (var db = new DBContext())
             {
                 var Kunde = db.Kunder.FirstOrDefault(k => k.Brukernavn == Brukernavn);
-                if(Kunde.Filmer.Any())
+                if(Kunde != null && Kunde.Filmer.Any())
                 {
                     var tilfeldigTall = new Random();
                     int antallSjangere = Kunde.Filmer.Count();

@@ -733,44 +733,24 @@ namespace DAL
             }
         }
 
+        // Entrymetode for sletting av kunde. Må kalle 2 forskjellige metoder
+        // Og hente kunde objekt 2 ganger, siden det forandrer seg underveis.
         public bool SlettBruker(int id)
         {
-            using (var db = new DBContext())
+            if(SlettDependencies(id) && SlettKundeFraDB(id))
             {
-                bool resultat = true;
-                try
-                {
-                    var bruker = db.Kunder.Find(id);
-                    if(SlettDependencies(bruker))
-                    {
-                        db.Kunder.Remove(bruker);
-                        db.SaveChanges();
-
-                        LoggSkriver logg = new LoggSkriver();
-                        logg.SlettBrukerLogg(bruker);
-                    }
-                    else
-                    {
-                        resultat = false;
-                    }
-                }
-                catch (Exception e)
-                {
-                    LoggSkriver logg = new LoggSkriver();
-                    logg.FeilmeldingLogg("SlettBruker", e);
-                    resultat = false;
-                }
-
-                return resultat;
+                return true;
             }
+            return false;
         }
 
         // Metode som sletter DB dependencies fra kunden
-        private bool SlettDependencies(KundeDB bruker)
+        private bool SlettDependencies(int id)
         {
             using (var db = new DBContext())
             {
                 bool resultat = true;
+                var bruker = db.Kunder.Find(id);
                 try
                 {
                     if (bruker.Stemmer.Any())
@@ -795,12 +775,40 @@ namespace DAL
                     {
                         bruker.Filmer.Clear();
                     }
+                    db.SaveChanges();
                 }
                 catch(Exception e)
                 {
                     resultat = false;
                     LoggSkriver logg = new LoggSkriver();
                     logg.FeilmeldingLogg("SlettDependencies", e);
+                }
+
+                return resultat;
+            }
+        }
+
+        // Sletter Kunde fra databasen
+        public bool SlettKundeFraDB(int id)
+        {
+            using (var db = new DBContext())
+            {
+                bool resultat = true;
+                try
+                {
+                    var bruker = db.Kunder.Find(id);
+
+                    db.Kunder.Remove(bruker);
+                    db.SaveChanges();
+
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.SlettBrukerLogg(bruker);
+                }
+                catch (Exception e)
+                {
+                    LoggSkriver logg = new LoggSkriver();
+                    logg.FeilmeldingLogg("SlettKundeFraDB", e);
+                    resultat = false;
                 }
 
                 return resultat;
