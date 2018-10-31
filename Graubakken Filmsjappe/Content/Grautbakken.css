@@ -1,0 +1,108 @@
+﻿.body-content {
+    background-color: #191142;
+    color: #dcdcdc;
+}
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.infoText {
+    color: #808080;
+}
+
+.infoTextModal {
+    color: #5c5c5c;
+}
+
+#headerDiv {
+    background-color: #ffffff;   
+}
+
+.carousel-inner > .item > img {
+    width: 321px;
+    height: 487px;
+    margin: 0 auto;
+    color: #808080;
+}
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.img .img-responsive .img-rounded {
+    border: none;
+    border-style: none;
+    outline: none;
+}
+    .navbar {
+    position: relative;
+    z-index: 1000;
+    min-height: 50px;
+    margin-bottom: 0px;
+    border: 1px solid transparent;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#søkeFelt {
+    position: relative;
+    top: 8px;
+    left: 30px;
+}
+
+#footerDiv {
+    background-color: #1e1e1e;
+    padding: 25px;
+}
+
+.carousel-inner img {
+    width: 100%;
+    min-height: 200px;
+}
+
+#søkeForslag {
+    position: absolute;
+    z-index: 100;
+    background-color: #1e1e1e;
+    color: #808080;
+}
+
+#søkeForslag span {
+    background-color: #ffd800;
+    color: #1e1e1e;
+}
+
+#søkeForslag p {
+    text-transform: capitalize;
+}
+
+@media (max-width: 600px) {
+    .carousel-caption {
+        display: none;
+    }
+}
+
+@media only screen and (max-width : 960px) {
+    #søkeFelt {
+        position: relative;   
+        
+        left: 0px;
+    }
+}
+
+/*
+    Farger:
+    #191142
+    #135565
+    #226085
+    #2e719e
+    #acd9f8
+*/
