@@ -1,0 +1,117 @@
+
+ Logg Innlegg: 
+9:04:40 PM Sunday, October 28, 2018 :
+ Endring av Bruker: 
+Line -> Line
+Linesen -> Haraldsen
+LitenOgSint -> LitenOgSint
+6522321478523695 -> 6522321478523695
+
+------------
+ Logg Innlegg: 
+9:05:02 PM Sunday, October 28, 2018 :
+ Metoden: SlettFilmFraBruker har gjort endring i databasen med kommentar: 
+100 Million BC ble slettet fra bruker Bruker01
+------------
+ Logg Innlegg: 
+9:06:06 PM Sunday, October 28, 2018 :
+ Metoden: OpprettNyhet har gjort endring i databasen med kommentar: 
+Nyhet opprettet: AdminSiden er opprettet!
+For å feire at adminsiden er opprettet har vi nå tilbud på westernfilmer ut uken
+------------
+ Logg Innlegg: 
+9:06:56 PM Sunday, October 28, 2018 :
+ Skuespiller opprettet: 
+Jostein
+Gråstein
+78
+Norge
+------------
+ Logg Innlegg: 
+9:07:04 PM Sunday, October 28, 2018 :
+ Metoden: LeggFilmISkuespiller har gjort endring i databasen med kommentar: 
+3 Dev Adam ble lagt til skuespiller Jostein Gråstein
+------------
+ Logg Innlegg: 
+9:07:07 PM Sunday, October 28, 2018 :
+ Metoden: LeggFilmISkuespiller har gjort endring i databasen med kommentar: 
+5 Weddings ble lagt til skuespiller Jostein Gråstein
+------------
+ Logg Innlegg: 
+9:07:09 PM Sunday, October 28, 2018 :
+ Metoden: LeggFilmISkuespiller har gjort endring i databasen med kommentar: 
+7 Hours To Go ble lagt til skuespiller Jostein Gråstein
+------------
+ Logg Innlegg: 
+9:07:11 PM Sunday, October 28, 2018 :
+ Metoden: LeggFilmISkuespiller har gjort endring i databasen med kommentar: 
+100 Days With Mr Arrogant ble lagt til skuespiller Jostein Gråstein
+------------
+ Logg Innlegg: 
+9:07:12 PM Sunday, October 28, 2018 :
+ Metoden: SlettFilmFraSkuespiller har gjort endring i databasen med kommentar: 
+5 Weddings ble slettet fra skuespiller Jostein Gråstein
+------------
+ Logg Innlegg: 
+9:07:53 PM Sunday, October 28, 2018 :
+ Film opprettet: 
+Film02
+/Content/images/posters/defaultPoster.jpg
+Testefilm for testegrunnlag
+USA
+1234
+1234
+test productions
+------------
+ Logg Innlegg: 
+9:08:04 PM Sunday, October 28, 2018 :
+ Endring av Film: 
+Film02 -> Film02
+/Content/images/posters/defaultPoster.jpg -> /Content/images/posters\complimentary-colors.jpeg
+USA -> USA
+Testefilm for testegrunnlag -> Testefilm for testegrunnlag
+0 -> 2
+123 -> 123
+1234 -> 1234
+1234 -> 1234
+test productions -> test productions
+0 -> 0
+------------
+ Logg Innlegg: 
+9:08:10 PM Sunday, October 28, 2018 :
+ Metoden: LeggSkuespillerIFilm har gjort endring i databasen med kommentar: 
+Roald Yrstad ble lagt til i film Film02
+------------
+ Logg Innlegg: 
+9:08:14 PM Sunday, October 28, 2018 :
+ Metoden: LeggSjangerIFilm har gjort endring i databasen med kommentar: 
+Dokumentar ble lagt til film Film02
+------------
+ Logg Innlegg: 
+9:08:22 PM Sunday, October 28, 2018 :
+ Film Slettet: Film02
+------------
+ Logg Innlegg: 
+9:10:29 PM Sunday, October 28, 2018 :
+ Bruker Slettet: Bruker03
+------------
+ Logg Innlegg: 
+9:22:09 PM Sunday, October 28, 2018 :
+ Bruker Slettet: OleOo123
+------------
+ Logg Innlegg: 
+9:22:11 PM Sunday, October 28, 2018 :
+ Bruker Slettet: UglerIMosen
+------------
+ Logg Innlegg: 
+9:22:12 PM Sunday, October 28, 2018 :
+ Bruker Slettet: Blomst02
+------------
+ Logg Innlegg: 
+9:22:14 PM Sunday, October 28, 2018 :
+ Bruker Slettet: LitenOgSint
+------------
+ Logg Innlegg: 
+9:22:17 PM Sunday, October 28, 2018 :
+ Bruker Slettet: Fanta03
+------------

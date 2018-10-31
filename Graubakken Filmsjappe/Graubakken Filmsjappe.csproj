@@ -1,0 +1,277 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2E5A76FE-3700-40DD-8203-492920450912}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Graubakken_Filmsjappe</RootNamespace>
+    <AssemblyName>Graubakken Filmsjappe</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Grautbakken.css" />
+    <Content Include="Content\images\defaultprofile.jpg" />
+    <Content Include="Content\images\filmvisning\filmvisning01.jpg" />
+    <Content Include="Content\images\filmvisning\filmvisning02.jpg" />
+    <Content Include="Content\images\filmvisning\filmvisning03.jpg" />
+    <Content Include="Content\images\filmvisning\filmvisning04.jpg" />
+    <Content Include="Content\images\gullstjerne.png" />
+    <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\nullstjerne.png" />
+    <Content Include="Content\images\posters\100_Days_With_Mr_Arrogant_poster.jpg" />
+    <Content Include="Content\images\posters\100_Million_BC.jpg" />
+    <Content Include="Content\images\posters\16_days_poster.jpeg" />
+    <Content Include="Content\images\posters\30_poster.jpg" />
+    <Content Include="Content\images\posters\310_to_Yuma.jpg" />
+    <Content Include="Content\images\posters\3devadam.jpg" />
+    <Content Include="Content\images\posters\5_Weddings_Poster.jpg" />
+    <Content Include="Content\images\posters\633_Squadron_1964_poster.jpg" />
+    <Content Include="Content\images\posters\7_Hours_To_Go_-_Movie_Poster.jpg" />
+    <Content Include="Content\images\posters\Aladdinposter.jpg" />
+    <Content Include="Content\images\posters\Along_Came_Jones.jpg" />
+    <Content Include="Content\images\posters\Atlantis_The_Lost_Empire_poster.jpg" />
+    <Content Include="Content\images\posters\Born_to_the_West_FilmPoster.jpeg" />
+    <Content Include="Content\images\posters\Calamity_Jane_poster.jpg" />
+    <Content Include="Content\images\posters\defaultPoster.jpg" />
+    <Content Include="Content\images\posters\dollars.jpg" />
+    <Content Include="Content\images\posters\Hunchbackposter.jpg" />
+    <Content Include="Content\images\posters\jesse_james.jpg" />
+    <Content Include="Content\images\posters\readme.txt" />
+    <Content Include="Content\images\posters\StarTrekIntoDarkness_FinalUSPoster.jpg" />
+    <Content Include="Content\images\posters\Star_Trek_II_The_Wrath_of_Khan.png" />
+    <Content Include="Content\images\posters\Star_Trek_V_The_Final_Frontier.png" />
+    <Content Include="Content\images\posters\Star_Wars_-_Episode_II_Attack_of_the_Clones.jpg" />
+    <Content Include="Content\images\posters\SW-RadioPoster.jpg" />
+    <Content Include="Content\images\posters\SW_-_Empire_Strikes_Back.jpg" />
+    <Content Include="Content\images\posters\The_Lion_King_poster.jpg" />
+    <Content Include="Content\images\posters\twofamilyposter.jpg" />
+    <Content Include="Content\images\skuespillere\defaultActor.jpg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-1040879.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-1059180.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-1162462.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-1406547.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-220453.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-249760.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-355178.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-415829.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-428364.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-555790.png" />
+    <Content Include="Content\images\skuespillere\pexels-photo-610738.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-638700.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-681637.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-697509.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-736715.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-762020.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-935969.jpeg" />
+    <Content Include="Content\images\skuespillere\pexels-photo-952005.jpeg" />
+    <Content Include="Content\images\skuespillere\readme.txt" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\StemmeScript.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\FilmController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Film\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Film\Skuespillere.cshtml" />
+    <Content Include="Views\Film\Dbinsert.cshtml" />
+    <Content Include="Views\Film\Nyheter.cshtml" />
+    <Content Include="Views\Film\Filmer.cshtml" />
+    <Content Include="Views\Film\Sjangere.cshtml" />
+    <Content Include="Views\Film\Kunder.cshtml" />
+    <Content Include="Views\Film\SkuespillerModal.cshtml" />
+    <Content Include="Views\Film\FilmModal.cshtml" />
+    <Content Include="Views\Film\Registrer.cshtml" />
+    <Content Include="Views\Film\Velkommen.cshtml" />
+    <Content Include="Views\Film\Loginn.cshtml" />
+    <Content Include="Views\Film\Bruker.cshtml" />
+    <Content Include="Views\Film\Film.cshtml" />
+    <Content Include="Views\Film\Skuespiller.cshtml" />
+    <Content Include="Views\Film\FilmVisning.cshtml" />
+    <Content Include="Views\Admin\AdminLoginn.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
+    <Content Include="Views\Admin\RegistrerAdmin.cshtml" />
+    <Content Include="Views\Admin\RedigerFilmer.cshtml" />
+    <Content Include="Views\Admin\RedigerFilm.cshtml" />
+    <Content Include="Views\Admin\RedigerSkuespillere.cshtml" />
+    <Content Include="Views\Admin\RedigerSkuespiller.cshtml" />
+    <Content Include="Views\Admin\RedigerBrukere.cshtml" />
+    <Content Include="Views\Admin\RedigerBruker.cshtml" />
+    <Content Include="Views\Admin\OpprettSkuespiller.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\OpprettFilm.cshtml" />
+    <Content Include="Views\Admin\RedigerNyheter.cshtml" />
+    <Content Include="Views\Admin\RedigerNyhet.cshtml" />
+    <Content Include="Views\Admin\OpprettNyhet.cshtml" />
+    <Content Include="Views\Admin\VisLogg.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{ea44af13-0e31-48d4-af8a-6d92684f3e53}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{650ebc1c-94e2-4a64-b730-616283290907}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54881</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:54881/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
