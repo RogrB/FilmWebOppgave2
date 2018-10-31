@@ -1,0 +1,115 @@
+﻿@model List<Model.Nyhet>
+
+@{
+    ViewBag.Title = "Rediger Nyheter";
+}
+
+<h2>Rediger Nyheter</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Tittel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Beskjed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Dato)
+        </th>
+        <th>
+            Endre
+        </th>
+        <th>
+            Slett
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tittel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Beskjed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dato)
+            </td>
+            <td>
+                <a href="/Admin/RedigerNyhet?id=@item.id" class="btn btn-info">Endre</a>
+            </td>
+            <td>
+                <a href="#bekreftModal" class="btn btn-danger" data-id="@item.id" data-toggle="modal"
+                   data-tittel="@item.Tittel" data-visBekreftModal="true">Slett</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<div id="bekreftModal" class="modal fade" style="color: #242424">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Bekreft sletting av nyhet</h4>
+            </div>
+            <div class="modal-body">
+                <div id="bekreftContent">
+
+                </div>
+                <div id="nyhetsID" hidden></div>
+                <div id="tilbakemelding"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="slettNyhet()">Slett</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Avbryt</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#bekreftModal").modal("hide");
+        $("#slettStatus").html("");
+
+        $('a[data-visBekreftModal=true]').click(function () {
+            var tittel = $(this).data("tittel");
+            var id = $(this).data("id");
+            var info = "<p>Er du sikker på at du vil slette <b>" + tittel + "</b> permanent?";
+            $("#bekreftContent").html(info);
+            $("#nyhetsID").html(id);
+        })
+    });
+
+
+    function slettNyhet() {
+        var id = $("#nyhetsID").html();
+        $.ajax({
+            url: '/Admin/SlettNyhet?id=' + id,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data == "OK") {
+                    $("#bekreftModal").modal("hide");
+                    $("#slettStatus").html("Nyhet slettet");
+                    location.reload();
+                }
+                else {
+                    var feilmelding = "Klarte ikke å slette nyhet";
+                    $("#slettStatus").html(feilmelding);
+                    $("#tilbakemelding").html(feilmelding);
+                }
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å slette nyhet");
+            }
+        });
+    }
+
+</script>

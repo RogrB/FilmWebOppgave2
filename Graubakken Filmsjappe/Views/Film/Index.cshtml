@@ -1,0 +1,230 @@
+﻿@model Model.IndexView
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- BildeSlider Filmer -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <div id="bildeSlide" class="carousel slide" data-ride="carousel">
+
+                <ol class="carousel-indicators" style="top:5px">
+                    <li data-target="#bildeSlide" data-slide-to="0" class="active"></li>
+                    <li data-target="#bildeSlide" data-slide-to="1"></li>
+                    <li data-target="#bildeSlide" data-slide-to="2"></li>
+                    <li data-target="#bildeSlide" data-slide-to="3"></li>
+                </ol>
+
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src='../@(Model.Filmer[0].Bilde)' alt="@(Model.Filmer[0].Navn)" class="img-responsive center" />
+                        <h3>@(Model.Filmer[0].Navn)</h3>
+                        <p>@(Model.Filmer[0].Beskrivelse)</p>
+                        <a href="Film/Film?id=@Model.Filmer[0].id" class="btn btn-info center">Mer info</a>
+                    </div>
+                    @for (int i = 1; i < 4; i++)
+                    {
+                        <div class="item">
+
+
+
+                            <img src='../@(Model.Filmer[i].Bilde)' alt="@(Model.Filmer[i].Navn)" class="img-responsive center" />
+                            <h3>@(Model.Filmer[i].Navn)</h3>
+                            <p>@(Model.Filmer[i].Beskrivelse)</p>
+                            <a href="/Film/Film?id=@Model.Filmer[i].id" class="btn btn-info center">Mer info</a>
+                        </div>
+                    }
+                </div>
+
+                <a class="left carousel-control" href="#bildeSlide" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Forrige</span>
+                </a>
+                <a class="right carousel-control" href="#bildeSlide" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Neste</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-4" style="color:#2e2e2e">
+            @for (int i = 0; i < 3; i++)
+            {
+                <div class="well">
+                    <p><b>@(Model.Nyheter[i].Tittel)</b> &nbsp;&nbsp; <br /><i>@(Model.Nyheter[i].Dato)</i></p>
+                    <p>@(Model.Nyheter[i].Beskjed)</p>
+                </div>
+            }
+        </div>
+    </div>
+    <hr>
+</div>
+
+<!-- Collapse Menu Filmer -->
+<div class="container text-center">
+    <h3 id="scrollTarget">Se film når det passer deg!</h3>
+    <br>
+    <div class="row">
+        @for (int i = 4; i < 8; i++)
+        {
+            <div class="col-sm-3">
+                <a href="#filmCollapse" data-id="@(Model.Filmer[i].id)"
+                   data-visCollapse="true" style="cursor: pointer" data-kontinent="@(Model.Filmer[i].Kontinent)"
+                   data-bilde="@(Model.Filmer[i].Bilde)" data-navn="@(Model.Filmer[i].Navn)" data-produksjonsår="@(Model.Filmer[i].Produksjonsår)"
+                   data-beskrivelse="@(Model.Filmer[i].Beskrivelse)" data-studio="@(Model.Filmer[i].Studio)" data-visninger="@(Model.Filmer[i].Visninger)">
+
+                    <img src='../@(Model.Filmer[i].Bilde)' alt="@(Model.Filmer[i].Navn)" class="img-responsive center" width="250" height="300" />
+                    <p>@(Model.Filmer[i].Navn)</p>
+                </a>
+            </div>
+        }
+    </div>
+    <hr>
+</div>
+
+<div id="filmCollapse" class="collapse">
+    <span hidden id="collapseID"></span>
+    <div id="collapseContent">
+
+    </div>
+</div>
+
+<!-- Actionfilmer Meny -->
+<div class="container text-center">
+    <h3 id="actionFilmScrollTarget">Noen filmer fra Action kategorien</h3>
+    <br>
+    <div class="row">
+        @for (int i = 0; i < 6; i++)
+        {
+            <div class="col-sm-2">
+                <a href="#actionFilmCollapse" data-id="@(Model.ActionFilmer[i].id)"
+                   data-visActionFilmCollapse="true" style="cursor: pointer" data-kontinent="@(Model.ActionFilmer[i].Kontinent)"
+                   data-bilde="@(Model.ActionFilmer[i].Bilde)" data-navn="@(Model.ActionFilmer[i].Navn)" data-produksjonsår="@(Model.ActionFilmer[i].Produksjonsår)"
+                   data-beskrivelse="@(Model.ActionFilmer[i].Beskrivelse)" data-studio="@(Model.ActionFilmer[i].Studio)" data-visninger="@(Model.ActionFilmer[i].Visninger)">
+
+                    <img src="../@Model.ActionFilmer[i].Bilde" alt="@Model.ActionFilmer[i].Navn" class="img-responsive center" width="100" height="100" />
+                    <p>@Model.ActionFilmer[i].Navn</p>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+<div id="actionFilmCollapse" class="collapse">
+    <span hidden id="actionFilmCollapseID"></span>
+    <div id="actionFilmCollapseContent">
+
+    </div>
+</div>
+
+<br>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // En collapse-meny for å vise mer info om en film som trykkes på
+        $('a[data-visCollapse=true]').click(function (evt) {
+            evt.preventDefault();
+            var data = {
+                Navn: $(this).data("navn"),
+                Bilde: $(this).data("bilde"),
+                Visninger: $(this).data("visninger"),
+                Produksjonsår: $(this).data("produksjonsår"),
+                Kontinent: $(this).data("kontinent"),
+                Studio: $(this).data("studio"),
+                Beskrivelse: $(this).data("beskrivelse"),
+                id: $(this).data("id")
+            }
+            var id = $(this).data("id");
+
+            if (!$("#filmCollapse").is(":visible")) {
+                // Første trykk på collapsen
+                $("#filmCollapse").collapse("show");
+                $("#collapseID").html(id);
+
+                // Flytter nettleseren til collapse innholdet
+                $('html, body').animate({
+                    scrollTop: $("#scrollTarget").offset().top
+                }, 500);
+
+                var formatertData = formaterCollapseFilmData(data);
+                $("#collapseContent").html(formatertData);
+            }
+            else if ($("#collapseID").html() == id) {
+                // Trykker på samme collapse - Gjemmer innhold
+                $("#filmCollapse").collapse("hide");
+            }
+            else {
+                // Ny content i collapsen - når bruker trykker på ny film med collapsen åpen
+                $("#collapseID").html(id);
+                var formatertData = formaterCollapseFilmData(data);
+                $("#collapseContent").html(formatertData);
+            }
+
+        });
+
+        // Samme collapse meny, men for action film kategorien lenger ned på siden
+        $('a[data-visActionFilmCollapse=true]').click(function (evt) {
+            evt.preventDefault();
+            var data = {
+                Navn: $(this).data("navn"),
+                Bilde: $(this).data("bilde"),
+                Visninger: $(this).data("visninger"),
+                Produksjonsår: $(this).data("produksjonsår"),
+                Kontinent: $(this).data("kontinent"),
+                Studio: $(this).data("studio"),
+                Beskrivelse: $(this).data("beskrivelse"),
+                id: $(this).data("id")
+            }
+            var id = $(this).data("id");
+            if (!$("#actionFilmCollapse").is(":visible")) {
+                $("#actionFilmCollapse").collapse("show");
+                $("#actionFilmCollapseID").html(id);
+
+                $('html, body').animate({
+                    scrollTop: $("#actionFilmScrollTarget").offset().top
+                }, 500);
+
+                var formatertData = formaterCollapseFilmData(data);
+                $("#actionFilmCollapseContent").html(formatertData);
+            }
+            else if ($("#actionFilmCollapseID").html() == id) {
+                $("#actionFilmCollapse").collapse("hide");
+            }
+            else {
+                $("#actionFilmCollapseID").html(id);
+                var formatertData = formaterCollapseFilmData(data);
+                $("#actionFilmCollapseContent").html(formatertData);
+            }
+
+        });
+
+    })
+
+    // Formaterer data for visning i collapse menyen
+    function formaterCollapseFilmData(data) {
+        var utData = "";
+        utData += '<div class="container">';
+        utData += '<div class="row">';
+
+        utData += '<div class="col-xs-4"><div class="float-right">';
+        utData += '<img src="/' + data.Bilde + '" alt="' + data.Navn + '" class="img-responsive">';
+        utData += '</div></div>';
+
+        utData += '<div class="col-xs-8">';
+        utData += '<h3>' + data.Navn + '</h3>';
+        utData += '<p>' + data.Beskrivelse + '</p>';
+        utData += '<br><br>';
+        utData += '<p>Utgivelsesår: ' + data.Produksjonsår + ' &nbsp;&nbsp; Fra: ' + data.Kontinent + ' &nbsp;&nbsp;';
+        utData += 'Studio: ' + data.Studio + '<br>';
+        utData += 'Antall Visninger: ' + data.Visninger + '</p>';
+        utData += "<br><br>";
+        utData += '<a href="/Film/Film?id=' + data.id + '" class="btn btn-info center">Mer info</a>';
+        utData += '</div>';
+        utData += '</div>';
+        utData += '</div>';
+        utData += '<hr>';
+        return utData;
+    }
+
+</script>
+
+@Html.Partial("FilmModal")

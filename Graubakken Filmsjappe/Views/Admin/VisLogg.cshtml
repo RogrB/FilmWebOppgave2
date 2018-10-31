@@ -1,0 +1,14 @@
+﻿@model string[]
+@{
+    ViewBag.Title = "Admin Logg";
+}
+
+<h2>Admin Logg</h2>
+
+<div class="well" style="background-color: #1e1e1e">
+    @foreach (var linje in Model)
+    {
+        @linje<br />
+    }
+</div>
+

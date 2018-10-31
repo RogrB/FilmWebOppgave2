@@ -1,0 +1,86 @@
+﻿<!-- Skuespillermodal Partial view -->
+
+<div id="skuespillerModal" class="modal fade" style="color: #242424">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title">Skuespillerinformasjon:</h2>
+            </div>
+            <div class="modal-body">
+                <div id="modalContent">
+
+                </div>
+                <div id="filmer">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Lukk</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        // Henter inn data, når man åpner modalen
+        $('a[data-visSkuespiller=true]').click(function () {
+            var navn = $(this).data("navn");
+            var alder = $(this).data("alder");
+            var bilde = $(this).data("bilde");
+            var land = $(this).data("land");
+            var id = $(this).data("id");
+            var info = "";
+            info += "<div class='row'>";
+            info += "<div class='col-md-4'>";
+            info += "<img src='../" + bilde + "' alt='" + navn + "' class='img img-responsive' width='250' height='250'>";
+            info += "</div>";
+            info += "<div class='col-md-8'>";
+            info += "<h4>" + navn + "</h4>";
+            info += "<p>Alder: <b>" + alder + "</b> år</p>";
+            info += "<p>Fra: <b>" + land + "</b></p>";
+            info += "<br><a href='Skuespiller?id=" + id + "' class='btn btn-info'>Mer info</a>";
+            info += "</div></div>";
+            $("#modalContent").html(info);
+            hentFilmData(id);
+        })
+    });
+
+    // Henter andre filmer skuespilleren har vært med i
+    function hentFilmData(innID) {
+        $.ajax({
+            url: '/Film/HentFilmerFraSkuespillerID/' + innID,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                formaterFilmData(data);
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å hente filminformasjon");
+            }
+        });
+    }
+
+    // Formaterer filmdata for visning i modal
+    function formaterFilmData(data) {
+        var filmer = "";
+        filmer += '<br><div class="well" style="background - color: #1e1e1e">';
+        filmer += "<h4>Filmer: </h4>";
+        $(jQuery.parseJSON(JSON.stringify(data))).each(function () {
+            filmer += "<div class='row'><div class='col-sm-6'>";
+            filmer += "<a href='Film?id=" + this.id + "'><b>" + this.Navn + "</b></a><br>";
+            filmer += "<p><span class='infoTextModal'>Utgiver:</span> " + this.Studio + "<br>";
+            filmer += "<span class='infoTextModal'>Antall Visninger:</span> " + this.Visninger + "<br>";
+            filmer += "<span class='infoTextModal'>Terningkast:</span> " + this.Gjennomsnitt + "</p>";
+            filmer += "</div><div class='col-sm-6'>";
+            filmer += "<a href='Film?id=" + this.id + "'><img src='../" + this.Bilde + "' alt='" + this.Navn + "' class='img img-responsive' width='50' height='50'></a>";
+            filmer += "</div></div>";
+            filmer += "<br>";
+        });
+        filmer += "</div>";
+        $("#filmer").html(filmer);
+    }
+</script>

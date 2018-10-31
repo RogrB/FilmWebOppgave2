@@ -1,0 +1,158 @@
+﻿@model Model.EndreKunde
+
+@{
+    ViewBag.Title = "Rediger Bruker";
+}
+@if (Model != null)
+{
+
+
+<h2>Rediger Bruker</h2>
+
+    using (Html.BeginForm())
+    {
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Kunde</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fornavn, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Fornavn, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Fornavn, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Etternavn, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Etternavn, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Etternavn, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Brukernavn, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Brukernavn, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Brukernavn, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Kort, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Kort, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Kort, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @if (ViewBag.EndreStatus != null)
+    {
+        <p> @ViewBag.EndreStatus </p>
+    }
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Lagre endringer" class="btn btn-success" />
+            <a href="/Admin/Admin" class="btn btn-info">Tilbake til adminportal</a>
+        </div>
+    </div>
+</div>
+    }
+
+<br>
+<div class="well" style="background-color: #1e1e1e">
+    @if (Model.Filmer.Count() < 1)
+    {
+        <h4>Bruker <b><i>@Model.Brukernavn </i></b>har ikke sett noen filmer enda</h4>
+    }
+    else
+    {
+        <h4>Filmer @Model.Brukernavn har sett: </h4>
+        foreach (var item in Model.Filmer)
+        {
+            <div class='row'>
+                <div class='col-sm-2'>
+                    <a href="/Admin/RedigerFilm?id=@item.id">
+                        <img src="../@item.Bilde" class="img img-responsive" width="100" height="100" alt="@item.Navn" />
+                        <br />
+                    </a>
+                </div>
+                <div class="col-sm-4">
+                    <a href="/Admin/RedigerFilm?id=@item.id">
+                        <b> @item.Navn </b> </a> <br />
+                        Visninger: @item.Visninger<br />
+                        Studio: @item.Studio<br />
+                        Fra: @item.Kontinent
+</div>
+                <div class="col-sm-4">
+                    <button onclick='slettFilmFraBruker(@item.id)' class='btn btn-danger'>Slett fra visningsliste</button><br /><br /><br />
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<div class="well" style="background-color: #1e1e1e">
+    @if (Model.Stemmer.Count() < 1)
+    {
+        <h4>Bruker <b><i>@Model.Brukernavn </i></b>har ikke gitt vurdering til noen filmer</h4>
+    }
+    else
+    {
+        <h4>Filmer @Model.Brukernavn har gitt vurdering: </h4>
+        foreach (var item in Model.Stemmer)
+        {
+            <div class='row'>
+                <div class='col-sm-2'>
+                    <a href="/Admin/RedigerFilm?id=@item.Filmer[0].id">
+                        <img src="../@item.Filmer[0].Bilde" class="img img-responsive" width="100" height="100" alt="@item.Filmer[0].Navn" />
+                        <br />
+                    </a>
+                </div>
+                <div class="col-sm-4">
+                    <a href="/Admin/RedigerFilm?id=@item.Filmer[0].id">
+                        <b> @item.Filmer[0].Navn </b> </a> <br />
+                        Terningkast: <b> @item.AntallStjerner</b> <br />
+</div>
+            </div>
+        }
+    }
+</div>    
+
+<div id="brukerID" hidden>@Model.id</div>
+
+<script type="text/javascript">
+    var id = $("#brukerID").html();
+    function slettFilmFraBruker(filmID) {
+        $.ajax({
+            url: '/Admin/SlettFilmFraBruker?brukerID=' + id + "&filmID=" + filmID,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data === "OK") {
+                    location.reload();
+                }
+                else {
+                    console.log("Klarte ikke å slette film fra visningsliste");
+                }
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å slette film fra visningsliste");
+            }
+        });
+    }
+</script>
+
+
+}
+else
+{
+    <h4>Fant ikke Bruker som skal endres - har du angitt riktig ID?</h4>
+}

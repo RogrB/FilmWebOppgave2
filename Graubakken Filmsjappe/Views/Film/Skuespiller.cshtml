@@ -1,0 +1,57 @@
+﻿@model Model.Skuespiller
+
+@{
+    ViewBag.Title = "Skuespiller";
+}
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-md-3">
+            <br />
+            <img src="../@Model.Bilde" alt="@Model.Fornavn @Model.Etternavn" class="img img-responsive" />
+        </div>
+        <div class="col-md9">
+            <div class="center">
+                <h2>@Model.Fornavn @Model.Etternavn</h2>
+                <hr />
+                <br />
+                <p>
+                    @Model.Alder år <br />
+                    <span class="infoText">Fra:</span> @Model.Land
+                </p>
+                <br />
+            </div>
+        </div>
+    </div>
+    <br /><br />
+    <hr />
+
+    <div class="container">
+        <h3>Filmer</h3>
+        @foreach (var film in Model.Filmer)
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="Film?id=@film.id">
+                        <img src="../@film.Bilde" alt="@film.Navn" class="img img-responsive" width="125" height="125" />
+                    </a>
+                </div>
+                <div class="cold-md-9">
+                    <a href="Film?id=@film.id">
+                        <p>@film.Navn</p>
+                    </a>
+                    <p>
+                        @film.Sjanger[0].sjanger <br />
+                        <span class="infoText">Visninger:</span> @film.Visninger <br />
+                        <span class="infoText">Terningkast:</span> @film.Gjennomsnitt
+                </p>
+            </div>
+        </div>
+        <br />
+    }
+    </div>
+}
+else
+{
+    <h3>Fant ikke skuespillerinformasjon</h3>
+}

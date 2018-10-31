@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>Adminportal</h2>
+
+<div class="row">
+    <div class="col-sm-3">
+        <h4>Filmer</h4>
+        @Html.ActionLink("Opprett Film", "OpprettFilm", new { tom = "" }, new { @class = "btn btn-primary" }) <br /><br />
+        @Html.ActionLink("Administrer Film", "RedigerFilmer", new { tom = "" }, new { @class = "btn btn-primary" })
+    </div>
+    <div class="col-sm-3">
+        <h4>Skuespillere</h4>
+        @Html.ActionLink("Opprett Skuespiller", "OpprettSkuespiller", new { tom = "" }, new { @class = "btn btn-primary" }) <br /><br />
+        @Html.ActionLink("Administrer Skuespillere", "RedigerSkuespillere", new { tom = "" }, new { @class = "btn btn-primary" })
+    </div>
+    <div class="col-sm-3">
+        <h4>Brukere</h4>
+        @Html.ActionLink("Administrer Brukere", "RedigerBrukere", new { tom = "" }, new { @class = "btn btn-primary" })
+    </div>
+    <div class="col-sm-3">
+        <h4>Nyheter</h4>
+        @Html.ActionLink("Opprett Nyhet", "OpprettNyhet", new { tom = "" }, new { @class = "btn btn-primary" }) <br /><br />
+        @Html.ActionLink("Administrer Nyheter", "RedigerNyheter", new { tom = "" }, new { @class = "btn btn-primary" })
+    </div>
+</div>
+<br /><br /><br />
+          <h4>Logg</h4>
+          @Html.ActionLink("Vis AdminLogg", "VisLogg", new { tom = "" }, new { @class = "btn btn-primary" })
+<br /><br /><br />
+

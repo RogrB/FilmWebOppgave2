@@ -1,0 +1,129 @@
+﻿@model List<Model.Skuespiller>
+
+@{
+    ViewBag.Title = "Administrer Skuespillere";
+}
+
+
+<h2>Administrer Skuespillere</h2>
+<div id="slettStatus"></div>
+<table class="table table-responsive">
+    <tr>
+        <th>
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Fornavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Etternavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Land)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Alder)
+        </th>
+        <th>
+            Endre
+        </th>
+        <th>
+            Slett
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="skuespillerRad">
+            <td>
+                <img alt="@Html.DisplayFor(modelitem => item.Fornavn) @Html.DisplayFor(modelitem => item.Etternavn)"
+                     src="../@item.Bilde" class="img img-responsive img-rounded" width="180" height="126">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fornavn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Etternavn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Land)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alder)
+            </td>
+            <td>
+                <a href="/Admin/RedigerSkuespiller?id=@item.id" class="btn btn-info">Endre</a>
+            </td>
+            <td>
+                <a href="#bekreftModal" class="btn btn-danger" data-id="@item.id" data-toggle="modal"
+                   data-navn="@item.Fornavn @item.Etternavn" data-visBekreftModal="true">Slett</a>
+            </td>
+        </tr>
+    }
+</table>
+
+
+<div id="bekreftModal" class="modal fade" style="color: #242424">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Bekreft sletting av skuespiller</h4>
+            </div>
+            <div class="modal-body">
+                <div id="bekreftContent">
+
+                </div>
+                <div id="skuespillerID" hidden></div>
+                <div id="tilbakemelding"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="slettSkuespiller()">Slett</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Avbryt</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#bekreftModal").modal("hide");
+        $("#slettStatus").html("");
+
+        $('a[data-visBekreftModal=true]').click(function () {
+            var navn = $(this).data("navn");
+            var id = $(this).data("id");
+            var info = "<p>Er du sikker på at du vil slette <b>" + navn + "</b> permanent?";
+            $("#bekreftContent").html(info);
+            $("#skuespillerID").html(id);
+        })
+    });
+
+
+    function slettSkuespiller() {
+        var id = $("#skuespillerID").html();
+        $.ajax({
+            url: '/Admin/SlettSkuespiller?id=' + id,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data == "OK") {
+                    $("#bekreftModal").modal("hide");
+                    $("#slettStatus").html("Skuespiller slettet");
+                    location.reload();
+                }
+                else {
+                    var feilmelding = "Klarte ikke å slette skuespiller";
+                    $("#slettStatus").html(feilmelding);
+                    $("#tilbakemelding").html(feilmelding);
+                }
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å slette skuespiller");
+            }
+        });
+    }
+
+</script>

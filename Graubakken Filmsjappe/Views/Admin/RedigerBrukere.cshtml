@@ -1,0 +1,121 @@
+﻿@model List<Model.Kunde>
+
+@{
+    ViewBag.Title = "Administrer Brukere";
+}
+
+<h2>Administrer Brukere</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Fornavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Etternavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Brukernavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Kort)
+        </th>
+        <th>
+            Endre
+        </th>
+        <th>
+            Slett
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fornavn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Etternavn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brukernavn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kort)
+            </td>
+            <td>
+                <a href="/Admin/RedigerBruker?id=@item.id" class="btn btn-info">Endre</a>
+            </td>
+            <td>
+                <a href="#bekreftModal" class="btn btn-danger" data-id="@item.id" data-toggle="modal"
+                   data-brukernavn="@item.Brukernavn" data-visBekreftModal="true">Slett</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<div id="bekreftModal" class="modal fade" style="color: #242424">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Bekreft sletting av bruker</h4>
+            </div>
+            <div class="modal-body">
+                <div id="bekreftContent">
+
+                </div>
+                <div id="brukerID" hidden></div>
+                <div id="tilbakemelding"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="slettBruker()">Slett</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Avbryt</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#bekreftModal").modal("hide");
+        $("#slettStatus").html("");
+
+        $('a[data-visBekreftModal=true]').click(function () {
+            var brukernavn = $(this).data("brukernavn");
+            var id = $(this).data("id");
+            var info = "<p>Er du sikker på at du vil slette <b>" + brukernavn + "</b> permanent?";
+            $("#bekreftContent").html(info);
+            $("#brukerID").html(id);
+        })
+    });
+
+
+    function slettBruker() {
+        var id = $("#brukerID").html();
+        $.ajax({
+            url: '/Admin/SlettBruker?id=' + id,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data == "OK") {
+                    $("#bekreftModal").modal("hide");
+                    $("#slettStatus").html("Bruker slettet");
+                    location.reload();
+                }
+                else {
+                    var feilmelding = "Klarte ikke å slette bruker";
+                    $("#slettStatus").html(feilmelding);
+                    $("#tilbakemelding").html(feilmelding);
+                }
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å slette bruker");
+            }
+        });
+    }
+
+</script>

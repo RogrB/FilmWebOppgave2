@@ -1,0 +1,285 @@
+﻿<!-- Film Modal Partialview -->
+
+<span id="tempNavn" hidden></span>
+<span id="tempPris" hidden></span>
+<div id="filmModal" class="modal fade" style="color: #242424">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><span id="filmNavn"></span></h4>
+                <span id="filmIDSpan" hidden></span>
+            </div>
+            <div class="modal-body">
+                <div id="modalContent">
+
+                </div>
+                <div id="stemmeDIV">
+                    <span id="filmIDSpan" hidden></span>
+                    <div id="stjerner">
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne1" onmouseover="stjerneDisplay(1);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne2" onmouseover="stjerneDisplay(2);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne3" onmouseover="stjerneDisplay(3);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne4" onmouseover="stjerneDisplay(4);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne5" onmouseover="stjerneDisplay(5);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne6" onmouseover="stjerneDisplay(6);" onmouseout="clearStjerner()" />
+                    </div>
+                    <div id="stemmeFeedback"></div>
+                </div>
+                <div id="skuespillere">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div id="alertTarget"></div>
+                <button type="button" class="btn btn-success" id="kjop">Kjøp (<span id="prisSpan"></span> kr)</button>
+                @if (Session["Brukernavn"] != null && (string)Session["Brukernavn"] != "")
+                {
+                    <button onclick="leggIØnskeListe()" class="btn btn-success" id="leggIListe">Legg i ønskeliste</button>
+                }
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Lukk</button><br />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="bekreftModal" class="modal fade" style="color: #242424">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Filmkjøp</h4>
+            </div>
+            <div class="modal-body">
+                <p>Bekreft kjøp av film <b><span id="filmNavnBekreft"></span></b> for <b><span id="prisSpanBekreft"></span></b> kr</p>
+                <div id="modalContent">
+
+                </div>
+                <div id="skuespillere">
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="bekreft">Ok</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Avbryt</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Flytter over data når man åpner modalen
+        $('a[data-visFilm=true]').click(function () {
+            var data = {
+                navn : $(this).data("navn"),
+                produksjonsår : $(this).data("produksjonsår"),
+                kontinent : $(this).data("kontinent"),
+                studio : $(this).data("studio"),
+                visninger : $(this).data("visninger"),
+                bilde : $(this).data("bilde"),
+                id : $(this).data("id"),
+                beskrivelse: $(this).data("beskrivelse"),
+                releasedate: $(this).data("releasedate"),
+                pris: $(this).data("pris"),
+                gjennomsnitt: $(this).data("gjennomsnitt")
+            }
+            $("#modalContent").html(formaterFilmData(data));
+            $("#filmIDSpan").html(data.id);
+            flyttDataTilElementer(data);
+
+            hentSkuespillerData(data.id);
+        })
+
+        // Ber om bekreftelse når en bruker trykker på "kjøp" knappen
+        $("#kjop").click(function () {
+            $("#bekreftModal").modal("show");
+            $("#filmNavnBekreft").html($("#tempNavn").html());
+            $("#prisSpanBekreft").html($("#tempPris").html());
+        })
+
+        // Går til filmvisning når bruker bekrefter kjøp
+        $("#bekreft").click(function () {
+            window.location.href = "FilmVisning?id=" + $("#filmIDSpan").html();
+        })
+
+    });
+
+    // Formaterer filmdata for visning i modalen
+    function formaterFilmData(data) {
+        $("#filmNavn").html(data.navn);
+        var info = "";
+        info += "<div class='row'>";
+        info += "<div class='col-sm-3'>";
+        info += "<img src='../" + data.bilde + "' alt='" + data.navn + "' height='100' width='100' class='img img-responsive'>";
+        info += "</div>";
+        info += "<div class='col-sm-9'>";
+        info += "<p><span class='infoText'>Utgiver:</span> " + data.studio + "<br>";
+        info += "<span class='infoText'>Fra:</span> " + data.kontinent + "</p>";
+        info += "<p><span class='infoText'>Antall Visninger:</span> " + data.visninger + "<br>";
+        info += "<span class='infoText'>Terningkast:</span> " + data.gjennomsnitt + "</p>";
+        info += "<br><a href='Film?id=" + data.id + "' class='btn btn-info'>Mer Info</a>"
+        info += "</div></div>";
+
+        $("#prisSpan").html(data.pris);
+        return info;
+    }
+
+    // Ajax kall for å hente skuespillere i filmen
+    function hentSkuespillerData(id) {
+        $.ajax({
+            url: '/Film/HentSkuespillereIFilm/' + id,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                formaterSkuespillerData(data);
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å hente skuespillerinformasjon");
+            }
+        });
+    }
+
+    // Formaterer data fra ajax kallet om skuespillere
+    function formaterSkuespillerData(data) {
+        var skuespillere = "";
+        skuespillere += '<br><div class="well" style="background - color: #1e1e1e">';
+        skuespillere += "<h4>Skuespillere: </h4>";
+        $(jQuery.parseJSON(JSON.stringify(data))).each(function () {
+            skuespillere += "<div class='row'><div class='col-sm-4'>";
+            skuespillere += "<a href='Skuespiller?id=" + this.id + "'><b>" + this.Fornavn + " " + this.Etternavn + "</b></a><br>";
+            skuespillere += "<p>Alder: <b>" + this.Alder + "</b> år<br>";
+            skuespillere += "Fra: <b>" + this.Land + "</b></p>";
+            skuespillere += "</div><div class='col-sm-8'>";
+            skuespillere += "<a href='Skuespiller?id=" + this.id + "'><img src='../" + this.Bilde + "'";
+            skuespillere +=  "alt='" + this.Fornavn + " " + this.Etternavn + "' class='img img-responsive' width='100' height='100'></a>";
+            skuespillere += "</div></div>";
+            skuespillere += "<br>";
+        });
+        skuespillere += "</div>";
+        $("#skuespillere").html(skuespillere);
+    }
+
+    function flyttDataTilElementer(data) {
+        $("#filmIDSpan").html(data.id);
+        $("#filmNavn").html(data.navn);
+        $("#prisSpan").html(data.pris);
+        $("#tempNavn").html(data.navn);
+        $("#tempPris").html(data.pris);
+    }
+
+    function leggIØnskeListe() {
+        var filmID = $("#filmIDSpan").html();
+        $.ajax({
+            url: '/Film/LeggIØnskeliste?FilmID=' + filmID,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data === "OK") {
+                    alertFeedback(true);
+                }
+                else {
+                    alertFeedback(false);
+                }
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å legge film i ønskeliste");
+            }
+        });
+    }
+
+    // Gir feedback til brukeren om resultatet av ajax kallet for å legge film i ønskelisten
+    function alertFeedback(resultat) {
+        var output = "";
+        if (resultat) {
+            output += "<div class='alert alert-success alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "Film lagt til i Ønskelisten</div>";
+        }
+        else {
+            output += "<div class='alert alert-danger alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "Klarte ikke å legge film til i ønskelisten</div>";
+        }
+        $("#alertTarget").html(output);
+    }
+
+
+    // Stemme script - må være custom for film modal
+
+    function stemPåFilm(stemme) {
+        var filmID = $("#filmIDSpan").html();
+        $.ajax({
+            url: '/Film/StemPåFilm/?FilmID=' + filmID + "&stemme=" + stemme,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data === "OK") {
+                    stemmeFeedback("OK");
+                }
+                else if (data === "Feil innlogging") {
+                    stemmeFeedback("innlogging");
+                }
+                else {
+                    stemmeFeedback("Feil");
+                }
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å stemme på film");
+            }
+        });
+    }
+
+    // Feedback etter ajax kall for å stemme på film
+    function stemmeFeedback(resultat) {
+        var output = "";
+        if (resultat === "innlogging") {
+            output += "<div class='alert alert-danger alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "<a href='/Film/Loginn'>Logg inn</a> for å stemme</div>";
+        }
+        else if (resultat === "OK") {
+            output += "<div class='alert alert-success alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "Stemme registrert";
+        }
+        else {
+            output += "<div class='alert alert-danger alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "Kunne ikke stemme</div>";
+        }
+
+        $("#stemmeFeedback").html(output);
+    }
+
+    // Oppdaterer stjernedisplayet når bruker beveger musepekeren over stjernene for å stemme på film
+    function stjerneDisplay(antall) {
+        var output = "";
+        for (var i = 1; i <= antall; i++) {
+            output += '<img src="../Content/images/gullstjerne.png" alt="Gi vurdering" width="25" id="stjerne' + i + '" onmouseout="clearStjerner()" onclick="stemPåFilm(' + i + ')" />';
+        }
+        var resterende = 6 - antall;
+        for (var j = 1; j <= resterende; j++) {
+            output += '<img src="../Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne' + i + '" onmouseover="stjerneDisplay(' + i + ');" onmouseout="clearStjerner()" />';
+        }
+        $("#stjerner").html(output);
+    }
+
+    // Resetter stjernene til "tomme" stjerner - når brukeren ikke lenger har musepekeren over noen stjerner
+    function clearStjerner() {
+        var output = "";
+        output += '<img src="../Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne1" onmouseover="stjerneDisplay(1);" onmouseout="clearStjerner()" />';
+        output += '<img src="../Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne2" onmouseover="stjerneDisplay(2);" onmouseout="clearStjerner()" />';
+        output += '<img src="../Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne3" onmouseover="stjerneDisplay(3);" onmouseout="clearStjerner()" />';
+        output += '<img src="../Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne4" onmouseover="stjerneDisplay(4);" onmouseout="clearStjerner()" />';
+        output += '<img src="../Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne5" onmouseover="stjerneDisplay(5);" onmouseout="clearStjerner()" />';
+        output += '<img src="../Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne6" onmouseover="stjerneDisplay(6);" onmouseout="clearStjerner()" />';
+        $("#stjerner").html(output);
+    }
+
+
+
+</script>

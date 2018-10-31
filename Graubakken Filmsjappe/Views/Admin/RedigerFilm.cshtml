@@ -1,0 +1,405 @@
+﻿@model Model.Film
+
+@{
+    ViewBag.Title = "RedigerFilm";
+}
+
+@if (Model != null)
+{
+
+
+    <h2>Rediger Film <i>@Model.Navn</i></h2>
+    <div class="row">
+        <div class="col-md-3"><br /><br /><br />
+            <img src="../@Model.Bilde" alt="@Model.Navn" class="img img-responsive" />
+        </div>
+        <div class="col-md-9">
+
+
+            @using (Html.BeginForm("RedigerFilm", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Film</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Navn, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Navn, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Navn, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Produksjonsår, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Produksjonsår, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Produksjonsår, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Kontinent, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Kontinent, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Kontinent, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Studio, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Studio, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Studio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Bilde, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" name="bildeOpplasting" id="bildeOpplasting" />
+                        @Html.ValidationMessageFor(model => model.Bilde, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Visninger, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Visninger, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Visninger, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Beskrivelse, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Beskrivelse, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Beskrivelse, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ReleaseDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ReleaseDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ReleaseDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Pris, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Pris, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Pris, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Gjennomsnitt, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Gjennomsnitt, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Gjennomsnitt, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @if (ViewBag.EndreStatus != null)
+                {
+                    <p> @ViewBag.EndreStatus </p>
+                }
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Lagre Endringer" class="btn btn-success" />
+                        <a href="/Admin/Admin" class="btn btn-info">Tilbake til adminportal</a>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+    <br /><br />
+    <div id="filmID" hidden>@Model.id</div>
+    <button data-toggle="collapse" data-target="#skuespillere" class="btn btn-info"><h4>Skuespillere</h4></button>
+    <div id="skuespillere" class="collapse">
+
+    </div>
+
+    <br /><br />
+    <button data-toggle="collapse" data-target="#sjangere" class="btn btn-info"><h4>Sjangere</h4></button>
+    <div id="sjangere" class="collapse">
+
+    </div>
+
+
+    <div id="skuespillerModal" class="modal fade" style="color: #242424">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Legg til skuespiller</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="skuespillerContent">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Lukk</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sjangerModal" class="modal fade" style="color: #242424">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Legg til sjanger</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="sjangerContent">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Lukk</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var id = $("#filmID").html();
+        $(document).ready(function () {
+            hentSkuespillere();
+            hentSjangere();
+        });
+
+        function hentSkuespillere() {
+            $.ajax({
+                url: '/Film/HentSkuespillereIFilm/' + id,
+                type: 'GET',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    formaterSkuespillerData(data);
+                },
+                error: function (x, y, z) {
+                    console.log("Feilet API kall for å hente skuespillerinformasjon");
+                }
+            });
+        }
+
+        function formaterSkuespillerData(data) {
+            var skuespillere = "";
+            skuespillere += '<br><div class="well" style="background-color: #1e1e1e">';
+            skuespillere += "<h4>Skuespillere: </h4>";
+            skuespillere += "<button onclick='visSkuespillerModal()' class='btn btn-success'>Legg til skuespiller</button><br><br>";
+            $(jQuery.parseJSON(JSON.stringify(data))).each(function () {
+                skuespillere += "<div class='row'><div class='col-sm-4'>";
+                skuespillere += "<a href='/Admin/RedigerSkuespiller?id=" + this.id + "'><b>" + this.Fornavn + " " + this.Etternavn + "</b></a><br>";
+                skuespillere += "<p>Alder: <b>" + this.Alder + "</b> år<br>";
+                skuespillere += "Fra: <b>" + this.Land + "</b></p>";
+                skuespillere += "</div><div class='col-sm-4'>";
+                skuespillere += "<a href='/Admin/RedigerSkuespiller?id=" + this.id + "'><img src='../" + this.Bilde + "'";
+                skuespillere += "alt='" + this.Fornavn + " " + this.Etternavn + "' class='img img-responsive' width='100' height='100'></a>";
+                skuespillere += "</div><div class='col-sm-4'>";
+                skuespillere += "<button onclick='slettSkuespillerFraFilm(" + this.id + ")' class='btn btn-danger'>Slett fra film </button>";
+                skuespillere += "</div></div>";
+                skuespillere += "<br>";
+            });
+            skuespillere += "</div>";
+            $("#skuespillere").html(skuespillere);
+        }
+
+        function visSkuespillerModal() {
+            $("#skuespillerModal").modal("show");
+            $.ajax({
+                url: '/Admin/HentSkuespillere',
+                type: 'GET',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    visSkuespillereIModal(data);
+                },
+                error: function (x, y, z) {
+                    console.log("Feilet API kall for å hente skuespillerinformasjon");
+                }
+            });
+        }
+
+        function visSkuespillereIModal(data) {
+            var output = "";
+            $(jQuery.parseJSON(JSON.stringify(data))).each(function () {
+                output += "<div class='row'><div class='col-sm-4'>";
+                output += "<p><b>" + this.Fornavn + " " + this.Etternavn + "</b><br>";
+                output += "<p>Alder: <b>" + this.Alder + "</b> år<br>";
+                output += "Fra: <b>" + this.Land + "</b></p>";
+                output += "</div><div class='col-sm-4'>";
+                output += "<img src='../" + this.Bilde + "'";
+                output += "alt='" + this.Fornavn + " " + this.Etternavn + "' class='img img-responsive' width='100' height='100'>";
+                output += "</div><div class='col-sm-4'>";
+                output += "<button onclick='leggTilSkuespiller(" + this.id + ")' class='btn btn-success'>Legg til</button>";
+                output += "</div></div>";
+                output += "<br>";
+            });
+            $("#skuespillerContent").html(output);
+        }
+
+        function leggTilSkuespiller(skuespillerID) {
+            $.ajax({
+                url: '/Admin/LeggSkuespillerIFilm?filmID=' + id + "&skuespillerID=" + skuespillerID,
+                type: 'GET',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data === "OK") {
+                        $("#skuespillerModal").modal("hide");
+                        hentSkuespillere();
+                    }
+                    else {
+                        console.log("Klarte ikke å legge til skuespiller i film");
+                    }
+                },
+                error: function (x, y, z) {
+                    console.log("Feilet API kall for å legge til skuespiller i film");
+                }
+            });
+        }
+
+        function slettSkuespillerFraFilm(skuespillerID) {
+            $.ajax({
+                url: '/Admin/SlettSkuespillerFraFilm?filmID=' + id + "&skuespillerID=" + skuespillerID,
+                type: 'GET',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data === "OK") {
+                        $("#skuespillerModal").modal("hide");
+                        hentSkuespillere();
+                    }
+                    else {
+                        console.log("Klarte ikke å slette skuespiller fra film");
+                    }
+                },
+                error: function (x, y, z) {
+                    console.log("Feilet API kall for å slette skuespiller fra film");
+                }
+            });
+        }
+
+        function hentSjangere() {
+            $.ajax({
+                url: '/Admin/HentSjangereForFilm?id=' + id,
+                type: 'GET',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    formaterSjangerData(data);
+                },
+                error: function (x, y, z) {
+                    console.log("Feilet API kall for å hente sjangerinformasjon");
+                }
+            });
+        }
+
+        function formaterSjangerData(data) {
+            var output = "";
+            output += '<br><div class="well" style="background-color: #1e1e1e">';
+            output += "<h4>Sjangere: </h4>";
+            output += "<button onclick='visSjangerModal()' class='btn btn-success'>Legg til sjanger</button><br><br>";
+            $(jQuery.parseJSON(JSON.stringify(data))).each(function () {
+                output += "<div class='row'><div class='col-sm-4'>";
+                output += "<p><b><a href='/Admin/RedigerSjanger?id=" + this.id + "'>" + this.sjanger + "</a></b><br>";
+                output += "</div><div class='col-sm-4'>";
+                output += "<button onclick='slettSjangerFraFilm(" + this.id + ")' class='btn btn-danger'>Slett fra film </button>";
+                output += "</div></div>";
+                output += "<br>";
+            });
+            output += "</div>";
+            $("#sjangere").html(output);
+        }
+
+        function visSjangerModal() {
+            $("#sjangerModal").modal("show");
+            $.ajax({
+                url: '/Admin/HentSjangere',
+                type: 'GET',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    visSjangereIModal(data);
+                },
+                error: function (x, y, z) {
+                    console.log("Feilet API kall for å hente sjangerinformasjon");
+                }
+            });
+        }
+
+        function visSjangereIModal(data) {
+            var output = "";
+            $(jQuery.parseJSON(JSON.stringify(data))).each(function () {
+                output += "<div class='row'><div class='col-sm-4'>";
+                output += "<p><b>" + this.sjanger + "</b><br>";
+                output += "</div><div class='col-sm-4'>";
+                output += "<button onclick='leggTilSjangerIFilm(" + this.id + ")' class='btn btn-success'>Legg til</button>";
+                output += "</div></div>";
+                output += "<br>";
+            });
+            $("#sjangerContent").html(output);
+        }
+
+        function leggTilSjangerIFilm(sjangerID) {
+            $.ajax({
+                url: '/Admin/LeggSjangerIFilm?filmID=' + id + "&sjangerID=" + sjangerID,
+                type: 'GET',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data === "OK") {
+                        $("#sjangerModal").modal("hide");
+                        hentSjangere();
+                    }
+                    else {
+                        console.log("Klarte ikke å legge til sjanger i film");
+                    }
+                },
+                error: function (x, y, z) {
+                    console.log("Feilet API kall for å legge til sjanger i film");
+                }
+            });
+        }
+
+        function slettSjangerFraFilm(sjangerID) {
+            $.ajax({
+                url: '/Admin/SlettSjangerFraFilm?filmID=' + id + "&sjangerID=" + sjangerID,
+                type: 'GET',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data === "OK") {
+                        $("#sjangerModal").modal("hide");
+                        hentSjangere();
+                    }
+                    else {
+                        console.log("Klarte ikke å slette sjanger fra film");
+                    }
+                },
+                error: function (x, y, z) {
+                    console.log("Feilet API kall for å slette sjanger fra film");
+                }
+            });
+        }
+
+    </script>
+
+}
+else
+{
+    <h4>Fant ikke film som skal endres - har du angitt riktig ID?</h4>
+}

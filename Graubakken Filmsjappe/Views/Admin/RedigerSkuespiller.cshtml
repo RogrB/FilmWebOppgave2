@@ -1,0 +1,221 @@
+﻿@model Model.Skuespiller
+
+@{
+
+    ViewBag.Title = "Rediger Skuespiller";
+}
+@if (Model != null)
+{
+
+
+    <h2>Rediger Skuespiller <i>@Model.Fornavn @Model.Etternavn</i></h2>
+
+    <div class="row">
+        <div class="col-md-3">
+            <br /><br /><br />
+            <img src="../@Model.Bilde" alt="@Model.Fornavn @Model.Etternavn" class="img img-responsive" />
+        </div>
+        <div class="col-md-9">
+
+            @using (Html.BeginForm("RedigerSkuespiller", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Skuespiller</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Fornavn, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Fornavn, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Fornavn, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Etternavn, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Etternavn, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Etternavn, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Land, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Land, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Land, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Alder, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Alder, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Alder, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Bilde, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="file" name="bildeOpplasting" id="bildeOpplasting" />
+                            @Html.ValidationMessageFor(model => model.Bilde, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @if (ViewBag.EndreStatus != null)
+                    {
+                        <p> @ViewBag.EndreStatus </p>
+                    }
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Lagre endringer" class="btn btn-success" />
+                            <a href="/Admin/Admin" class="btn btn-info">Tilbake til adminportal</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <br>
+    <div class="well" style="background-color: #1e1e1e">
+        <h4>Filmer @Model.Fornavn har vært med i: </h4>
+        <button onclick='visFilmModal()' class='btn btn-success'>Legg til film</button><br><br>
+        @foreach (var item in Model.Filmer)
+        {
+            <div class='row'>
+                <div class='col-sm-2'>
+                    <a href="/Admin/RedigerFilm?id=@item.id">
+                        <img src="../@item.Bilde" class="img img-responsive" width="100" height="100" alt="@item.Navn" />
+                        <br />
+                    </a>
+                </div>
+                <div class="col-sm-4">
+                    <b> @item.Navn </b> <br />
+                    Visninger: @item.Visninger<br />
+                    Studio: @item.Studio<br />
+                    Fra: @item.Kontinent
+                </div>
+                <div class="col-sm-4">
+                    <button onclick='slettFilmFraSkuespiller(@item.id)' class='btn btn-danger'>Slett fra skuespiller</button><br /><br /><br />
+                </div>
+            </div>
+        }
+    </div>
+
+
+    <div id="filmModal" class="modal fade" style="color: #242424">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Legg til film for @Model.Fornavn @Model.Etternavn</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="filmContent">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Lukk</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="skuespillerID" hidden>@Model.id</div>
+
+    <script type="text/javascript">
+        var id = $("#skuespillerID").html();
+
+        function visFilmModal() {
+            $("#filmModal").modal("show");
+            $.ajax({
+                url: '/Admin/HentFilmerForAjax',
+                type: 'GET',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    visFilmerIModal(data);
+                },
+                error: function (x, y, z) {
+                    console.log("Feilet API kall for å hente filminformasjon");
+                }
+            });
+        }
+
+        function visFilmerIModal(data) {
+            var output = "";
+            $(jQuery.parseJSON(JSON.stringify(data))).each(function () {
+                output += "<div class='row'><div class='col-sm-4'>";
+                output += "<p><b>" + this.Navn + "</b><br>";
+                output += "<p>Fra: <b>" + this.Kontinent + "</b> år<br>";
+                output += "Visninger: <b>" + this.Visninger + "</b></p>";
+                output += "</div><div class='col-sm-4'>";
+                output += "<img src='../" + this.Bilde + "'";
+                output += "alt='" + this.Navn + "' class='img img-responsive' width='100' height='100'>";
+                output += "</div><div class='col-sm-4'>";
+                output += "<button onclick='leggTilFilm(" + this.id + ")' class='btn btn-success'>Legg til</button>";
+                output += "</div></div>";
+                output += "<br>";
+            });
+            $("#filmContent").html(output);
+        }
+
+        function leggTilFilm(filmID) {
+            $.ajax({
+                url: '/Admin/LeggFilmISkuespiller?skuespillerID=' + id + "&filmID=" + filmID,
+                type: 'GET',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data === "OK") {
+                        $("#filmModal").modal("hide");
+                        location.reload();
+                    }
+                    else {
+                        console.log("Klarte ikke å legge til film for denne skuespilleren");
+                    }
+                },
+                error: function (x, y, z) {
+                    console.log("Feilet API kall for å legge til film for skuespilleren");
+                }
+            });
+        }
+
+        function slettFilmFraSkuespiller(filmID) {
+            $.ajax({
+                url: '/Admin/SlettFilmFraSkuespiller?skuespillerID=' + id + "&filmID=" + filmID,
+                type: 'GET',
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    if (data === "OK") {
+                        $("#filmModal").modal("hide");
+                        location.reload();
+                    }
+                    else {
+                        console.log("Klarte ikke å slette film fra skuespiller");
+                    }
+                },
+                error: function (x, y, z) {
+                    console.log("Feilet API kall for å slette film fra skuespiller");
+                }
+            });
+        }
+
+
+    </script>
+
+
+}
+else
+{
+    <h4>Fant ikke skuespiller som skal endres - har du angitt riktig ID?</h4>
+}

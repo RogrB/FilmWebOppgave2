@@ -1,0 +1,81 @@
+﻿@model List<Model.Film>
+
+@{
+    ViewBag.Title = "Filmer";
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <h2>Filmer</h2>
+        <p>Sortert etter @ViewBag.Sortering</p>
+    </div>
+    <div class="col-sm-6 pull-right">
+        <br />
+        <div class="dropdown pull-right">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Sorter Etter:
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Alfabetisk", "Filmer", new { sortering = "Alfabetisk" })</li>
+                <li>@Html.ActionLink("Antall Visninger", "Filmer", new { sortering = "Visninger" })</li>
+                <li>@Html.ActionLink("Pris", "Filmer", new { sortering = "Pris" })</li>
+                <li>@Html.ActionLink("Opplastingsdato", "Filmer", new { sortering = "Dato" })</li>
+                <li>@Html.ActionLink("Terningkast", "Filmer", new { sortering = "Stjerner" })</li>
+                <li>@Html.ActionLink("Kontinent", "Filmer", new { sortering = "Kontinent" })</li>
+                <li>@Html.ActionLink("Produksjonsår", "Filmer", new { sortering = "Produksjonsår" })</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    @{
+        int teller = 1;
+        int antallKolonner = 3;
+    }
+    @foreach (var item in Model)
+    {
+        if (teller % antallKolonner == 1)
+        {
+            @:<div class="row">
+            }
+            <div class="col-xs-4">
+
+                <a href="#filmModal"
+                   data-navn="@item.Navn" data-produksjonsår="@item.Produksjonsår" data-bilde="@item.Bilde" data-gjennomsnitt="@item.Gjennomsnitt"
+                   data-kontinent="@item.Kontinent" data-studio="@item.Studio" data-visninger="@item.Visninger"
+                   data-beskrivelse="@item.Beskrivelse" data-releasedata="@item.ReleaseDate" data-pris="@item.Pris"
+                   data-id="@item.id" data-toggle="modal" data-visFilm="true">
+                    <img src="../@item.Bilde" alt="@item.Navn" class="img img-responsive" />
+                    <h4>@item.Navn</h4>
+                </a>
+                <table>
+                    <tr>
+                        <td>
+                            <span class="infoText">Visninger:</span> @item.Visninger &nbsp; &nbsp; &nbsp;
+                        </td>
+                        <td>
+                            <span class="infoText">Terningkast:</span> @item.Gjennomsnitt
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="infoText">Pris:</span> @item.Pris kr
+                        </td>
+                        <td>
+                            <span class="infoText">Fra:</span> @item.Kontinent
+                        </td>
+                    </tr>
+                </table>
+                
+            </div>
+            if (teller % antallKolonner == 0 || teller == Model.Count())
+            {
+            @:</div><br /><br />
+        }
+        teller++;
+    }
+</div>
+
+@Html.Partial("FilmModal")

@@ -1,0 +1,243 @@
+﻿@model Model.Film
+
+@{
+    ViewBag.Title = "Film";
+}
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-md-3">
+            <br />
+            <img src="../@Model.Bilde" alt="@Model.Navn" class="img img-responsive" />
+        </div>
+        <div class="col-md9">
+            <div class="center">
+                <h2>@Model.Navn</h2>
+                <hr />
+                <p>
+                    @{
+                        string sjangere = "Ingen sjanger registrert";
+                        if (Model.Sjanger != null && Model.Sjanger.ElementAtOrDefault(0) != null)
+                        {
+                            sjangere = Model.Sjanger[0].sjanger;
+                            if (Model.Sjanger.ElementAtOrDefault(1) != null)
+                            {
+                                sjangere += " | ";
+                                sjangere += Model.Sjanger[1].sjanger;
+                            }
+                        }
+                    }
+                    @sjangere
+                </p>
+                <br />
+                <p>
+                    @Model.Beskrivelse
+                </p>
+                <br />
+                <p>
+                    <span class="infoText">Utgiver:</span> @Model.Studio &nbsp; &nbsp;
+                    <span class="infoText">Utgivelsesår:</span> @Model.Produksjonsår &nbsp; &nbsp;
+                    <span class="infoText">Fra:</span> @Model.Kontinent <br />
+                    <span class="infoText">Vår preimeredato:</span> @Model.ReleaseDate <br />
+                    <span class="infoText">Visninger:</span> @Model.Visninger
+                </p>
+                <div id="stemmeStatistikk">
+                    <p>
+                        <span class="infoText">Terningkast:</span> @Model.Gjennomsnitt <br />
+                        <span class="infoText">Basert på</span> @Model.Stemmer.Count() stemmer
+                    </p>
+                </div>
+                <div id="stemmeDIV">
+                    <span id="filmIDSpan" hidden>@Model.id</span>
+                    <div id="stjerner">
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne1" onmouseover="stjerneDisplay(1);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne2" onmouseover="stjerneDisplay(2);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne3" onmouseover="stjerneDisplay(3);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne4" onmouseover="stjerneDisplay(4);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne5" onmouseover="stjerneDisplay(5);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne6" onmouseover="stjerneDisplay(6);" onmouseout="clearStjerner()" />
+                    </div>
+                    <div id="stemmeFeedback"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br /><br />
+    <p>
+        <a href="#bekreftModal" type="button" data-visModal="true" data-toggle="modal" class="btn btn-success" id="kjop">Kjøp (@Model.Pris kr)</a>
+        @Html.ActionLink("Til hovedsiden", "Index", null, new { @class = "btn btn-default" })
+        @if (Session["Brukernavn"] != null && (string)Session["Brukernavn"] != "")
+        {
+            <button onclick="leggIØnskeListe(@Model.id)" class="btn btn-success" id="leggIListe">Legg i ønskeliste</button>
+            <div id="alertTarget"></div>
+        }
+    </p>
+    <hr />
+
+    <div class="container">
+        <h3>Skuespillere</h3>
+        @foreach (var skuespiller in Model.Skuespillere)
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="Skuespiller?id=@skuespiller.id">
+                        <img src="../@skuespiller.Bilde" alt="@skuespiller.Fornavn @skuespiller.Etternavn" class="img img-responsive" width="125" height="125" />
+                    </a>
+                </div>
+                <div class="cold-md-9">
+                    <a href="Skuespiller?id=@skuespiller.id">
+                        <p>@skuespiller.Fornavn @skuespiller.Etternavn</p>
+                    </a>
+                    <p>
+                        @skuespiller.Alder år <br />
+                    <span class="infoText">Fra:</span> @skuespiller.Land
+                </p>
+            </div>
+        </div>
+        <br />
+    }
+    </div>
+    <hr />
+
+    if (Model.Kommentarer.Any())
+    {
+    <div class="well" style="background-color:#242424">
+        <h3>Kommentarer:</h3><br />
+        @foreach(var kommentar in Model.Kommentarer)
+        {
+        <div class="row">
+            <div class="col-md-1">
+                <img src="~/Content/images/defaultprofile.jpg" alt="Profilbilde" width="100" height="100" class="img img-responsive" />
+            </div>
+            <div class="col-md-11">
+                <h4 class="media-heading">@kommentar.Kunde.Brukernavn &nbsp; &nbsp;<small><i>@kommentar.Dato</i></small></h4>
+                <p>@kommentar.Melding</p>
+            </div>
+            <hr /><br /><br />
+        </div>
+        }
+    </div>
+    }
+    else
+    {
+        <h4>Bli den første til å skrive en kommentar her:</h4>
+    }
+
+<div>
+    <textarea rows="4" cols="75" placeholder="Skriv en kommentar.." id="kommentarFelt" class="form-control"></textarea><br />
+    <button class="btn btn-success" onclick="skrivKommentar(@Model.id)">Kommmenter!</button>
+    <div id="kommentarTarget"></div>
+</div>
+
+<div id="bekreftModal" class="modal fade" style="color: #242424">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <span hidden id="filmIDSpan">@Model.id</span>
+                <p>Bekreft kjøp av film <b>@Model.Navn </b>for <b>@Model.Pris </b>kr</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="bekreft">Ok</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Avbryt</button>
+            </div>
+        </div>
+    </div>
+</div>
+}
+else
+{
+<h3>Fant ikke filminformasjon</h3>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#bekreft").click(function () {
+            window.location.href = "FilmVisning?id=" + $("#filmIDSpan").html();
+        })
+
+    });
+
+    function leggIØnskeListe(filmID) {
+        $.ajax({
+            url: '/Film/LeggIØnskeliste?FilmID=' + filmID,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data === "OK") {
+                    alertFeedback(true);
+                }
+                else {
+                    alertFeedback(false);
+                }
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å legge film i ønskeliste");
+            }
+        });
+    }
+
+    // Viser resultatet av ajaxkallet "legg i ønskeliste" som bootstrap-alertbox
+    function alertFeedback(resultat) {
+        var output = "";
+        if (resultat) {
+            output += "<div class='alert alert-success alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "Film lagt til i Ønskelisten</div>";
+        }
+        else {
+            output += "<div class='alert alert-danger alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "Klarte ikke å legge film til i ønskelisten</div>";
+        }
+        $("#alertTarget").html(output);
+    }
+
+    // Lar brukeren skrive en kommentar på den angitte filmen
+    function skrivKommentar(id) {
+        var melding = $("#kommentarFelt").val();
+        $.ajax({
+            url: '/Film/SkrivKommentar?id=' + id + "&Melding=" + melding,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data === "OK") {
+                    location.reload();
+                }
+                else if (data === "Feil innlogging") {
+                    kommentarFeedback("innlogging");
+                }
+                else {
+                    kommentarFeedback("Feil");
+                }
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å skrive kommentar");
+            }
+        });
+    }
+
+    // Til tilbakemelding fra ajax kallet for å skrive kommentar
+    function kommentarFeedback(resultat) {
+        var output = "";
+        if (resultat === "innlogging") {
+            output += "<div class='alert alert-danger alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "<a href='/Film/Loginn'>Logg inn</a> for å skrive en kommentar</div>";
+        }
+        else {
+            output += "<div class='alert alert-danger alert-dismissible fade in'>";
+            output += '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            output += "Kunne ikke skrive kommentar</div>";
+        }
+
+        $("#kommentarTarget").html(output);
+    }
+</script>
+
+<script type="text/javascript" src="~/Scripts/StemmeScript.js"></script>

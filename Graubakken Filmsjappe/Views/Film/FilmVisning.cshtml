@@ -1,0 +1,70 @@
+﻿@model Model.Film
+@{
+    ViewBag.Title = "FilmVisning";
+}
+@if (Model != null)
+{
+    var tilfeldigtall = new Random();
+    int filmPlakat = tilfeldigtall.Next(1, 5);
+    if(ViewBag.VisningsInfo != null)
+    {
+        <p>@ViewBag.VisningsInfo</p>
+    }
+
+    <img src="~/Content/images/filmvisning/filmvisning0@(filmPlakat).jpg" alt="Filmen Vises" class="img img-responsive" />
+    <h2>@Model.Navn</h2>
+    <div class="row">
+        <div class="col-sm-6">
+            <p>@Model.Visninger visninger</p>
+        </div>
+        <div class="col-sm-6">
+            <div class="pull-right">
+                <div id="statistikk">
+                    <p>
+                        Terningskast: <span id="gjennomsnittSpan">@Model.Gjennomsnitt</span> <br />
+                        Basert på <span id="antallSpan">@Model.Stemmer.Count()</span> stemmer
+                    </p>
+                </div>
+
+                <div id="stemmeDIV">
+                    <span id="filmIDSpan" hidden>@Model.id</span>
+                    <div id="stjerner">
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne1" onmouseover="stjerneDisplay(1);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne2" onmouseover="stjerneDisplay(2);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne3" onmouseover="stjerneDisplay(3);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne4" onmouseover="stjerneDisplay(4);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne5" onmouseover="stjerneDisplay(5);" onmouseout="clearStjerner()" />
+                        <img src="~/Content/images/nullstjerne.png" alt="Gi vurdering" width="25" id="stjerne6" onmouseover="stjerneDisplay(6);" onmouseout="clearStjerner()" />
+                    </div>  
+                    <div id="stemmeFeedback"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <hr />
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="pull-right">
+                <img src="../@Model.Bilde" alt="@Model.Navn" width="50" height="50" class="img img-responsive" />
+            </div>
+        </div>
+        <div class="col-sm-10">
+            <p>
+                <b>@Model.Studio</b><br />
+                Lastet opp: @Model.ReleaseDate
+            </p>
+            <p>
+                @Model.Beskrivelse
+            </p>
+        </div>
+    </div>
+}
+else
+{
+    <h3>Fant ikke filmen</h3>
+}
+
+<!-- Henter inn script for å stemme på film -->
+<script type="text/javascript" src="~/Scripts/StemmeScript.js"></script>

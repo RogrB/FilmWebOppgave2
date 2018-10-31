@@ -1,0 +1,112 @@
+﻿@model List<Model.Film>
+
+@{
+    ViewBag.Title = "Administrer Filmer";
+}
+
+<h2>Administrer Filmer</h2>
+<div id="slettStatus"></div>
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <td><b>Bilde</b></td>
+                <th><b>Navn</b></th>
+                <th><b>Visninger</b></th>
+                <th><b>Studio</b></th>
+                <th><b>Endre</b></th>
+                <th><b>Slett</b></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <img src="../@item.Bilde" class="img img-responsive" width="100" height="100" alt="@item.Navn" /><br />
+            </td>
+            <td>
+                @item.Navn
+            </td>
+            <td>
+                Visninger: @item.Visninger
+            </td>
+            <td>
+                Studio: @item.Studio
+            </td>
+            <td>
+                <a href="/Admin/RedigerFilm?id=@item.id" class="btn btn-info">Endre</a>
+            </td>
+            <td>
+                <a href="#bekreftModal" class="btn btn-danger" data-id="@item.id" data-toggle="modal"
+                   data-navn="@item.Navn" data-visBekreftModal="true">Slett</a>
+            </td>
+
+        </tr>
+        }
+    </table>
+</div>
+
+
+<div id="bekreftModal" class="modal fade" style="color: #242424">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Bekreft sletting av film</h4>
+            </div>
+            <div class="modal-body">
+                <div id="bekreftContent">
+
+                </div>
+                <div id="filmID" hidden></div>
+                <div id="tilbakemelding"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="slettFilm(id)">Slett</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Avbryt</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#bekreftModal").modal("hide");
+        $("#slettStatus").html("");
+
+        $('a[data-visBekreftModal=true]').click(function () {
+            var navn = $(this).data("navn");
+            var id = $(this).data("id");
+            var info = "<p>Er du sikker på at du vil slette <b>" + navn + "</b> permanent?";
+            $("#bekreftContent").html(info);
+            $("#filmID").html(id);
+        })
+    });
+
+
+    function slettFilm() {
+        var id = $("#filmID").html();
+        $.ajax({
+            url: '/Admin/SlettFilm?id=' + id,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                if (data == "OK") {
+                    $("#bekreftModal").modal("hide");
+                    $("#slettStatus").html("Film slettet");
+                    location.reload();
+                }
+                else {
+                    var feilmelding = "Klarte ikke å slette film";
+                    $("#slettStatus").html(feilmelding);
+                    $("#tilbakemelding").html(feilmelding);
+                }
+            },
+            error: function (x, y, z) {
+                console.log("Feilet API kall for å slette film");
+            }
+        });
+    }
+
+</script>
